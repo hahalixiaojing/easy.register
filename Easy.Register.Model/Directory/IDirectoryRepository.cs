@@ -11,5 +11,7 @@ namespace Easy.Register.Model
     {
         Directory FindBy(string name);
         bool DirectoryIsExists(Directory d);
+
+        IEnumerable<Directory> Select(DirectoryType directoryType);
     }
 }

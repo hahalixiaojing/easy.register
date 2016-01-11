@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Easy.Register.Application
 {
-    public class Class1
+    public static class ApplicationRegistry
     {
+
     }
 }
