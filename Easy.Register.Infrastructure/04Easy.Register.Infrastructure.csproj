@@ -34,6 +34,10 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Dapper, Version=1.40.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Easy.Domain, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Easy.Domain.2.0.0.7\lib\net451\Easy.Domain.dll</HintPath>
       <Private>True</Private>
@@ -95,7 +99,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <Folder Include="Repository\Directory\" />
+    <Folder Include="Repository\Node\" />
+    <Folder Include="Repository\Relationship\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
