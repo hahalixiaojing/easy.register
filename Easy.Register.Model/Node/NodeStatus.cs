@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Easy.Register.Infrastructure
+namespace Easy.Register.Model
 {
-    public class Class1
+    public enum NodeStatus
     {
+        在线 = 1,
+        下线 = 2
     }
 }

@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Easy.Register.Model
 {
-    public class Class1
+    public class ProviderInfo : ConsumerInfo
     {
+        public ProviderInfo(string name, int directoryId)
+            : base(name, directoryId)
+        {
+
+        }
     }
 }

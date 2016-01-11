@@ -83,12 +83,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Directory\Directory.cs" />
+    <Compile Include="Directory\DirectoryBrokenRuleMessage.cs" />
+    <Compile Include="Directory\DirectoryType.cs" />
+    <Compile Include="Directory\DirectoryValidation.cs" />
+    <Compile Include="Directory\IDirectoryRepository.cs" />
+    <Compile Include="Node\Node.cs" />
+    <Compile Include="Node\NodeStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relationship\ConsumerInfo.cs" />
+    <Compile Include="Relationship\IRelationshipRepsitory.cs" />
+    <Compile Include="Relationship\ProviderInfo.cs" />
+    <Compile Include="Relationship\Relationship.cs" />
+    <Compile Include="RepositoryRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
