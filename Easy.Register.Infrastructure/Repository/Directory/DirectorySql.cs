@@ -8,6 +8,29 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 {
     static class DirectorySql
     {
+        static string BaseSelectSql()
+        {
+            return @"SELECT id as Id, name as Name, description as Description, ping_api_path as        VersionAPIPath, version_api_path as VersionAPIPath, create_date as CreateDate
+	            FROM regisrer_directory";
+        }
+
+        public static string FindById(int id)
+        {
+            string sql = string.Concat(" ", BaseSelectSql(), "WHERE", "id=" + id);
+            return sql;
+        }
+        public static Tuple<string, dynamic> FindByName(string name)
+        {
+            string sql = string.Concat(" ", BaseSelectSql(), "WHERE", "name=@Name");
+
+            return new Tuple<string, dynamic>(sql, new { Name = name });
+        }
+
+        public static string RemoveAll()
+        {
+            return "delete from regisrer_directory";
+        }
+
         public static Tuple<string, dynamic> Add(Model.Directory directory)
         {
             const string sql = @"INSERT INTO regisrer_directory

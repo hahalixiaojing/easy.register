@@ -9,9 +9,15 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 {
     public class DirectoryRepository:Model.IDirectoryRepository,IDao
     {
+        private static Easy.Public.EntityPropertyHelper<Model.Directory> propertyHelper = new Public.EntityPropertyHelper<Model.Directory>();
+
         public Model.Directory FindBy(string name)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                var tuple = DirectorySql.FindByName(name);
+                return conn.Query<Model.Directory>(tuple.Item1, (object)tuple.Item2).FirstOrDefault();
+            }
         }
 
         public bool DirectoryIsExists(Model.Directory d)
@@ -31,6 +37,7 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                 var tuple = DirectorySql.Add(item);
 
                 int id = conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2);
+                propertyHelper.SetValue<int>(m => m.Id, item, id);
             }
         }
 
@@ -41,7 +48,10 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public Model.Directory FindBy(int key)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                return conn.Query<Model.Directory>(DirectorySql.FindById(key)).FirstOrDefault();
+            }
         }
 
         public void Remove(Model.Directory item)
@@ -51,7 +61,10 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void RemoveAll()
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                conn.Execute(DirectorySql.RemoveAll());
+            }
         }
 
         public void Update(Model.Directory item)
