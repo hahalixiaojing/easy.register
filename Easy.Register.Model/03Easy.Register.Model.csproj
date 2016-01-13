@@ -90,7 +90,9 @@
     <Compile Include="Directory\IDirectoryRepository.cs" />
     <Compile Include="Node\INodeRepository.cs" />
     <Compile Include="Node\Node.cs" />
+    <Compile Include="Node\NodeBrokenRuleMessage.cs" />
     <Compile Include="Node\NodeStatus.cs" />
+    <Compile Include="Node\NodeValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationship\ConsumerInfo.cs" />
     <Compile Include="Relationship\IRelationshipRepsitory.cs" />

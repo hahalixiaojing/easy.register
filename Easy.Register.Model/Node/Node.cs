@@ -28,6 +28,14 @@ namespace Easy.Register.Model
             set;
         }
         /// <summary>
+        /// IP地址
+        /// </summary>
+        public string Ip
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// 节点描述
         /// </summary>
         public string Description
@@ -70,12 +78,12 @@ namespace Easy.Register.Model
 
         protected override BrokenRuleMessage GetBrokenRuleMessages()
         {
-            throw new NotImplementedException();
+            return new NodeBrokenRuleMessage();
         }
 
         public override bool Validate()
         {
-            throw new NotImplementedException();
+            return new NodeValidation().IsSatisfy(this);
         }
     }
 }

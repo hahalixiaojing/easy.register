@@ -27,5 +27,12 @@ namespace Easy.Register.Model
                 return factory.Get<IDirectoryRepository>();
             }
         }
+        public static INodeRepository Node
+        {
+            get
+            {
+                return factory.Get<INodeRepository>();
+            }
+        }
     }
 }

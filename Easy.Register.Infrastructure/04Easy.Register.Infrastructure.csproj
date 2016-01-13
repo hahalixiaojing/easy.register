@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Directory\DirectoryRepository.cs" />
+    <Compile Include="Repository\Directory\DirectorySql.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Model\03Easy.Register.Model.csproj">
@@ -99,7 +101,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\Directory\" />
     <Folder Include="Repository\Node\" />
     <Folder Include="Repository\Relationship\" />
   </ItemGroup>

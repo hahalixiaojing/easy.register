@@ -14,7 +14,7 @@ namespace Easy.Register.Application
         {
             ApplicationFactory.Instance().Register(new DirectoryApplication());
         }
-        public DirectoryApplication Directory
+        public static DirectoryApplication Directory
         {
             get
             {

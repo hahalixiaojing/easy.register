@@ -14,4 +14,11 @@
             CREATE TABLE db_version ( id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, from_version INT NOT NULL, current_version INT NOT NULL, last_update_datetime DATETIME NOT NULL );
         </Sql>
     </UpgradeSql>
+	<UpgradeSql version="3">
+        <Author>李晓静</Author>
+        <Memo>
+            初始化数据库
+        </Memo>
+        <Sql ref="create.sql" />
+    </UpgradeSql>
  </DBUpgrade>
