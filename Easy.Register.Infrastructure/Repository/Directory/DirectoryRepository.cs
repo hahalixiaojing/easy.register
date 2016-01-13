@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Dapper;
 namespace Easy.Register.Infrastructure.Repository.Directory
 {
     public class DirectoryRepository:Model.IDirectoryRepository,IDao
@@ -26,7 +26,12 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void Add(Model.Directory item)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                var tuple = DirectorySql.Add(item);
+
+                int id = conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2);
+            }
         }
 
         public IList<Model.Directory> FindAll()
