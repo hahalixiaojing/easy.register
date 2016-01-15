@@ -10,10 +10,13 @@ namespace Easy.Register.Infrastructure.Repository.Directory
     {
         static string BaseSelectSql()
         {
-            return @"SELECT id as Id, name as Name, description as Description, ping_api_path as        VersionAPIPath, version_api_path as VersionAPIPath, create_date as CreateDate
+            return @"SELECT id as Id, name as Name, description as Description, ping_api_path as        VersionAPIPath, version_api_path as VersionAPIPath, create_date as CreateDate,directory_type as DirectoryType
 	            FROM regisrer_directory";
         }
-
+        public static string SelectDirectoryType(Model.DirectoryType type)
+        {
+            return string.Join(" ", BaseSelectSql(), "WHERE directory_type=" + (int)type);
+        }
         public static string FindById(int id)
         {
             string sql = string.Concat(" ", BaseSelectSql(), "WHERE", "id=" + id);

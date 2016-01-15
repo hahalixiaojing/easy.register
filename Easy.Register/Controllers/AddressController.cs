@@ -29,10 +29,15 @@ namespace Easy.Register.Controllers
         /// <param name="status">状态</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(string directory, string url, string ip, string desc, int weight, int status)
+        public ActionResult ProviderRegister(string directory, string url, string ip, string desc, int weight, int status)
         {
             //注册时，如果没有对应的directory，则直接注册成消费者，如果有则只注册Node
             //Directory之间需要建立关系
+            throw new NotImplementedException();
+        }
+        [HttpPost]
+        public ActionResult ConsumerRegister(string directory, string url, string ip, string desc, int weight, int status)
+        {
             throw new NotImplementedException();
         }
     }

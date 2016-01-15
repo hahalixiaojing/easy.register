@@ -27,7 +27,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public IEnumerable<Model.Directory> Select(Model.DirectoryType directoryType)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                string sql = DirectorySql.SelectDirectoryType(directoryType);
+                return conn.Query<Model.Directory>(sql);
+            }
         }
 
         public void Add(Model.Directory item)

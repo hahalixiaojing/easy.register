@@ -21,4 +21,14 @@
         </Memo>
         <Sql ref="create.sql" />
     </UpgradeSql>
+	<UpgradeSql version="4">
+        <Author>李晓静</Author>
+        <Memo>
+            增加字段
+        </Memo>
+        <Sql>
+		alter table regisrer_directory
+			add column directory_type tinyint;
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>
