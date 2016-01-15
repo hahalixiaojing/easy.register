@@ -19,12 +19,12 @@ namespace Easy.Register.Infrastructure.Repository.Directory
         }
         public static string FindById(int id)
         {
-            string sql = string.Concat(" ", BaseSelectSql(), "WHERE", "id=" + id);
+            string sql = string.Join(" ", BaseSelectSql(), "WHERE", "id=" + id);
             return sql;
         }
         public static Tuple<string, dynamic> FindByName(string name)
         {
-            string sql = string.Concat(" ", BaseSelectSql(), "WHERE", "name=@Name");
+            string sql = string.Join(" ", BaseSelectSql(), "WHERE", "name=@Name");
 
             return new Tuple<string, dynamic>(sql, new { Name = name });
         }

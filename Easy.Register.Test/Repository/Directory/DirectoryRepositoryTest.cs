@@ -15,13 +15,6 @@ namespace Easy.Register.Test.Repository.Directory
         [Test]
         public void AddTest()
         {
-            Assembly ass = Assembly.ReflectionOnlyLoadFrom("Easy.Register.Infrastructure.dll");
-
-            Stream stream = ass.GetManifestResourceStream("Easy.Register.Infrastructure.Repository.repository.xml");
-
-
-            XPathDocument docu = new XPathDocument(stream);
-            var naiv = docu.CreateNavigator();
 
             var expected = Create();
             Model.RepositoryRegistry.Directory.Add(expected);
