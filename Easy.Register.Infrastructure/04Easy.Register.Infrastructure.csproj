@@ -38,12 +38,12 @@
       <HintPath>..\packages\Dapper.1.42\lib\net45\Dapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Easy.Domain, Version=2.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Easy.Domain.2.0.0.7\lib\net451\Easy.Domain.dll</HintPath>
+    <Reference Include="Easy.Domain, Version=2.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Easy.Domain.2.0.0.8\lib\net451\Easy.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Easy.Public, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Easy.Public.1.0.1.0\lib\net451\Easy.Public.dll</HintPath>
+    <Reference Include="Easy.Public, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Easy.Public.1.0.1.1\lib\net451\Easy.Public.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -106,10 +106,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Repositories.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Services.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\Node\" />
     <Folder Include="Repository\Relationship\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\repository.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
