@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01Easy.Register", "Easy.Register\01Easy.Register.csproj", "{731179FF-D22E-4C18-AE9A-700249EC5874}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E5D2DF2E-E118-436B-A1DA-93A892A91843} = {E5D2DF2E-E118-436B-A1DA-93A892A91843}
+		{174D4DBE-F4D7-425D-AC9E-4CE63D402BF0} = {174D4DBE-F4D7-425D-AC9E-4CE63D402BF0}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04Easy.Register.Infrastructure", "Easy.Register.Infrastructure\04Easy.Register.Infrastructure.csproj", "{E5D2DF2E-E118-436B-A1DA-93A892A91843}"
 EndProject
