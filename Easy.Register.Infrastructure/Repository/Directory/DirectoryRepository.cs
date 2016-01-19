@@ -64,7 +64,10 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void Remove(Model.Directory item)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                conn.Execute(DirectorySql.Remove(item.Id));
+            }
         }
 
         public void RemoveAll()
@@ -77,7 +80,7 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void Update(Model.Directory item)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -24,7 +24,12 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Relationship> Select(string consumer)
+        public void RemoveBy(int consumerDirectoryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Model.Relationship> Select(int consumerDirectoryId)
         {
             throw new NotImplementedException();
         }

@@ -46,6 +46,27 @@ namespace Easy.Register.Infrastructure.Repository.Directory
             return "delete from regisrer_directory";
         }
 
+        public static string Remove(int id)
+        {
+            return string.Join(" ", RemoveAll(), "WHERE id=" + id);
+        }
+
+        public static Tuple<string,dynamic> Update(Model.Directory directory)
+        {
+            string sql = @"UPDATE regisrer_directory
+                    SET
+                        description = @Description,
+                        ping_api_path = @PingApiPath,
+                        version_api_path = VersionApiPath,
+                        directory_type = @DirectoryType
+                    WHERE id = @Id";
+
+
+            return new Tuple<string, dynamic>(sql, new {
+
+            });
+        }
+
         public static Tuple<string, dynamic> Add(Model.Directory directory)
         {
             const string sql = @"INSERT INTO regisrer_directory
