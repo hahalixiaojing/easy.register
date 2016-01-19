@@ -26,9 +26,8 @@ namespace Easy.Register.Application.Directory
         /// <returns></returns>
         public Return Create(string name, string description, string pingApiPath, string versionApiPath,int directoryType)
         {
-            var directory = new Model.Directory()
+            var directory = new Model.Directory(name)
             {
-                Name = name,
                 Description = description,
                 PingAPIPath = pingApiPath,
                 VersionAPIPath = versionApiPath,

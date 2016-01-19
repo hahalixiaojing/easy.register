@@ -11,11 +11,13 @@ namespace Easy.Register.Controllers
         /// <summary>
         /// 拉取指定目录的Node节点地址
         /// </summary>
-        /// <param name="directory">目录名称</param>
+        /// <param name="directory">提供者目录名称</param>
+        /// <param name="consumerDirectory">消费者目录名称</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Pull(string directory)
+        public ActionResult Pull(string providerDirectory, string consumerDirectory)
         {
+            //在拉取提供者地址信息的时候，需要触发一个事件，注册提供者和消费者提供之间的关系
             throw new NotImplementedException();
         }
         /// <summary>

@@ -14,7 +14,12 @@ namespace Easy.Register.Model
     {
         public Directory()
         {
+
+        }
+        public Directory(string name)
+        {
             this.CreateDate = DateTime.Now;
+            this.Name = name;
         }
         /// <summary>
         /// 目录名称，唯一标识
@@ -22,7 +27,7 @@ namespace Easy.Register.Model
         public string Name
         {
             get;
-            set;
+            protected set;
         }
         /// <summary>
         /// 描述

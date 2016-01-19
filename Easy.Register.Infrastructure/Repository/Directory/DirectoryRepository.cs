@@ -22,7 +22,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public bool DirectoryIsExists(Model.Directory d)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                var tuple = DirectorySql.DirectoryIsExists(d.Name, d.Id);
+                return conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2) > 0;
+            }
         }
 
         public IEnumerable<Model.Directory> Select(Model.DirectoryType directoryType)

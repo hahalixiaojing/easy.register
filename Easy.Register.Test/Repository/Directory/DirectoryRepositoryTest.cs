@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using NUnit.Framework;
-using System.Reflection;
-using System.IO;
-using System.Xml.XPath;
 namespace Easy.Register.Test.Repository.Directory
 {
 
@@ -25,6 +18,38 @@ namespace Easy.Register.Test.Repository.Directory
 
             DirectoryAssert(expected, actual);
         }
+        [Test]
+        public void DirectoryIsExistsTest()
+        {
+            var expected = Create();
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            var result  = Model.RepositoryRegistry.Directory.DirectoryIsExists(expected);
+            Assert.IsFalse(result);
+        }
+        [Test]
+        public void SelectTest()
+        {
+            var expected = Create(Model.DirectoryType.提供者);
+            Model.RepositoryRegistry.Directory.Add(expected);
+            var expected2 = Create(Model.DirectoryType.消费者);
+            Model.RepositoryRegistry.Directory.Add(expected2);
+
+            var expected3 = Create(Model.DirectoryType.消费者提供者);
+            Model.RepositoryRegistry.Directory.Add(expected3);
+
+            var result = Model.RepositoryRegistry.Directory.Select(Model.DirectoryType.提供者);
+            Assert.AreEqual(2, result.Count());
+            result = Model.RepositoryRegistry.Directory.Select(Model.DirectoryType.消费者);
+            Assert.AreEqual(2, result.Count());
+
+        }
+
+        [TearDown]
+        public void Clear()
+        {
+            Model.RepositoryRegistry.Directory.RemoveAll();
+        }
 
 
         void DirectoryAssert(Model.Directory expected, Model.Directory actual)
@@ -38,13 +63,12 @@ namespace Easy.Register.Test.Repository.Directory
             Assert.AreEqual(expected.CreateDate.Hour, actual.CreateDate.Hour);
         }
 
-        public static Model.Directory Create()
+        public static Model.Directory Create(Model.DirectoryType directoryType = Model.DirectoryType.提供者)
         {
-            var directory = new Model.Directory()
+            var directory = new Model.Directory("订单服务")
             {
                 Description = "sdfkfjsdlf",
-                DirectoryType = Model.DirectoryType.提供者,
-                Name = "订单服务",
+                DirectoryType = directoryType,
                 PingAPIPath = "/adfaf/adff",
                 VersionAPIPath = "/dfadfadf/adfad",
             };

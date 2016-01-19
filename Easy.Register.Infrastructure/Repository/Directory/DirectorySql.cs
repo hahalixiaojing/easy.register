@@ -10,12 +10,24 @@ namespace Easy.Register.Infrastructure.Repository.Directory
     {
         static string BaseSelectSql()
         {
-            return @"SELECT id as Id, name as Name, description as Description, ping_api_path as        VersionAPIPath, version_api_path as VersionAPIPath, create_date as CreateDate,directory_type as DirectoryType
+            return @"SELECT id as Id, name as Name, description as Description, ping_api_path as        PingAPIPath, version_api_path as VersionAPIPath, create_date as CreateDate,directory_type as DirectoryType
 	            FROM regisrer_directory";
         }
+
+        public static Tuple<string, dynamic> DirectoryIsExists(string name, int id)
+        {
+            string sql = "select count(*) from regisrer_directory where name=@Name and id !=@Id";
+            return new Tuple<string, dynamic>(sql, new
+            {
+                Name = name,
+                Id = id
+            });
+        }
+
+
         public static string SelectDirectoryType(Model.DirectoryType type)
         {
-            return string.Join(" ", BaseSelectSql(), "WHERE directory_type=" + (int)type);
+            return string.Join(" ", BaseSelectSql(), "WHERE directory_type=3 or directory_type=" + (int)type);
         }
         public static string FindById(int id)
         {
@@ -37,8 +49,8 @@ namespace Easy.Register.Infrastructure.Repository.Directory
         public static Tuple<string, dynamic> Add(Model.Directory directory)
         {
             const string sql = @"INSERT INTO regisrer_directory
-	                            (name, description, ping_api_path, version_api_path, create_date)
-	                            VALUES (@Name, @Desc, @PingApiPath, @VersionApiPath, @Date);SELECT last_insert_id()";
+	                            (name, description, ping_api_path, version_api_path, create_date,directory_type)
+	                            VALUES (@Name, @Desc, @PingApiPath, @VersionApiPath, @Date,@DirectoryType);SELECT last_insert_id()";
 
 
             return new Tuple<string, dynamic>(sql, new
@@ -47,7 +59,8 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                 Desc = directory.Description,
                 PingApiPath = directory.PingAPIPath,
                 VersionApiPath = directory.VersionAPIPath,
-                Date = directory.CreateDate
+                Date = directory.CreateDate,
+                DirectoryType = directory.DirectoryType
             });
         }
     }
