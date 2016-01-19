@@ -14,9 +14,9 @@ namespace Easy.Register.Model
             this.Weight = 100;
             this.Status = NodeStatus.下线;
         }
-        public Node(int directoryId):this()
+        public Node(DirectoryInfo directoryInfo):this()
         {
-            this.DirectoryId = directoryId;
+            this.DirectoryInfo = directoryInfo;
             this.CreateDate = DateTime.Now;
         }
         /// <summary>
@@ -68,9 +68,9 @@ namespace Easy.Register.Model
             private set;
         }
         /// <summary>
-        /// 所属目录ID
+        /// 所属目录
         /// </summary>
-        public Int32 DirectoryId
+        public DirectoryInfo DirectoryInfo
         {
             get;
             private set;

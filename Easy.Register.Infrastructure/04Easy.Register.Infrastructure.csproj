@@ -96,6 +96,10 @@
     <Compile Include="Repository\Database.cs" />
     <Compile Include="Repository\Directory\DirectoryRepository.cs" />
     <Compile Include="Repository\Directory\DirectorySql.cs" />
+    <Compile Include="Repository\Node\NodeRepository.cs" />
+    <Compile Include="Repository\Node\NodeSql.cs" />
+    <Compile Include="Repository\Relationship\RelationshipRepository.cs" />
+    <Compile Include="Repository\Relationship\RelationshipSql.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Model\03Easy.Register.Model.csproj">
@@ -113,10 +117,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repository\Node\" />
-    <Folder Include="Repository\Relationship\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Repository\repository.xml" />
   </ItemGroup>

@@ -88,6 +88,7 @@
     <Compile Include="Directory\DirectoryType.cs" />
     <Compile Include="Directory\DirectoryValidation.cs" />
     <Compile Include="Directory\IDirectoryRepository.cs" />
+    <Compile Include="Node\DirectoryInfo.cs" />
     <Compile Include="Node\INodeRepository.cs" />
     <Compile Include="Node\Node.cs" />
     <Compile Include="Node\NodeBrokenRuleMessage.cs" />

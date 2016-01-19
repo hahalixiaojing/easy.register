@@ -11,5 +11,7 @@ namespace Easy.Register.Model
         void Add(Relationship relationship);
         IEnumerable<Relationship> SelectAll();
         IEnumerable<Relationship> Select(string consumer);
+        Boolean RelationIsExists(int providerDirectoryId,int consumerDirectoryId);
+        void RemoveAll();
     }
 }

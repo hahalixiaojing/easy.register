@@ -2,5 +2,9 @@
 <repositories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.39541240.com/repository">
   <repository interface="Easy.Register.Model.IDirectoryRepository,Easy.Register.Model" 
               implementation="Easy.Register.Infrastructure.Repository.Directory.DirectoryRepository,Easy.Register.Infrastructure"/>
+  <repository interface="Easy.Register.Model.INodeRepository,Easy.Register.Model" 
+              implementation="Easy.Register.Infrastructure.Repository.Node.NodeRepository,Easy.Register.Infrastructure"/>
+  <repository interface="Easy.Register.Model.IRelationshipRepsitory,Easy.Register.Model" 
+              implementation="Easy.Register.Infrastructure.Repository.Relationship.RelationshipRepository,Easy.Register.Infrastructure"/>
 </repositories>
 

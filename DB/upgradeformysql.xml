@@ -31,4 +31,14 @@
 			add column directory_type tinyint;
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="5">
+        <Author>李晓静</Author>
+        <Memo>
+            增加字段
+        </Memo>
+        <Sql>
+		alter table register_node 
+			add column directory_name varchar(100) ;
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>
