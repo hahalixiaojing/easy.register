@@ -32,6 +32,9 @@ namespace Easy.Register.Model
         /// <param name="consumerDirectoryId">消费者ID</param>
         /// <returns></returns>
         Boolean RelationIsExists(int providerDirectoryId,int consumerDirectoryId);
+        /// <summary>
+        /// 移除全部，测试时使用
+        /// </summary>
         void RemoveAll();
     }
 }
