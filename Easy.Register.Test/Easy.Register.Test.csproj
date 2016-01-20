@@ -76,10 +76,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Directory\DirectoryRepositoryTest.cs" />
+    <Compile Include="Repository\Relationship\RelationshipRepositoryTest.cs" />
     <Compile Include="Repository\Node\TestNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\Relationship\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

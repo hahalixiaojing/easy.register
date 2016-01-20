@@ -19,11 +19,18 @@ namespace Easy.Register.Model
             this.Provider = provider;
         }
 
+        /// <summary>
+        /// 消费者对象
+        /// </summary>
         public ConsumerInfo ConsumerInfo
         {
             get;
             private set;
         }
+
+        /// <summary>
+        /// 提供者对象
+        /// </summary>
         public ProviderInfo Provider
         {
             get;

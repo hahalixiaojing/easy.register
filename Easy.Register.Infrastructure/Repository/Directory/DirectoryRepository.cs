@@ -51,7 +51,10 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public IList<Model.Directory> FindAll()
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                return conn.Query<Model.Directory>(DirectorySql.FindAll()).ToArray();
+            }
         }
 
         public Model.Directory FindBy(int key)
@@ -80,7 +83,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void Update(Model.Directory item)
         {
-            
+            using (var conn = Database.Open())
+            {
+                var tuple = DirectorySql.Update(item);
+                conn.Execute(tuple.Item1, (object)tuple.Item2);
+            }
         }
     }
 }

@@ -28,6 +28,16 @@ namespace Easy.Register.Test.Repository.Directory
             Assert.IsFalse(result);
         }
         [Test]
+        public void FindAllTest()
+        {
+            var expected = Create();
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            var list =  Model.RepositoryRegistry.Directory.FindAll();
+            Assert.IsTrue(list.Count > 0);
+        }
+
+        [Test]
         public void SelectTest()
         {
             var expected = Create(Model.DirectoryType.提供者);
@@ -43,6 +53,22 @@ namespace Easy.Register.Test.Repository.Directory
             result = Model.RepositoryRegistry.Directory.Select(Model.DirectoryType.消费者);
             Assert.AreEqual(2, result.Count());
 
+        }
+        [Test]
+        public void UpdateTest()
+        {
+            var expected = Create(Model.DirectoryType.提供者);
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            expected.Description = "tst1";
+            expected.PingAPIPath = "cc/cc";
+            expected.VersionAPIPath = "dd/dd";
+
+            Model.RepositoryRegistry.Directory.Update(expected);
+
+            var result = Model.RepositoryRegistry.Directory.FindBy(expected.Id);
+            DirectoryAssert(expected, result);
+            
         }
 
         [TearDown]

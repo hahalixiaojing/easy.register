@@ -24,6 +24,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
             });
         }
 
+        public static string FindAll()
+        {
+            return string.Join(" ", BaseSelectSql(), "order by CreateDate desc");
+        }
+
 
         public static string SelectDirectoryType(Model.DirectoryType type)
         {
@@ -57,13 +62,18 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                     SET
                         description = @Description,
                         ping_api_path = @PingApiPath,
-                        version_api_path = VersionApiPath,
+                        version_api_path = @VersionApiPath,
                         directory_type = @DirectoryType
                     WHERE id = @Id";
 
 
-            return new Tuple<string, dynamic>(sql, new {
-
+            return new Tuple<string, dynamic>(sql, new
+            {
+                Description = directory.Description,
+                PingApiPath = directory.PingAPIPath,
+                VersionApiPath = directory.VersionAPIPath,
+                DirectoryType = directory.DirectoryType,
+                Id = directory.Id
             });
         }
 
