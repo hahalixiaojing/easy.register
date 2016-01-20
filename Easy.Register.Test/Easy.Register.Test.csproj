@@ -76,6 +76,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Directory\DirectoryRepositoryTest.cs" />
+    <Compile Include="Service\PushService\PushServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\Node\" />
@@ -102,7 +103,8 @@
     <PreBuildEvent>xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\Easy.Register.Infrastructure.dll $(TargetDir) /i/y
 xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\Dapper.dll $(TargetDir) /i/y
 xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\MySql.Data.dll $(TargetDir) /i/y
-xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\Castle.Core.dll $(TargetDir) /i/y</PreBuildEvent>
+xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\Castle.Core.dll $(TargetDir) /i/y
+xcopy $(ProjectDir)..\Easy.Register.Infrastructure\bin\StackExchange.Redis.dll $(TargetDir) /i/y</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

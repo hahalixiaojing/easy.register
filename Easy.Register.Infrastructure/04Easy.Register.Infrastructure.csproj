@@ -58,6 +58,10 @@
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.0.316.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.0.488\lib\net45\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -100,6 +104,8 @@
     <Compile Include="Repository\Node\NodeSql.cs" />
     <Compile Include="Repository\Relationship\RelationshipRepository.cs" />
     <Compile Include="Repository\Relationship\RelationshipSql.cs" />
+    <Compile Include="Service\PublishService\PushService.cs" />
+    <Compile Include="Service\PublishService\RedisDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Model\03Easy.Register.Model.csproj">
@@ -117,7 +123,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Service\service.xml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Repository\repository.xml" />
   </ItemGroup>
