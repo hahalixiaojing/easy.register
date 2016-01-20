@@ -33,5 +33,14 @@ namespace Easy.Register.Model
                 return factory.Get<INodeRepository>();
             }
         }
+
+        public static IRelationshipRepsitory Relationship
+        {
+            get
+            {
+                return factory.Get<IRelationshipRepsitory>();
+            }
+        }
+
     }
 }
