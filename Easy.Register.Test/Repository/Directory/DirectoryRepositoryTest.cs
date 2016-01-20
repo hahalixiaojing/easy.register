@@ -54,6 +54,22 @@ namespace Easy.Register.Test.Repository.Directory
             Assert.AreEqual(2, result.Count());
 
         }
+        [Test]
+        public void UpdateTest()
+        {
+            var expected = Create(Model.DirectoryType.提供者);
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            expected.Description = "tst1";
+            expected.PingAPIPath = "cc/cc";
+            expected.VersionAPIPath = "dd/dd";
+
+            Model.RepositoryRegistry.Directory.Update(expected);
+
+            var result = Model.RepositoryRegistry.Directory.FindBy(expected.Id);
+            DirectoryAssert(expected, result);
+            
+        }
 
         [TearDown]
         public void Clear()
