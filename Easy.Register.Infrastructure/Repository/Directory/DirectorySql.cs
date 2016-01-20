@@ -24,6 +24,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
             });
         }
 
+        public static string FindAll()
+        {
+            return string.Join(" ", BaseSelectSql(), "order by CreateDate desc");
+        }
+
 
         public static string SelectDirectoryType(Model.DirectoryType type)
         {

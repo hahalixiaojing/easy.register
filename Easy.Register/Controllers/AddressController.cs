@@ -11,8 +11,8 @@ namespace Easy.Register.Controllers
         /// <summary>
         /// 消费者和提供者关系注册
         /// </summary>
-        /// <param name="consumerDirectoryName"></param>
-        /// <param name="providerDirectoryName"></param>
+        /// <param name="consumerDirectoryName">消费者名称</param>
+        /// <param name="providerDirectoryName">提供者名称</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult AddRelation(string consumerDirectoryName,string[] providerDirectoryName)

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Easy.Domain.RepositoryFramework;
 using Easy.Register.Model;
 
 namespace Easy.Register.Infrastructure.Repository.Relationship
 {
-    public class RelationshipRepository : IRelationshipRepsitory
+    public class RelationshipRepository : IRelationshipRepsitory,IDao
     {
         public void Add(Model.Relationship relationship)
         {
