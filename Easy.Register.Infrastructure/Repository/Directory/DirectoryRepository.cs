@@ -83,7 +83,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 
         public void Update(Model.Directory item)
         {
-            
+            using (var conn = Database.Open())
+            {
+                var tuple = DirectorySql.Update(item);
+                conn.Execute(tuple.Item1, (object)tuple.Item2);
+            }
         }
     }
 }
