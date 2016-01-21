@@ -126,6 +126,7 @@
     <Compile Include="HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ErrorAttribute.cs" />
+    <Compile Include="Utility\StringArrayModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Application\02Easy.Register.Application.csproj">

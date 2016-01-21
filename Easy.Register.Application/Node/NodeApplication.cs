@@ -12,15 +12,32 @@ namespace Easy.Register.Application.Node
         /// <summary>
         /// 添加节点
         /// </summary>
+        /// <param name="directoryName">目录名称</param>
         /// <param name="url">API地址</param>
         /// <param name="ip">IP地址</param>
         /// <param name="description">描述</param>
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
         /// <param name="directoryId">所属目录</param>
-        public void Add(string url, string ip, string description, int weight, int status, int directoryId)
+        public void Add(string directoryName,string url, string ip, string description, int weight, int status)
         {
+            var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
+            if (directory == null)
+            {
+                throw new Exception("目录不存在");
+            }
+            var directoryInfo =new Model.DirectoryInfo(directory.Id,directory.Name);
+            var node = new Model.Node(directoryInfo);
+            node.Description = description;
+            node.Ip = ip;
+            node.Url = url;
+            node.Weight = weight;
+            node.Status = (Model.NodeStatus)status;
 
+            if (node.Validate())
+            {
+                Model.RepositoryRegistry.Node.Add(node);
+            }
         }
         /// <summary>
         /// 编辑节点
@@ -31,7 +48,18 @@ namespace Easy.Register.Application.Node
         /// <param name="description">描述</param>
         public void Update(int id, string url, string ip, string description)
         {
-
+            var node = Model.RepositoryRegistry.Node.FindBy(id);
+            if (node == null)
+            {
+                throw new Exception("节点不存在");
+            }
+            node.Url = url;
+            node.Ip = ip;
+            node.Description = description;
+            if (node.Validate())
+            {
+                Model.RepositoryRegistry.Node.Update(node);
+            }
         }
         /// <summary>
         /// 增加权重

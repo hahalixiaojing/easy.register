@@ -86,8 +86,14 @@
     <Compile Include="ApplicationRegistry.cs" />
     <Compile Include="Directory\DirectoryApplication.cs" />
     <Compile Include="Models\Directory\DirectoryModel.cs" />
+    <Compile Include="Models\Node\NodeDomainEvent.cs" />
     <Compile Include="Models\Return.cs" />
+    <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />
+    <Compile Include="Node\AddWeightDomainEvents\AddWeightNodeSubscriber.cs" />
+    <Compile Include="Node\DecreaseWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
     <Compile Include="Node\NodeApplication.cs" />
+    <Compile Include="Node\NodePublishSubscriber.cs" />
+    <Compile Include="Node\UpdateDomainEvents\UpdateNodeSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,7 +106,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Node\" />
     <Folder Include="Models\Relationship\" />
     <Folder Include="Relationship\" />
   </ItemGroup>
