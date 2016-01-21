@@ -14,5 +14,7 @@ namespace Easy.Register.Controllers
             ViewBag.Active = "Cha";
             return View();
         }
+
+
     }
 }

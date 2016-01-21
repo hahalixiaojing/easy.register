@@ -110,10 +110,12 @@
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.min.js" />
     <Content Include="Scripts\jQuery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\relationchart.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\MainLayout.cshtml" />
