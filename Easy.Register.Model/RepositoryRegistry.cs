@@ -15,7 +15,10 @@ namespace Easy.Register.Model
         static RepositoryRegistry()
         {
             RepositoryFactoryBuilder b = new RepositoryFactoryBuilder();
-            Stream stream = Assembly.ReflectionOnlyLoadFrom("Easy.Register.Infrastructure.dll").GetManifestResourceStream("Easy.Register.Infrastructure.Repository.repository.xml");
+
+            string path = Path.Combine(AppDomain.CurrentDomain.RelativeSearchPath, "Easy.Register.Infrastructure.dll");
+
+            Stream stream = Assembly.ReflectionOnlyLoadFrom(path).GetManifestResourceStream("Easy.Register.Infrastructure.Repository.repository.xml");
 
             factory = b.Build(stream);
         }
