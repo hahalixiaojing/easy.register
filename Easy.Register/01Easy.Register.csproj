@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
@@ -153,6 +154,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ErrorAttribute.cs" />
+    <Compile Include="Utility\EtaoJsonResult.cs" />
     <Compile Include="Utility\StringArrayModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>
