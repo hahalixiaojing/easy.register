@@ -17,7 +17,7 @@ namespace Easy.Register.Controllers
 
             var model = ApplicationRegistry.Directory.Select(3);
 
-            return View((IEnumerable<DirectoryModel>) model);
+            return View(model);
         }
 
         public ActionResult Add()

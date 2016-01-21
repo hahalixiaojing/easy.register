@@ -124,6 +124,9 @@
     <Content Include="Views\Provider\Add.cshtml" />
     <Content Include="Views\Directory\Add.cshtml" />
     <Content Include="Views\Consumer\Add.cshtml" />
+    <Content Include="connectionString.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
