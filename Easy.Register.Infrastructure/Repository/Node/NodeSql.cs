@@ -10,7 +10,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
     {
         static string BaseSelectSql()
         {
-            return @"SELECT id, url, ip, description, weight, `status`, create_date, directory_id, directory_name
+            return @"SELECT id, url, ip, description, weight, `status`, create_date as CreateDate, 1 AS split, directory_id as Id, directory_name as Name
 	FROM register_node";
         }
 
@@ -73,10 +73,13 @@ namespace Easy.Register.Infrastructure.Repository.Node
             return string.Join(" ", RemoveAll(), "WHERE id=" + id);
         }
 
-        public static string FindById(int id)
+        public static Tuple<string, dynamic> FindById(int id)
         {
             string sql = string.Join(" ", BaseSelectSql(), "WHERE", "id=" + id);
-            return sql;
+            return new Tuple<string, dynamic>(sql, new
+            {
+                id = id
+            });
         }
 
         public static string FindAll()

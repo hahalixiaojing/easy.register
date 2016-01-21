@@ -73,7 +73,7 @@ namespace Easy.Register.Model
         public DirectoryInfo DirectoryInfo
         {
             get;
-            private set;
+            set;
         }
 
         protected override BrokenRuleMessage GetBrokenRuleMessages()

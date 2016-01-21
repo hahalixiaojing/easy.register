@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Easy.Register.Application.Models.Directory
 {
-    class DirectoryModel
+    public class DirectoryModel
     {
         /// <summary>
         /// 目录名称，唯一标识

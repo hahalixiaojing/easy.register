@@ -8,6 +8,11 @@ namespace Easy.Register.Model
 {
     public class DirectoryInfo
     {
+        public DirectoryInfo()
+        {
+
+        }
+
         public DirectoryInfo(int id,string name)
         {
             this.Id = id;

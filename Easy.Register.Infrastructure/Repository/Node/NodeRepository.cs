@@ -34,7 +34,12 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Node>(NodeSql.FindById(key)).FirstOrDefault();
+                var tuple = NodeSql.FindById(key);
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(tuple.Item1, (node,info)=>
+                {
+                    node.DirectoryInfo = new DirectoryInfo(info.Id, info.Name);
+                    return node;
+                }, (object)tuple.Item2, splitOn: "split").FirstOrDefault();
             }
         }
 
