@@ -102,8 +102,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="a.jpg" />
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -114,8 +116,11 @@
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.min.js" />
     <Content Include="Scripts\jQuery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery.inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\relationchart.js" />
+    <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\MainLayout.cshtml" />
@@ -129,6 +134,7 @@
     <Content Include="connectionString.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Directory\AddPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -149,6 +155,7 @@
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,7 +170,9 @@
       <Name>02Easy.Register.Application</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

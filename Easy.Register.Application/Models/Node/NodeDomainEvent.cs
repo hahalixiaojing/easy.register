@@ -8,6 +8,10 @@ namespace Easy.Register.Application.Models.Node
 {
     public class NodeDomainEvent : Easy.Domain.Event.IDomainEvent
     {
+        public NodeDomainEvent()
+        {
+
+        }
         public NodeDomainEvent(string providerName, string url, int weight, bool isAvaiable)
         {
             this.ProviderName = providerName;
