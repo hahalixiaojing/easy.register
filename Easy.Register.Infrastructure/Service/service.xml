@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.39541240.com/services">
+  <service interface="Easy.Register.Model.PublishService.IPublishService,Easy.Register.Model" 
+           implementation="Easy.Register.Infrastructure.Service.PublishService.PushService,Easy.Register.Infrastructure"/>
+</services>
