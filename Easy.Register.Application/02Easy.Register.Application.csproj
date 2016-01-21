@@ -93,6 +93,8 @@
     <Compile Include="Node\DecreaseWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
     <Compile Include="Node\NodeApplication.cs" />
     <Compile Include="Node\NodePublishSubscriber.cs" />
+    <Compile Include="Node\OffLineDomainEvents\OffLineNodeSubscriber.cs" />
+    <Compile Include="Node\OnLineDomainEvents\OnLineNodeSubscriber.cs" />
     <Compile Include="Node\UpdateDomainEvents\UpdateNodeSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

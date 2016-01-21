@@ -23,7 +23,7 @@ namespace Easy.Register
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/",
-                defaults: new { controller = "Directory", action = "Index"}
+                defaults: new { controller = "Home", action = "Index"}
             );
         }
     }

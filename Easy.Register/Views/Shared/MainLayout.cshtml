@@ -43,6 +43,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/Content/_all-skins.min.css">
+
+    @RenderSection("css",false)
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,89 +65,91 @@
     <script src="~/Scripts/demo.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        <header class="main-header">
-            <!-- Logo -->
-            <a href="/" class="logo">
-                <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>注</b></span>
-                <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>注册中心</b></span>
+<div class="wrapper">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>注</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>注册中心</b></span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </a>
-            <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
 
-            </nav>
-        </header>
-        <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
-                <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="@activeDir treeview">
-                        <a href="#">
-                            <i class="fa fa-th"></i> <span>目录</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Directory/index"><i class="fa fa-circle-o"></i> 目录列表</a></li>
-                            <li><a href="/Directory/add"><i class="fa fa-circle-o"></i> 添加目录</a></li>
-                        </ul>
-                    </li>
-                    <li class="@activePro treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>提供者</span> <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Provider/index"><i class="fa fa-circle-o"></i> 提供者列表</a></li>
-                            <li><a href="/Provider/add"><i class="fa fa-circle-o"></i> 添加提供者</a></li>
-                        </ul>
-                    </li>
-                    <li class="@activeCus treeview">
-                        <a href="#">
-                            <i class="fa fa-files-o"></i> <span>消费者</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Consumer/index"><i class="fa fa-circle-o"></i> 消费者列表</a></li>
-                            <li><a href="/Consumer/add"><i class="fa fa-circle-o"></i> 添加消费者</a></li>
-                        </ul>
-                    </li>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="@activeDir treeview">
+                    <a href="#">
+                        <i class="fa fa-th"></i> <span>目录</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Directory/index"><i class="fa fa-circle-o"></i> 目录列表</a></li>
+                        <li><a href="/Directory/add"><i class="fa fa-circle-o"></i> 添加目录</a></li>
+                    </ul>
+                </li>
+                <li class="@activePro treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>提供者</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Provider/index"><i class="fa fa-circle-o"></i> 提供者列表</a></li>
+                        <li><a href="/Provider/add"><i class="fa fa-circle-o"></i> 添加提供者</a></li>
+                    </ul>
+                </li>
+                <li class="@activeCus treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i> <span>消费者</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Consumer/index"><i class="fa fa-circle-o"></i> 消费者列表</a></li>
+                        <li><a href="/Consumer/add"><i class="fa fa-circle-o"></i> 添加消费者</a></li>
+                    </ul>
+                </li>
 
-                    <li class="@activeCha treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart"></i>
-                            <span>依赖关系图</span>
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Chart/index"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+                <li class="@activeCha treeview">
+                    <a href="#">
+                        <i class="fa fa-pie-chart"></i>
+                        <span>依赖关系图</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Chart/index"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
 
-        @RenderBody()
+    @RenderBody()
 
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.0.0
-            </div>
-            <strong>Copyright &copy; 2015-2016.</strong> All rights reserved.
-        </footer>
-        <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2015-2016.</strong> All rights reserved.
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div><!-- ./wrapper -->
+    @RenderSection("scripts", required: false)
 </body>
+
 </html>
 
