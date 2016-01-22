@@ -91,5 +91,25 @@ namespace Easy.Register.Application.Directory
             });
             return new Return() { DataBody = listmodel };
         }
+        /// <summary>
+        /// 查询全部目录
+        /// </summary>
+        /// <returns></returns>
+        public Return FindAll()
+        {
+            var list = RepositoryRegistry.Directory.FindAll();
+            var listmodel = list.Select(d => new DirectoryModel()
+            {
+                CreateDate = d.CreateDate,
+                Description = d.Description,
+                DirectoryType = d.DirectoryType.GetHashCode(),
+                Name = d.Name,
+                PingAPIPath = d.PingAPIPath,
+                VersionAPIPath = d.VersionAPIPath
+            });
+
+            return new Return() { DataBody = listmodel };
+
+        }
     }
 }

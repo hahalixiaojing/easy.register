@@ -11,12 +11,11 @@ namespace Easy.Register.Controllers
 {
     public class DirectoryController : Controller
     {
-        // GET: Directory
         public ActionResult Index()
         {
             ViewBag.Active = "Dir";
 
-            var r = ApplicationRegistry.Directory.Select(3);
+            var r = ApplicationRegistry.Directory.FindAll();
             var model = r.DataBody;
 
             return View(model as IEnumerable<DirectoryModel>);
