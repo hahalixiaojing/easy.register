@@ -82,6 +82,7 @@ namespace Easy.Register.Application.Directory
 
             var listmodel = list.Select(d => new DirectoryModel()
             {
+                Id = d.Id,
                 CreateDate = d.CreateDate,
                 Description = d.Description,
                 DirectoryType = d.DirectoryType.GetHashCode(),

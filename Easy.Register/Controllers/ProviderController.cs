@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Easy.Register.Application;
+using Easy.Register.Application.Models.Directory;
 
 namespace Easy.Register.Controllers
 {
@@ -12,13 +14,18 @@ namespace Easy.Register.Controllers
         public ActionResult Index()
         {
             ViewBag.Active = "Pro";
+
             return View();
         }
 
         public ActionResult Add()
         {
             ViewBag.Active = "Pro";
-            return View();
+
+            var r = ApplicationRegistry.Directory.Select(2);
+            var model = r.DataBody;
+
+            return View(model as IEnumerable<DirectoryModel>);
         }
     }
 }

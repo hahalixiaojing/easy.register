@@ -14,7 +14,7 @@ namespace Easy.Register
         /// <param name="filters"></param>
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new ErrorAttribute());
+            //filters.Add(new ErrorAttribute());
         }
     }
 }
