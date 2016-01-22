@@ -105,6 +105,7 @@
     <Content Include="a.jpg" />
     <Content Include="Content\AdminLTE.min.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\_all-skins.min.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -115,8 +116,11 @@
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\fastclick.min.js" />
     <Content Include="Scripts\jQuery-2.1.4.min.js" />
+    <Content Include="Scripts\jquery.inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\relationchart.js" />
+    <Content Include="Scripts\select2.full.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\MainLayout.cshtml" />
@@ -130,6 +134,7 @@
     <Content Include="connectionString.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Directory\AddPost.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,6 +149,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
@@ -154,6 +160,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ErrorAttribute.cs" />
+    <Compile Include="Utility\EtaoJsonResult.cs" />
     <Compile Include="Utility\StringArrayModelBinder.cs" />
   </ItemGroup>
   <ItemGroup>

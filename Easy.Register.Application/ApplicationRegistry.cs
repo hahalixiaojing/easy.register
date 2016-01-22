@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Easy.Register.Application.Node;
-
+using Easy.Register.Application.Relationship;using Easy.Register.Application.Node;
 namespace Easy.Register.Application
 {
     public static class ApplicationRegistry
@@ -14,8 +13,7 @@ namespace Easy.Register.Application
         static ApplicationRegistry()
         {
             ApplicationFactory.Instance().Register(new DirectoryApplication());
-            ApplicationFactory.Instance().Register(new NodeApplication());
-        }
+ 			ApplicationFactory.Instance().Register(new RelationshipApplication());			ApplicationFactory.Instance().Register(new NodeApplication());        }
         public static DirectoryApplication Directory
         {
             get
@@ -23,13 +21,16 @@ namespace Easy.Register.Application
                 return ApplicationFactory.Instance().Get<DirectoryApplication>();
             }
         }
-        public static NodeApplication Node
+		public static RelationshipApplication Relationship
+        {
+            get { return ApplicationFactory.Instance().Get<RelationshipApplication>(); }
+        }
+		public static NodeApplication Node
         {
             get
             {
                 return ApplicationFactory.Instance().Get<NodeApplication>();
             }
         }
-        
-    }
+   }
 }

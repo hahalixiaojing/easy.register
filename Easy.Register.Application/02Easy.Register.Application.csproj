@@ -88,6 +88,7 @@
     <Compile Include="Models\Directory\DirectoryModel.cs" />
     <Compile Include="Models\Node\Node.cs" />
     <Compile Include="Models\Node\NodeDomainEvent.cs" />
+    <Compile Include="Models\Relationship\Relashtion.cs" />
     <Compile Include="Models\Return.cs" />
     <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />
     <Compile Include="Node\AddWeightDomainEvents\AddWeightNodeSubscriber.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Node\OnLineDomainEvents\OnLineNodeSubscriber.cs" />
     <Compile Include="Node\UpdateDomainEvents\UpdateNodeSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relationship\RelationshipApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Model\03Easy.Register.Model.csproj">
@@ -108,10 +110,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Relationship\" />
-    <Folder Include="Relationship\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
