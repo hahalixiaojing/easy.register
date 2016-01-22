@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Easy.Domain.Application;
 using Easy.Register.Application.Models.Node;
-
+using System.Linq;
 namespace Easy.Register.Application.Node
 {
     public class NodeApplication : BaseApplication
@@ -159,6 +156,23 @@ namespace Easy.Register.Application.Node
         public void Version(int[] nodes)
         {
 
+        }
+        /// <summary>
+        /// 查询目录列表
+        /// </summary>
+        /// <param name="directoryName"></param>
+        /// <returns></returns>
+        public IList<Models.Node.Node> Select(string directoryName)
+        {
+            var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName.Trim());
+
+            if (directory == null)
+            {
+                return new List<Models.Node.Node>();
+            }
+
+            var list = Model.RepositoryRegistry.Node.Select(directory.Id);
+            return list.Select(m => new Models.Node.Node(m.DirectoryInfo.Name, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Easy.Register.Application.Node;
 
 namespace Easy.Register.Application
 {
@@ -13,6 +14,7 @@ namespace Easy.Register.Application
         static ApplicationRegistry()
         {
             ApplicationFactory.Instance().Register(new DirectoryApplication());
+            ApplicationFactory.Instance().Register(new NodeApplication());
         }
         public static DirectoryApplication Directory
         {
@@ -21,5 +23,13 @@ namespace Easy.Register.Application
                 return ApplicationFactory.Instance().Get<DirectoryApplication>();
             }
         }
+        public static NodeApplication Node
+        {
+            get
+            {
+                return ApplicationFactory.Instance().Get<NodeApplication>();
+            }
+        }
+        
     }
 }

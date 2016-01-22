@@ -29,8 +29,8 @@ namespace Easy.Register.Controllers
         [HttpPost]
         public ActionResult Pull(string providerDirectory)
         {
-            //在拉取提供者地址信息的时候，需要触发一个事件，注册提供者和消费者提供之间的关系
-            throw new NotImplementedException();
+            var list = Application.ApplicationRegistry.Node.Select(providerDirectory);
+            return Json(list);
         }
         /// <summary>
         /// 节点注册
@@ -40,13 +40,13 @@ namespace Easy.Register.Controllers
         /// <param name="ip">Node节点IP</param>
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
+        /// <param name="description">描述</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(string directory, string url, string ip, int weight, int status)
+        public ActionResult Register(string directory, string url, string ip, int weight, int status,string description)
         {
-            //注册时，如果没有对应的directory，则直接注册成消费者，如果有则只注册Node
-            //Directory之间需要建立关系
-            throw new NotImplementedException();
+            Application.ApplicationRegistry.Node.Add(directory, url, ip, description, weight, status);
+            return Content("OK");
         }
     }
 }

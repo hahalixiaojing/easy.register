@@ -100,6 +100,7 @@
     <Compile Include="Relationship\ConsumerInfo.cs" />
     <Compile Include="Relationship\IRelationshipRepsitory.cs" />
     <Compile Include="Relationship\ProviderInfo.cs" />
+    <Compile Include="Relationship\RelationIsSameCheckService.cs" />
     <Compile Include="Relationship\Relationship.cs" />
     <Compile Include="RepositoryRegistry.cs" />
     <Compile Include="ServiceRegistry.cs" />
