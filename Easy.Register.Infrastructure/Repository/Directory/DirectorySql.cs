@@ -14,6 +14,12 @@ namespace Easy.Register.Infrastructure.Repository.Directory
 	            FROM regisrer_directory";
         }
 
+        public static string FindByNames(string[] names)
+        {
+            string namestr = "'" + string.Join("','", names) + "'";
+            return string.Join(" ", BaseSelectSql(), string.Format("WHERE name IN({0})", namestr));
+        }
+
         public static Tuple<string, dynamic> DirectoryIsExists(string name, int id)
         {
             string sql = "select count(*) from regisrer_directory where name=@Name and id !=@Id";

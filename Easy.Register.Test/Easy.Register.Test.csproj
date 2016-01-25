@@ -76,8 +76,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Directory\DirectoryRepositoryTest.cs" />
-<Compile Include="Repository\Node\TestNode.cs" />
-<Compile Include="Service\PushService\PushServiceTest.cs" />
+    <Compile Include="Repository\Node\TestNode.cs" />
+    <Compile Include="Repository\Relationship\RelationshipRepositoryTest.cs" />
+    <Compile Include="Service\PushService\PushServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

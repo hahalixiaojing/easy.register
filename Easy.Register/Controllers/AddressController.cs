@@ -17,8 +17,8 @@ namespace Easy.Register.Controllers
         [HttpPost]
         public ActionResult AddRelation(string consumerDirectoryName,[ModelBinder(typeof(StringArrayModelBinder))]string[] providerDirectoryName)
         {
-            //TODO:注册关系时，先要删除关系再添加
-            throw new NotImplementedException();
+            Application.ApplicationRegistry.Relationship.AddRelation(consumerDirectoryName, providerDirectoryName);
+            return Content("OK");
         }
 
         /// <summary>

@@ -46,6 +46,10 @@ namespace Easy.Register.Model
         /// 移除全部，测试时使用
         /// </summary>
         void RemoveAll();
-
+        /// <summary>
+        /// 批量添加关系
+        /// </summary>
+        /// <param name="list"></param>
+        void Add(IList<Relationship> list);
     }
 }

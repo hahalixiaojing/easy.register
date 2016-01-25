@@ -68,6 +68,28 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
             }
         }
 
+        public void Add(IList<Model.Relationship> list)
+        {
+            using (var conn = Database.Open())
+            {
+                var trans = conn.BeginTransaction();
+                try
+                {
+                    foreach (var item in list)
+                    {
+                        var tuple = RelationshipSql.Add(item);
+                        conn.Execute(tuple.Item1, (object)tuple.Item2, trans);
+                    }
+
+                    trans.Commit();
+                }
+                catch
+                {
+                    trans.Rollback();
+                }
+              
+            }
+        }
     }
 }
 

@@ -172,7 +172,17 @@ namespace Easy.Register.Application.Node
             }
 
             var list = Model.RepositoryRegistry.Node.Select(directory.Id);
-            return list.Select(m => new Models.Node.Node(m.DirectoryInfo.Name, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
+            return list.Select(m => new Models.Node.Node(m.DirectoryInfo.Name,m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
+        }
+        /// <summary>
+        ///按类型查询
+        /// </summary>
+        /// <param name="directoryType">1=消费者，2=提供者，3=即是提供者又是消费者</param>
+        /// <returns></returns>
+        public IList<Models.Node.Node> SelectByDirectoryType(int directoryType)
+        {
+            var directoryList = Model.RepositoryRegistry.Node.Select((Model.DirectoryType)directoryType);
+            return directoryList.Select(m => new Models.Node.Node(m.DirectoryInfo.Name,m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
         }
     }
 }

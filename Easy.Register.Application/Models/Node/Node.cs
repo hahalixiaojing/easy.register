@@ -4,7 +4,7 @@ namespace Easy.Register.Application.Models.Node
 {
     public class Node
     {
-        public Node(string providerName, string url,int weight,bool isAvaiable)
+        public Node(string providerName,string ip, string url,int weight,bool isAvaiable)
         {
             this.ProviderName = providerName;
             this.Url = url;
@@ -12,6 +12,11 @@ namespace Easy.Register.Application.Models.Node
             this.IsAvailable = isAvaiable;
         }
         public String ProviderName
+        {
+            get;
+            private set;
+        }
+        public string Ip
         {
             get;
             private set;
