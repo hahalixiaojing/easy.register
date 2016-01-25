@@ -19,6 +19,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03Easy.Register.Model", "Easy.Register.Model\03Easy.Register.Model.csproj", "{174D4DBE-F4D7-425D-AC9E-4CE63D402BF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy.Register.Test", "Easy.Register.Test\Easy.Register.Test.csproj", "{F0035293-49C5-4525-A387-4EE96301AF4E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E5D2DF2E-E118-436B-A1DA-93A892A91843} = {E5D2DF2E-E118-436B-A1DA-93A892A91843}
+		{39301AF2-0D65-4DD3-B2F0-97D6F3C9B8E0} = {39301AF2-0D65-4DD3-B2F0-97D6F3C9B8E0}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
