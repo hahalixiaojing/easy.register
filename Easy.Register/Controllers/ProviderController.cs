@@ -15,6 +15,8 @@ namespace Easy.Register.Controllers
         {
             ViewBag.Active = "Pro";
 
+            //var r = ApplicationRegistry
+
             return View();
         }
 
@@ -29,9 +31,9 @@ namespace Easy.Register.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPost(int dir,string api,string ip,string description,int weight,int status)
+        public ActionResult AddPost(string dir,string api,string ip,string description,int weight,int status)
         {
-            ApplicationRegistry.Node.Add(dir.ToString(), api, ip, description, weight, status);
+            ApplicationRegistry.Node.Add(dir, api, ip, description, weight, status);
 
             var model = "ok";
 

@@ -17,5 +17,10 @@ namespace Easy.Register.Application.Relationship
                 RepositoryRegistry.Relationship.SelectAll()
                     .Select(d => new Relation(d.Provider.Name, d.ConsumerInfo.Name));
         }
+
+        public void Add(string Name, int DirectoryId)
+        {
+            
+        }
     }
 }
