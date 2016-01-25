@@ -10,10 +10,21 @@ namespace Easy.Register.Infrastructure.Repository.Node
     {
         static string BaseSelectSql()
         {
-            return @"SELECT id, url, ip, description, weight, `status`, create_date as CreateDate, 1 AS split, directory_id as Id, directory_name as Name
-	FROM register_node";
+            return @"SELECT n.id, url, ip, n.description, weight, `status`, n.create_date as CreateDate, 1 AS split, directory_id as Id, directory_name as Name
+	FROM register_node n";
         }
 
+        public static string SelectByDirectoryType(int directoryType)
+        {
+            string sql = string.Join(" ", BaseSelectSql(), "INNER JOIN regisrer_directory d on n.directory_id=d.id WHERE d.directory_type=" + directoryType);
+            return sql;
+        }
+        public static string SelectByDirectoryId(int directoryId)
+        {
+            string sql = string.Join(" ", BaseSelectSql(), "WHERE directory_id=" + directoryId);
+            return sql;
+
+        }
         public static Tuple<string, dynamic> Add(Model.Node item)
         {
             const string sql = @"INSERT INTO register_node

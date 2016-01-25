@@ -9,7 +9,7 @@ using Easy.Register.Model;
 
 namespace Easy.Register.Application.Relationship
 {
-    public  class RelationshipApplication:BaseApplication
+    public class RelationshipApplication : BaseApplication
     {
         public IEnumerable<Relation> GetRelations()
         {

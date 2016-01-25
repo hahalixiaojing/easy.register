@@ -75,9 +75,20 @@ namespace Easy.Register.Infrastructure.Repository.Node
             }
         }
 
+        public IEnumerable<Model.Node> Select(DirectoryType directoryType)
+        {
+            using (var conn = Database.Open())
+            {
+                return conn.Query<Model.Node>(NodeSql.SelectByDirectoryType(directoryType.GetHashCode()));
+            }
+        }
+
         public IEnumerable<Model.Node> Select(int directoryId)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                return conn.Query<Model.Node>(NodeSql.SelectByDirectoryId(directoryId));
+            }
         }
 
         public void Update(Model.Node item)

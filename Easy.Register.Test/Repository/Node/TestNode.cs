@@ -39,11 +39,32 @@ namespace Easy.Register.Test.Repository.Node
 
             NodeAssert(n, actual);
         }
+        [Test]
+        public void SelectTest()
+        {
+            var directory = Directory.DirectoryRepositoryTest.Create(Model.DirectoryType.提供者);
+            Model.RepositoryRegistry.Directory.Add(directory);
+
+            Model.Node n = new Model.Node(new Model.DirectoryInfo(directory.Id, directory.Name));
+            n.Ip = "111";
+            n.Url = "url";
+            Model.RepositoryRegistry.Node.Add(n);
+
+            var list = Model.RepositoryRegistry.Node.Select(Model.DirectoryType.提供者);
+            Assert.IsTrue(list.Count() == 1);
+
+            list = Model.RepositoryRegistry.Node.Select(Model.DirectoryType.消费者);
+            Assert.IsTrue(list.Count() == 0);
+
+            list = Model.RepositoryRegistry.Node.Select(directory.Id);
+            Assert.IsTrue(list.Count() == 1);
+        }
 
         [TearDown]
         public void Clear()
         {
             Model.RepositoryRegistry.Node.RemoveAll();
+            Model.RepositoryRegistry.Directory.RemoveAll();
         }
 
 
