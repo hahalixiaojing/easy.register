@@ -15,7 +15,7 @@ namespace Easy.Register.Controllers
         {
             ViewBag.Active = "Pro";
 
-            //var r = ApplicationRegistry
+            //var r = ApplicationRegistry.Node
 
             return View();
         }
