@@ -22,6 +22,18 @@ namespace Easy.Register.Test.Repository.Relationship
 
             Assert.IsTrue(actual.Count() > 0);
         }
+        [Test]
+        public void AddListTest()
+        {
+            var expected = Create();
+            var expected2 = Create();
+
+            var list = new List<Model.Relationship>() { expected, expected2 };
+            Model.RepositoryRegistry.Relationship.Add(list);
+
+            var result = Model.RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.DirectoryId);
+            Assert.IsTrue(result.Count() == 2);
+        }
 
         [Test]
         public void SelectAllTest()
