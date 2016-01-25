@@ -177,7 +177,7 @@ namespace Easy.Register.Application.Node
         /// <summary>
         ///按类型查询
         /// </summary>
-        /// <param name="directoryType"></param>
+        /// <param name="directoryType">1=消费者，2=提供者，3=即是提供者又是消费者</param>
         /// <returns></returns>
         public IList<Models.Node.Node> SelectByDirectoryType(int directoryType)
         {
