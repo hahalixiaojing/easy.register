@@ -11,7 +11,7 @@ namespace Easy.Register.Model
             this.GreaterThan(m => m.DirectoryInfo.Id, 0, NodeBrokenRuleMessage.DirectoryIdError);
             this.AddRule((n) => {
 
-                return !RepositoryRegistry.Node.IsExists(n);
+                return RepositoryRegistry.Node.IsExists(n);
             
             
             }, NodeBrokenRuleMessage.NodeIsExists);

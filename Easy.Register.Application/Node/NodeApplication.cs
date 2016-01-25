@@ -17,7 +17,7 @@ namespace Easy.Register.Application
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
         /// <param name="directoryId">所属目录</param>
-        public void Add(string directoryName,string url, string ip, string description, int weight, int status)
+        public string Add(string directoryName,string url, string ip, string description, int weight, int status)
         {
             var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
             if (directory == null)
@@ -42,7 +42,10 @@ namespace Easy.Register.Application
             {
                 Model.RepositoryRegistry.Node.Add(node);
                 this.PublishEvent("Add", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+                return null;
             }
+
+            return node.GetBrokenRules()[0].Description;
         }
         /// <summary>
         /// 编辑节点
