@@ -33,12 +33,14 @@ namespace Easy.Register.Controllers
         {
             var r = ApplicationRegistry.Directory.Create(name, content, ip, path, Convert.ToInt32(type));
 
+            var model = "ok";
+
             if (r.Code != null)
             {
-                return View(r.Message);
+                model = r.Message;
             }
-
-            return View("ok");
+            ViewBag.Ok = model;
+            return View();
         }
     }
 }

@@ -27,5 +27,12 @@ namespace Easy.Register.Controllers
 
             return View(model as IEnumerable<DirectoryModel>);
         }
+
+        [HttpPost]
+        public ActionResult AddPost(int dir,string api,string ip,string description,string weight,int status)
+        {
+            
+            return View();
+        }
     }
 }
