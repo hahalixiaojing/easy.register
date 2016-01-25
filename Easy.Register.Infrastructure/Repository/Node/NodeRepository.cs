@@ -35,7 +35,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
             using (var conn = Database.Open())
             {
                 var tuple = NodeSql.FindById(key);
-                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(tuple.Item1, (node,info)=>
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(tuple.Item1, (node, info) =>
                 {
                     node.DirectoryInfo = new DirectoryInfo(info.Id, info.Name);
                     return node;
@@ -79,7 +79,11 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Node>(NodeSql.SelectByDirectoryType(directoryType.GetHashCode()));
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(NodeSql.SelectByDirectoryType(directoryType.GetHashCode()), (node, info) =>
+                {
+                    node.DirectoryInfo = new DirectoryInfo(info.Id, info.Name);
+                    return node;
+                }, splitOn: "split");
             }
         }
 
