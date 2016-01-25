@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Easy.Public;
 
 namespace Easy.Register.Controllers
 {
@@ -15,9 +16,9 @@ namespace Easy.Register.Controllers
         /// <param name="providerDirectoryName">提供者名称</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddRelation(string consumerDirectoryName,[ModelBinder(typeof(StringArrayModelBinder))]string[] providerDirectoryName)
+        public ActionResult AddRelation(string consumerDirectoryName, [ModelBinder(typeof(StringArrayModelBinder))]string[] providerDirectoryName)
         {
-            Application.ApplicationRegistry.Relationship.AddRelation(consumerDirectoryName, providerDirectoryName);
+            Application.ApplicationRegistry.Relationship.AddRelation(StringHelper.ToString(consumerDirectoryName, ""), providerDirectoryName);
             return Content("OK");
         }
 
@@ -29,7 +30,7 @@ namespace Easy.Register.Controllers
         [HttpPost]
         public ActionResult Pull(string providerDirectory)
         {
-            var list = Application.ApplicationRegistry.Node.Select(providerDirectory);
+            var list = Application.ApplicationRegistry.Node.Select(StringHelper.ToString(providerDirectory, ""));
             return Json(list);
         }
         /// <summary>
@@ -43,9 +44,21 @@ namespace Easy.Register.Controllers
         /// <param name="description">描述</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(string directory, string url, string ip, int weight, int status,string description)
+        public ActionResult Register(string directory, string url, string ip, int weight, int status, string description)
         {
-            Application.ApplicationRegistry.Node.Add(directory, url, ip, description, weight, status);
+            Application.ApplicationRegistry.Node.Add(StringHelper.ToString(directory, ""), url, ip, description, weight, status);
+            return Content("OK");
+        }
+        /// <summary>
+        /// 自动下线
+        /// </summary>
+        /// <param name="directoryName">目录名称</param>
+        /// <param name="ip">ip地址(含端口) 如：192.168.1.1:3000</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Offline(string directoryName,string ip)
+        {
+            Application.ApplicationRegistry.Node.AutoOffLine(StringHelper.ToString(directoryName, ""), ip);
             return Content("OK");
         }
     }
