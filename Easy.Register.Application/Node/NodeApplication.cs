@@ -8,7 +8,7 @@ namespace Easy.Register.Application
     public class NodeApplication : BaseApplication
     {
         /// <summary>
-        /// 添加节点
+        /// 添加节点或更新节点
         /// </summary>
         /// <param name="directoryName">目录名称</param>
         /// <param name="url">API地址</param>
@@ -25,7 +25,13 @@ namespace Easy.Register.Application
                 throw new Exception("目录不存在");
             }
             var directoryInfo = new Model.DirectoryInfo(directory.Id, directory.Name);
-            var node = new Model.Node(directoryInfo);
+
+            var nodes = Model.RepositoryRegistry.Node.Select(directory.Id);
+            var node =  nodes.FirstOrDefault(m => m.Ip == ip);
+            if (node == null)
+            {
+                node = new Model.Node(directoryInfo);
+            }
             node.Description = description;
             node.Ip = ip;
             node.Url = url;
