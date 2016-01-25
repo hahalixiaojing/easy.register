@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Easy.Register.Model;
+
 namespace Easy.Register.Infrastructure.Repository.Directory
 {
     public class DirectoryRepository:Model.IDirectoryRepository,IDao
@@ -88,6 +90,15 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                 var tuple = DirectorySql.Update(item);
                 conn.Execute(tuple.Item1, (object)tuple.Item2);
             }
+        }
+        public IEnumerable<Model.Directory> FindBy(string[] names)
+        {
+            using (var conn = Database.Open())
+            {
+                var sql = DirectorySql.FindByNames(names);
+
+                return conn.Query<Model.Directory>(sql);
+            }   
         }
     }
 }

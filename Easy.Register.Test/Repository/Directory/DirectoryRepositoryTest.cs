@@ -36,6 +36,18 @@ namespace Easy.Register.Test.Repository.Directory
             var list =  Model.RepositoryRegistry.Directory.FindAll();
             Assert.IsTrue(list.Count > 0);
         }
+        [Test]
+        public void FindByNamesTest()
+        {
+            var expected = Create();
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            var list = Model.RepositoryRegistry.Directory.FindBy(new string[1] { expected.Name });
+            Assert.IsTrue(list.Count() > 0);
+
+            list = Model.RepositoryRegistry.Directory.FindBy(new string[1] { "xxoo" });
+            Assert.IsTrue(list.Count() == 0);
+        }
 
         [Test]
         public void SelectTest()

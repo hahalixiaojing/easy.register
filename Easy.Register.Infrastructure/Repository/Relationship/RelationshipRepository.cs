@@ -68,6 +68,11 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
             }
         }
 
+        public void Add(IList<Model.Relationship> list)
+        {
+            //TODO:
+            throw new NotImplementedException();
+        }
     }
 }
 
