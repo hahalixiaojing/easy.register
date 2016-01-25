@@ -1,4 +1,5 @@
-﻿@model System.Collections.Generic.IEnumerable<Easy.Register.Application.Models.Directory.DirectoryModel>
+﻿
+@model System.Collections.Generic.IEnumerable<Easy.Register.Application.Models.Directory.DirectoryModel>
 @{
     ViewBag.Title = "目录列表";
     Layout = "~/Views/Shared/MainLayout.cshtml";
@@ -49,7 +50,7 @@
                                     <td>@m.PingAPIPath</td>
                                     <td>@m.VersionAPIPath</td>
                                     <td>@m.CreateDate</td>
-                                    <td><span class="label label-success">@m.DirectoryType.ToString()</span></td>
+                                    <td>@(Easy.Register.Utility.EnumHelper.DirectoryTypHelper((int)m.DirectoryType))</td>
                                     <td>@m.Description</td>
                                 </tr>
                             }
