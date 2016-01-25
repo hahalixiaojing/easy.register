@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Easy.Domain.Application;
 using Easy.Register.Application.Models.Node;
 using System.Linq;
-namespace Easy.Register.Application.Node
+namespace Easy.Register.Application
 {
     public class NodeApplication : BaseApplication
     {
@@ -24,7 +24,7 @@ namespace Easy.Register.Application.Node
             {
                 throw new Exception("目录不存在");
             }
-            var directoryInfo =new Model.DirectoryInfo(directory.Id,directory.Name);
+            var directoryInfo = new Model.DirectoryInfo(directory.Id, directory.Name);
             var node = new Model.Node(directoryInfo);
             node.Description = description;
             node.Ip = ip;
@@ -122,6 +122,27 @@ namespace Easy.Register.Application.Node
             node.Status = Model.NodeStatus.在线;
             Model.RepositoryRegistry.Node.Update(node);
             this.PublishEvent("OnLine", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+        }
+        /// <summary>
+        /// 自动下线
+        /// </summary>
+        /// <param name="directory">目录名称</param>
+        /// <param name="ip">节点IP地址(包含端口号)</param>
+        public void AutoOffLine(string directoryName, string ip)
+        {
+            var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
+            if(directory == null)
+            {
+                return;
+            }
+            var nodelist = Model.RepositoryRegistry.Node.Select(directory.Id);
+            var node = nodelist.FirstOrDefault(m => m.Ip == ip);
+            if (node != null)
+            {
+                node.Status = Model.NodeStatus.下线;
+                Model.RepositoryRegistry.Node.Update(node);
+                this.PublishEvent("OffLine", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+            }
         }
         /// <summary>
         /// 删除节点
