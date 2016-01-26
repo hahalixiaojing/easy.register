@@ -44,39 +44,36 @@
                             </tr>
                             @{
                                 var list = ViewBag.list;
+                                
                                 foreach (Node item in list)
                                 {
+                                    var str = @item.IsAvailable ? "是" : "否";
+                                    var labelStatus =@item.Weight;
+                                    var labelMsg = string.Empty;
+                                    switch (labelStatus)
+                                    {
+                                        case 1:
+                                            labelMsg = "label-success";
+                                            break;
+                                        case 2:
+                                            labelMsg = "label-warning";
+                                            break;
+                                        case 3:
+                                            labelMsg = "label-primary";
+                                            break;
+                                        case 4:
+                                            labelMsg = "label-danger";
+                                            break;
+                                    }
                                     <tr>
                                         <td>@item.ProviderName</td>
                                         <td>@item.Ip</td>
                                         <td>@item.Url</td>
-                                        <td><span class="label label-success">@item.Weight</span></td>
-                                        <td>@(item.IsAvailable)?"是":"否"</td>
+                                        <td><span class="label @labelMsg">@item.Weight</span></td>
+                                        <td>@str</td>
                                     </tr>
                                 }
                             }
-                            
-                            @*<tr>
-                                <td>219</td>
-                                <td>Alexander Pierce</td>
-                                <td>11-7-2014</td>
-                                <td><span class="label label-warning">Pending</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            </tr>
-                            <tr>
-                                <td>657</td>
-                                <td>Bob Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="label label-primary">Approved</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            </tr>
-                            <tr>
-                                <td>175</td>
-                                <td>Mike Doe</td>
-                                <td>11-7-2014</td>
-                                <td><span class="label label-danger">Denied</span></td>
-                                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                            </tr>*@
                         </table>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
