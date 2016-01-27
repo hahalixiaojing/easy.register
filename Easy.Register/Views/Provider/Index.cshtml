@@ -101,7 +101,7 @@
             }
             $.post("/Provider/OnOffLine/", { id: id, selected: select }, function (data) {
                 $('#callText').html('上线/下线操作成功');
-                $('.showCall').show(2000).hide(1000);
+                $('.showCall').show(300).delay(2000).hide(300);
             });
         });
         $('.onWeight').bind('change', function () {
@@ -109,7 +109,7 @@
             var weight = $(this).val();
             $.post("/Provider/SetWeight/", { id: id, weight: weight }, function (data) {
                 $('#callText').html('权值修改成功');
-                $('.showCall').show(2000).hide(1000);
+                $('.showCall').show(300).delay(2000).hide(300);
             });
         });
     });
