@@ -11,6 +11,13 @@ namespace Easy.Register.Infrastructure.Repository.Node
     {
         private static Easy.Public.EntityPropertyHelper<Model.Node> propertyHelper = new Public.EntityPropertyHelper<Model.Node>();
 
+        private Model.Node SelectConvert(Model.Node n, Model.DirectoryInfo dir)
+        {
+            propertyHelper.SetValue(m => m.DirectoryInfo, n, dir);
+            return n;
+        }
+
+
         public void Add(Model.Node item)
         {
             using (var conn = Database.Open())
@@ -26,7 +33,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Node>(NodeSql.FindAll()).ToList();
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(NodeSql.FindAll(), SelectConvert, splitOn: "split").ToList();
             }
         }
 
@@ -35,11 +42,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
             using (var conn = Database.Open())
             {
                 var tuple = NodeSql.FindById(key);
-                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(tuple.Item1, (node, info) =>
-                {
-                    node.DirectoryInfo = new DirectoryInfo(info.Id, info.Name);
-                    return node;
-                }, (object)tuple.Item2, splitOn: "split").FirstOrDefault();
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(tuple.Item1, SelectConvert, (object)tuple.Item2, splitOn: "split").FirstOrDefault();
             }
         }
 
@@ -79,11 +82,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(NodeSql.SelectByDirectoryType(directoryType.GetHashCode()), (node, info) =>
-                {
-                    node.DirectoryInfo = new DirectoryInfo(info.Id, info.Name);
-                    return node;
-                }, splitOn: "split");
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(NodeSql.SelectByDirectoryType(directoryType.GetHashCode()), SelectConvert, splitOn: "split");
             }
         }
 
@@ -91,7 +90,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Node>(NodeSql.SelectByDirectoryId(directoryId));
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(NodeSql.SelectByDirectoryId(directoryId), SelectConvert, splitOn: "split");
             }
         }
 

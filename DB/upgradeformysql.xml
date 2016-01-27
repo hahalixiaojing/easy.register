@@ -41,4 +41,17 @@
 			add column directory_name varchar(100) ;
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="6">
+        <Author>李晓静</Author>
+        <Memo>
+            增加字段
+        </Memo>
+        <Sql>
+		alter table register_relation
+			add column id int not null,
+			add column create_date datetime not null;
+		alter table register_relation 
+			modify id int auto_increment primary key;
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>

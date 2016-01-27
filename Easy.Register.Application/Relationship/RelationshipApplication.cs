@@ -15,7 +15,7 @@ namespace Easy.Register.Application.Relationship
         {
             return
                 RepositoryRegistry.Relationship.SelectAll()
-                    .Select(d => new Relation(d.Provider.Name, d.ConsumerInfo.Name));
+                    .Select(d => new Relation(d.Provider.ProviderName, d.ConsumerInfo.ConsumerName));
         }
         /// <summary>
         /// 添加关系
