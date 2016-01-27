@@ -1,7 +1,12 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Easy.Rpc.directory;
 
-namespace Demo.Provider
+namespace Demo.ProviderAndConsumer
 {
     class Program
     {
@@ -15,19 +20,15 @@ namespace Demo.Provider
 
             var myselfInfo = new MySelfInfo()
             {
-                Description = "Demo提供者",
-                Directory = "DemoProvider",
-                Ip = "127.0.0.1:4001",
+                Description = "ProviderAndConsumer提供者",
+                Directory = "ProviderAndConsumer",
+                Ip = "127.0.0.1:4008",
                 Status = 1,
-                Url = "http://127.0.0.1:4001",
+                Url = "http://127.0.0.1:4008",
                 Weight = 100
             };
 
-            builder.Build(myselfInfo, new string[0]);
-
-
-
-
+            builder.Build(myselfInfo, new string[1] { "DemoProvider" });
         }
     }
 }

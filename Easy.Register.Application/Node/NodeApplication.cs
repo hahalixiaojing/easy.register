@@ -26,18 +26,12 @@ namespace Easy.Register.Application
             }
             var directoryInfo = new Model.DirectoryInfo(directory.Id, directory.Name);
 
-            var nodes = Model.RepositoryRegistry.Node.Select(directory.Id);
-            var node =  nodes.FirstOrDefault(m => m.Ip == ip);
-            if (node == null)
-            {
-                node = new Model.Node(directoryInfo);
-            }
+            var node = new Model.Node(directoryInfo);
             node.Description = description;
             node.Ip = ip;
             node.Url = url;
             node.Weight = weight;
             node.Status = (Model.NodeStatus)status;
-
             if (node.Validate())
             {
                 Model.RepositoryRegistry.Node.Add(node);

@@ -6,7 +6,7 @@ namespace Easy.Register.Application.Models.Relationship
 {
     public class Relation
     {
-        public Relation(string source,string target)
+        public Relation(string target,string source)
         {
             this.Source = source;
             this.Target = target;

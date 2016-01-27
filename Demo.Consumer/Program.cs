@@ -27,7 +27,7 @@ namespace Demo.Consumer
                 Url = "http://192.168.1.1:3000",
                 Weight = 200
             };
-            builder.Build(myselfInfo, new string[1] { "DemoProvider" });
+            builder.Build(myselfInfo, new string[2] { "DemoProvider", "ProviderAndConsumer" });
         }
     }
 }
