@@ -108,6 +108,7 @@
     <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\_all-skins.min.css" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Scripts\app.min.js" />
@@ -139,6 +140,7 @@
     <Content Include="Views\Provider\AddPost.cshtml" />
     <Content Include="Fonts\fontawesome-webfont.eot" />
     <Content Include="Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
