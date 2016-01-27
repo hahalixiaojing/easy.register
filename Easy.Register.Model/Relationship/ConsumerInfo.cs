@@ -8,15 +8,19 @@ namespace Easy.Register.Model
 {
     public class ConsumerInfo
     {
+        public ConsumerInfo()
+        {
+
+        }
         public ConsumerInfo(string name,int directoryId)
         {
-            this.Name = name;
-            this.DirectoryId = directoryId;
+            this.ConsumerName = name;
+            this.ConsumerDirectoryId = directoryId;
         }
         /// <summary>
         /// 目录名称
         /// </summary>
-        public string Name
+        public string ConsumerName
         {
             get;
             private set;
@@ -24,7 +28,7 @@ namespace Easy.Register.Model
         /// <summary>
         /// 目录ID
         /// </summary>
-        public int DirectoryId
+        public int ConsumerDirectoryId
         {
             get;
             private set;

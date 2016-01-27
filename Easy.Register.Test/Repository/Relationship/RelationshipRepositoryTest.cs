@@ -16,9 +16,9 @@ namespace Easy.Register.Test.Repository.Relationship
             var expected = Create();
             RepositoryRegistry.Relationship.Add(expected);
 
-            Assert.IsTrue(expected.ConsumerInfo.DirectoryId > 0&&expected.Provider.DirectoryId>0);
+            Assert.IsTrue(expected.ConsumerInfo.ConsumerDirectoryId > 0&&expected.Provider.ProviderDirectoryId>0);
 
-            var actual = Model.RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.DirectoryId);
+            var actual = Model.RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.ConsumerDirectoryId);
 
             Assert.IsTrue(actual.Count() > 0);
         }
@@ -31,7 +31,7 @@ namespace Easy.Register.Test.Repository.Relationship
             var list = new List<Model.Relationship>() { expected, expected2 };
             Model.RepositoryRegistry.Relationship.Add(list);
 
-            var result = Model.RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.DirectoryId);
+            var result = Model.RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.ConsumerDirectoryId);
             Assert.IsTrue(result.Count() == 2);
         }
 
@@ -54,9 +54,9 @@ namespace Easy.Register.Test.Repository.Relationship
             var expected = Create();
             RepositoryRegistry.Relationship.Add(expected);
 
-            RepositoryRegistry.Relationship.Remove(expected.ConsumerInfo.DirectoryId);
+            RepositoryRegistry.Relationship.Remove(expected.ConsumerInfo.ConsumerDirectoryId);
 
-            var count= RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.DirectoryId);
+            var count= RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.ConsumerDirectoryId);
             Assert.IsTrue(count.Count()==0);
         }
 
@@ -66,7 +66,7 @@ namespace Easy.Register.Test.Repository.Relationship
             var expected = Create();
             RepositoryRegistry.Relationship.Add(expected);
 
-            var actual= RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.DirectoryId);
+            var actual= RepositoryRegistry.Relationship.Select(expected.ConsumerInfo.ConsumerDirectoryId);
             Assert.IsTrue(actual.Count()>0);
         }
 
@@ -74,7 +74,7 @@ namespace Easy.Register.Test.Repository.Relationship
         public void RelationIsExistsTest()
         {
             var expected = Create();
-            var actual= RepositoryRegistry.Relationship.RelationIsExists(expected.ConsumerInfo.DirectoryId,expected.Provider.DirectoryId);
+            var actual= RepositoryRegistry.Relationship.RelationIsExists(expected.ConsumerInfo.ConsumerDirectoryId,expected.Provider.ProviderDirectoryId);
             Assert.IsTrue(actual);
         }
 
@@ -93,10 +93,10 @@ namespace Easy.Register.Test.Repository.Relationship
 
         private void RelationshipAssert(Model.Relationship expected, Model.Relationship actual)
         {
-            Assert.AreEqual(expected.ConsumerInfo.DirectoryId, actual.ConsumerInfo.DirectoryId);
-            Assert.AreEqual(expected.ConsumerInfo.Name,actual.ConsumerInfo.Name);
-            Assert.AreEqual(expected.Provider.DirectoryId,actual.Provider.DirectoryId);
-            Assert.AreEqual(expected.Provider.Name,actual.Provider.Name);
+            Assert.AreEqual(expected.ConsumerInfo.ConsumerDirectoryId, actual.ConsumerInfo.ConsumerDirectoryId);
+            Assert.AreEqual(expected.ConsumerInfo.ConsumerName,actual.ConsumerInfo.ConsumerName);
+            Assert.AreEqual(expected.Provider.ProviderDirectoryId,actual.Provider.ProviderDirectoryId);
+            Assert.AreEqual(expected.Provider.ProviderName, actual.Provider.ProviderName);
         }
     }
 }

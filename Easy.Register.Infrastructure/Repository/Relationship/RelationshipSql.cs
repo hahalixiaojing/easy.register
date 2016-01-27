@@ -10,19 +10,20 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
     {
         private static string BaseSelectSql()
         {
-            return @"select consumer_id,consumer_name,provider_id,provider_name from register_relation";
+            return @"select id as Id,create_date as CreateDate,1 as split, consumer_name as ConsumerName,consumer_id as ConsumerDirectoryId,'x' as split ,provider_name as ProviderName,provider_id as ProviderDirectoryId from register_relation";
         }
 
         public static Tuple<string, dynamic> Add(Model.Relationship item)
         {
-            const string sql = @"insert into register_relation(consumer_id,consumer_name,provider_id,provider_name) 
-                                values (@consumer_id,@consumer_name,@provider_id,@provider_name)";
-            return new Tuple<string, dynamic>(sql,new
+            const string sql = @"insert into register_relation(consumer_id,consumer_name,provider_id,provider_name,create_date) 
+                                values (@consumer_id,@consumer_name,@provider_id,@provider_name,@CreateDate)";
+            return new Tuple<string, dynamic>(sql, new
             {
-                consumer_id=item.ConsumerInfo.DirectoryId,
-                consumer_name=item.ConsumerInfo.Name,
-                provider_id=item.Provider.DirectoryId,
-                provider_name=item.Provider.Name
+                consumer_id = item.ConsumerInfo.ConsumerDirectoryId,
+                consumer_name = item.ConsumerInfo.ConsumerName,
+                provider_id = item.Provider.ProviderDirectoryId,
+                provider_name = item.Provider.ProviderName,
+                CreateDate = item.CreateDate
             });
         }
 
@@ -30,12 +31,12 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
         {
             string sql = "update register_relation set consumer_id=@consumer_id,consumer_name=@consumer_name,provider_id=@provider_id,provider_name=@provider_name where id=@id";
 
-            return new Tuple<string, dynamic>(sql,new
+            return new Tuple<string, dynamic>(sql, new
             {
-                consumer_id=item.ConsumerInfo.DirectoryId,
-                consumer_name=item.ConsumerInfo.Name,
-                provider_id=item.Provider.DirectoryId,
-                provider_name=item.Provider.Name
+                consumer_id = item.ConsumerInfo.ConsumerDirectoryId,
+                consumer_name = item.ConsumerInfo.ConsumerName,
+                provider_id = item.Provider.ProviderDirectoryId,
+                provider_name = item.Provider.ProviderName
             });
         }
 

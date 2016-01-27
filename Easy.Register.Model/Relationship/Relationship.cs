@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Easy.Register.Model
 {
-    public class Relationship
+    public class Relationship:IEntity<int>
     {
+        public int Id
+        {
+            get; private set;
+        }
         public Relationship()
         {
 
@@ -27,14 +31,21 @@ namespace Easy.Register.Model
             get;
             private set;
         }
-
         /// <summary>
         /// 提供者对象
         /// </summary>
         public ProviderInfo Provider
         {
             get;
-            set;
+            private set;
         }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        public DateTime CreateDate
+        {
+            get;private set;
+        }
+        
     }
 }

@@ -11,6 +11,14 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
     public class RelationshipRepository : IRelationshipRepsitory,IDao
     {
         private static Easy.Public.EntityPropertyHelper<Model.Relationship> propertyHelper = new Public.EntityPropertyHelper<Model.Relationship>();
+
+        private Model.Relationship SelectConvert(Model.Relationship r,Model.ConsumerInfo consumerInfo, Model.ProviderInfo providerIdInfo)
+        {
+            propertyHelper.SetValue(m => m.ConsumerInfo, r, consumerInfo);
+            propertyHelper.SetValue(m => m.Provider, r, providerIdInfo);
+            return r;
+        }
+
         public void Add(Model.Relationship relationship)
         {
             using (var conn=Database.Open())
@@ -56,7 +64,7 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
             using (var conn=Database.Open())
             {
                 string sql = RelationshipSql.SelectBy(consumerDirectoryId);
-                return conn.Query<Model.Relationship>(sql);
+                return conn.Query<Model.Relationship, Model.ConsumerInfo, Model.ProviderInfo, Model.Relationship>(sql, SelectConvert,splitOn:"split");
             }
         }
 
@@ -64,7 +72,7 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
         {
             using (var conn = Database.Open())
             {
-                return conn.Query<Model.Relationship>(RelationshipSql.FindAll()).ToList();
+                return conn.Query<Model.Relationship, Model.ConsumerInfo, Model.ProviderInfo, Model.Relationship>(RelationshipSql.FindAll(), SelectConvert, splitOn: "split").ToList();
             }
         }
 

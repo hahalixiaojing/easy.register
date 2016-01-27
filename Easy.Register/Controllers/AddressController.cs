@@ -16,9 +16,9 @@ namespace Easy.Register.Controllers
         /// <param name="providerDirectoryName">提供者名称</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult AddRelation(string consumerDirectoryName, [ModelBinder(typeof(StringArrayModelBinder))]string[] providerDirectoryName)
+        public ActionResult AddRelation(string consumerDirectoryName, [ModelBinder(typeof(StringArrayModelBinder))]string[] providerDirectoryNames)
         {
-            Application.ApplicationRegistry.Relationship.AddRelation(StringHelper.ToString(consumerDirectoryName, ""), providerDirectoryName);
+            Application.ApplicationRegistry.Relationship.AddRelation(StringHelper.ToString(consumerDirectoryName, ""), providerDirectoryNames);
             return Content("OK");
         }
 
