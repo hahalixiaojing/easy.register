@@ -44,19 +44,29 @@
                             {
                                 foreach (var m in Model)
                                 {
+                                    string isSelect1 = "";
+                                    string isSelect2 = "";
+                                    string sColor = "";
                                     <tr>
                                         <td>@m.ProviderName</td>
                                         <td>@m.Url</td>
                                         @if (m.IsAvailable)
                                         {
-                                            <td><span class="label label-success">@m.IsAvailable.ToString()</span></td>
+                                            isSelect1 = "selected=\"selected\"";
+                                            sColor = "bg-green";
                                         }
                                         else
                                         {
-                                            <td><span class="label label-danger">@m.IsAvailable.ToString()</span></td>
+                                            isSelect2 = "selected=\"selected\"";
+                                            sColor = "bg-red";
                                         }
-                                        
-                                        <td>@m.Weight</td>
+                                        <td>
+                                            <select class="form-control isAvailable @sColor" id="@m.Id" name="status">
+                                                <option class="bg-green" value="1" @isSelect1>在线</option>
+                                                <option class="bg-red" value="2" @isSelect2>下线</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control onWeight" id="@m.Id" value="@m.Weight" /></td>
                                     </tr>
                                 }
                             }
@@ -64,7 +74,43 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
+            <div class="col-xs-12">
+                <div class="callout callout-success showCall">
+                    <h4>Success!</h4>
+                    <span id="callText"></span>
+                </div>
+            </div>
         </div>
+
     </section><!-- /.content -->
 </div>
 
+
+
+<script>
+    $(function () {
+        $('.showCall').hide();
+        $('.isAvailable').bind('change', function () {
+            var id = $(this).attr('id');
+            var select = $(this).select().val();
+            $(this).removeClass('bg-green bg-red');
+            if (select == 1) {
+                $(this).addClass('bg-green');
+            } else if (select == 2) {
+                $(this).addClass('bg-red');
+            }
+            $.post("/Provider/OnOffLine/", { id: id, selected: select }, function (data) {
+                $('#callText').html('上线/下线操作成功');
+                $('.showCall').show(2000).hide(1000);
+            });
+        });
+        $('.onWeight').bind('change', function () {
+            var id = $(this).attr('id');
+            var weight = $(this).val();
+            $.post("/Provider/SetWeight/", { id: id, weight: weight }, function (data) {
+                $('#callText').html('权值修改成功');
+                $('.showCall').show(2000).hide(1000);
+            });
+        });
+    });
+</script>

@@ -4,13 +4,16 @@ namespace Easy.Register.Application.Models.Node
 {
     public class Node
     {
-        public Node(string providerName,string ip, string url,int weight,bool isAvaiable)
+        public Node(int id, string providerName, string ip, string url, int weight, bool isAvaiable)
         {
+            this.Id = id;
             this.ProviderName = providerName;
             this.Url = url;
             this.Weight = weight;
             this.IsAvailable = isAvaiable;
         }
+
+        public int Id { get; private set; }
         public String ProviderName
         {
             get;

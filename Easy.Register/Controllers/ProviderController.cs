@@ -31,7 +31,7 @@ namespace Easy.Register.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPost(string dir,string api,string ip,string description,int weight,int status)
+        public ActionResult AddPost(string dir, string api, string ip, string description, int weight, int status)
         {
             var r = ApplicationRegistry.Node.Add(dir, api, ip, description, weight, status);
             var model = "ok";
@@ -39,10 +39,44 @@ namespace Easy.Register.Controllers
             {
                 model = r;
             }
-            
+
             ViewBag.Ok = model;
 
             return View();
+        }
+
+        [HttpPost]
+        public void OnOffLine(int id, int selected)
+        {
+            if (selected == 1)
+            {
+                ApplicationRegistry.Node.OnLine(id);
+            }
+            else if (selected == 2)
+            {
+                ApplicationRegistry.Node.OffLine(id);
+            }
+
+        }
+
+        [HttpPost]
+        public void SetWeight(int id, int weight)
+        {
+            var r = ApplicationRegistry.Node.FindById(id);
+
+            if (r == null)
+            {
+                return;
+            }
+
+            if (r.Weight > weight)
+            {
+                ApplicationRegistry.Node.DecreaseWeight(id,weight);
+            }
+            else if (r.Weight < weight)
+            {
+                ApplicationRegistry.Node.AddWeight(id, weight);
+            }
         }
     }
 }
