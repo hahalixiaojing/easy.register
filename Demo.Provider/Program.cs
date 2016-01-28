@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Easy.Rpc.directory;
 
 namespace Demo.Provider
@@ -25,6 +26,7 @@ namespace Demo.Provider
 
             builder.Build(myselfInfo, new string[0]);
 
+            Console.ReadLine();
 
 
 

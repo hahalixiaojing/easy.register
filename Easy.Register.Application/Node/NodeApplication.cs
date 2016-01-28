@@ -35,7 +35,9 @@ namespace Easy.Register.Application
             if (node.Validate())
             {
                 Model.RepositoryRegistry.Node.Add(node);
-                this.PublishEvent("Add", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+                var nodes =  Model.RepositoryRegistry.Node.Select(directory.Id);
+                this.PublishEvent("Add", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
                 return null;
             }
 
@@ -61,7 +63,8 @@ namespace Easy.Register.Application
             if (node.Validate())
             {
                 Model.RepositoryRegistry.Node.Update(node);
-                this.PublishEvent("Update", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+                var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+                this.PublishEvent("Update", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
             }
         }
         /// <summary>
@@ -78,7 +81,9 @@ namespace Easy.Register.Application
             }
             node.Weight = weight;
             Model.RepositoryRegistry.Node.Update(node);
-            this.PublishEvent("AddWeight", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+            this.PublishEvent("AddWeight", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
         }
         /// <summary>
         /// 减少权重
@@ -94,7 +99,9 @@ namespace Easy.Register.Application
             }
             node.Weight = weight;
             Model.RepositoryRegistry.Node.Update(node);
-            this.PublishEvent("DecreaseWeight", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+            this.PublishEvent("DecreaseWeight", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
         }
         /// <summary>
         /// 下线节点
@@ -109,7 +116,9 @@ namespace Easy.Register.Application
             }
             node.Status = Model.NodeStatus.下线;
             Model.RepositoryRegistry.Node.Update(node);
-            this.PublishEvent("OffLine", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+            this.PublishEvent("OffLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
         }
         /// <summary>
         /// 上线节点
@@ -124,7 +133,9 @@ namespace Easy.Register.Application
             }
             node.Status = Model.NodeStatus.在线;
             Model.RepositoryRegistry.Node.Update(node);
-            this.PublishEvent("OnLine", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+            this.PublishEvent("OnLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
         }
         /// <summary>
         /// 自动下线
@@ -144,7 +155,9 @@ namespace Easy.Register.Application
             {
                 node.Status = Model.NodeStatus.下线;
                 Model.RepositoryRegistry.Node.Update(node);
-                this.PublishEvent("OffLine", new NodeDomainEvent(node.DirectoryInfo.Name, node.Url, node.Weight, node.Status == Model.NodeStatus.在线));
+
+                var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
+                this.PublishEvent("OffLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
             }
         }
         /// <summary>

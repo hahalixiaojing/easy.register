@@ -12,34 +12,15 @@ namespace Easy.Register.Application.Models.Node
         {
 
         }
-        public NodeDomainEvent(string providerName, string url, int weight, bool isAvaiable)
+        public NodeDomainEvent(IList<Node> nodes)
         {
-            this.ProviderName = providerName;
-            this.Url = url;
-            this.Weight = weight;
-            this.IsAvailable = isAvaiable;
+            this.Nodes = nodes;
             this.OccurredOn = DateTime.Now;
         }
 
-        public String ProviderName
+        public IList<Node> Nodes
         {
-            get;
-            private set;
-        }
-        public String Url
-        {
-            get;
-            private set;
-        }
-        public Int32 Weight
-        {
-            get;
-            private set;
-        }
-        public Boolean IsAvailable
-        {
-            get;
-            private set;
+            get; private set;
         }
 
         public DateTime OccurredOn

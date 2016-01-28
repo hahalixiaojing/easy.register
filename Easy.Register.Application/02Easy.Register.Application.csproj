@@ -88,6 +88,7 @@
     <Compile Include="Models\Directory\DirectoryModel.cs" />
     <Compile Include="Models\Node\Node.cs" />
     <Compile Include="Models\Node\NodeDomainEvent.cs" />
+    <Compile Include="Models\Node\NodeExtension.cs" />
     <Compile Include="Models\Relationship\Relashtion.cs" />
     <Compile Include="Models\Return.cs" />
     <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />

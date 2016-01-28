@@ -29,6 +29,9 @@ namespace Demo.ProviderAndConsumer
             };
 
             builder.Build(myselfInfo, new string[1] { "DemoProvider" });
+
+            Console.ReadLine();
+
         }
     }
 }

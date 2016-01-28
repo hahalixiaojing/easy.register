@@ -11,9 +11,13 @@ namespace Easy.Register.Application.Node
     {
         public void HandleEvent(NodeDomainEvent aDomainEvent)
         {
-            var node = new Model.PublishService.Node(aDomainEvent.ProviderName, aDomainEvent.Url, aDomainEvent.Weight, aDomainEvent.IsAvailable);
+            if (aDomainEvent.Nodes.Count > 0)
+            {
+                var pushNodeList = aDomainEvent.Nodes.Select(m => new Easy.Register.Model.PublishService.Node(m.ProviderName, m.Url, m.Weight, m.IsAvailable));
 
-            Model.ServiceRegistry.PublishService.Publish(aDomainEvent.ProviderName, new List<Model.PublishService.Node>() { node });
+                string providername = aDomainEvent.Nodes[0].ProviderName;
+                Model.ServiceRegistry.PublishService.Publish(providername, pushNodeList.ToList());
+            }
         }
 
         public Type SuscribedToEventType

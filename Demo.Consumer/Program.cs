@@ -28,6 +28,8 @@ namespace Demo.Consumer
                 Weight = 200
             };
             builder.Build(myselfInfo, new string[2] { "DemoProvider", "ProviderAndConsumer" });
+
+            Console.ReadLine();
         }
     }
 }
