@@ -6,5 +6,7 @@
               implementation="Easy.Register.Infrastructure.Repository.Node.NodeRepository,Easy.Register.Infrastructure"/>
   <repository interface="Easy.Register.Model.IRelationshipRepsitory,Easy.Register.Model" 
               implementation="Easy.Register.Infrastructure.Repository.Relationship.RelationshipRepository,Easy.Register.Infrastructure"/>
+  <repository interface="Easy.Register.Model.User.IUserRepository,Easy.Register.Model"
+              implementation="Easy.Register.Infrastructure.Repository.User,Easy.Register.Infrastructure"/>
 </repositories>
 

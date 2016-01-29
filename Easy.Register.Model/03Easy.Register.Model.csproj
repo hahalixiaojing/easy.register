@@ -71,6 +71,10 @@
     <Compile Include="Relationship\Relationship.cs" />
     <Compile Include="RepositoryRegistry.cs" />
     <Compile Include="ServiceRegistry.cs" />
+    <Compile Include="User\IUserRepository.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\UserBrokenRuleMessage.cs" />
+    <Compile Include="User\UserValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
