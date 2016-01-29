@@ -3,3 +3,5 @@ obj
 /*.suo
 /.vs
 /TestResults
+/WeDemo.Consumer/cache_nodes
+/WeDemo.Consumer/WeDemo.Consumer.csproj.user
