@@ -24,7 +24,7 @@ namespace Easy.Register.Application.Directory
         /// <param name="versionApiPath">版本号Api路径</param>
         /// <param name="directoryType">目录类型</param>
         /// <returns></returns>
-        public Return Create(string name, string description, string pingApiPath, string versionApiPath,int directoryType)
+        public Return Create(string name, string description, string pingApiPath, string versionApiPath, int directoryType)
         {
             var directory = new Model.Directory(name)
             {
@@ -101,6 +101,7 @@ namespace Easy.Register.Application.Directory
             var list = RepositoryRegistry.Directory.FindAll();
             var listmodel = list.Select(d => new DirectoryModel()
             {
+                Id = d.Id,
                 CreateDate = d.CreateDate,
                 Description = d.Description,
                 DirectoryType = d.DirectoryType.GetHashCode(),
@@ -111,6 +112,21 @@ namespace Easy.Register.Application.Directory
 
             return new Return() { DataBody = listmodel };
 
+        }
+
+        public DirectoryModel FindById(int id)
+        {
+            var model = RepositoryRegistry.Directory.FindBy(id);
+            return new DirectoryModel()
+            {
+                CreateDate = model.CreateDate,
+                Description = model.Description,
+                DirectoryType = (int)model.DirectoryType,
+                Id = model.Id,
+                Name = model.Name,
+                PingAPIPath = model.PingAPIPath,
+                VersionAPIPath = model.VersionAPIPath
+            };
         }
     }
 }

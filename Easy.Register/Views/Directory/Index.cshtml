@@ -45,20 +45,92 @@
                             </tr>
                             @foreach (var m in Model)
                             {
+                                var isSelect1 = "";
+                                var isSelect2 = "";
+                                var isSelect3 = "";
+                                switch (m.DirectoryType)
+                                {
+                                    case 1:
+                                        isSelect1 = "selected=\"selected\"";
+                                        break;
+                                    case 2:
+                                        isSelect2 = "selected=\"selected\"";
+                                        break;
+                                    case 3:
+                                        isSelect3 = "selected=\"selected\"";
+                                        break;
+                                }
+
                                 <tr>
                                     <td>@m.Name</td>
-                                    <td>@m.PingAPIPath</td>
-                                    <td>@m.VersionAPIPath</td>
+                                    <td><input type="text" class="form-control onPingAPIPath" id="@m.Id" value="@m.PingAPIPath" /></td>
+                                    <td><input type="text" class="form-control onVersionAPIPath" id="@m.Id" value="@m.VersionAPIPath" /></td>
                                     <td>@m.CreateDate</td>
-                                    <td>@(Easy.Register.Utility.EnumHelper.DirectoryTypHelper((int)m.DirectoryType))</td>
-                                    <td>@m.Description</td>
+                                    <td>
+                                        <select class="form-control onType" id="@m.Id">
+                                            <option value="1" @isSelect1>消费者</option>
+                                            <option value="2" @isSelect2>提供者</option>
+                                            <option value="3" @isSelect3>消费者提供者</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control onDescription" id="@m.Id" value="@m.Description" /></td>
                                 </tr>
                             }
                         </table>
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
+            <div class="col-xs-12">
+                <div class="callout callout-success showCall">
+                    <h4>Success!</h4>
+                    <span id="callText"></span>
+                </div>
+            </div>
         </div>
     </section><!-- /.content -->
 </div>
+
+<script>
+    $(function () {
+        function showMsg(message) {
+            $('#callText').html(message);
+            $('.showCall').show(300).delay(2000).hide(300);
+        }
+
+        $('.showCall').hide();
+
+        $('.onPingAPIPath').bind('change', function () {
+            var id = $(this).attr('id');
+            var val = $(this).val();
+            $.post("/Directory/updatePingAPIPath/", { id: id, PingAPIPath: val }, function (data) {
+                showMsg('API地址修改，操作成功！');
+            });
+        });
+
+        $('.onVersionAPIPath').bind('change', function () {
+            var id = $(this).attr('id');
+            var val = $(this).val();
+            $.post("/Directory/updateVersionAPIPath/", { id: id, VersionAPIPath: val }, function (data) {
+                showMsg('版本API路径修改，操作成功！');
+            });
+        });
+
+        $('.onType').bind('change', function () {
+            var id = $(this).attr('id');
+            var val = $(this).select().val();
+            $.post("/Directory/updateType/", { id: id, Type: val }, function (data) {
+                showMsg('目录类型修改，操作成功！');
+            });
+        });
+
+        $('.onDescription').bind('change', function () {
+            var id = $(this).attr('id');
+            var val = $(this).val();
+            $.post("/Directory/updateDescription/", { id: id, Description: val }, function (data) {
+                showMsg('描述修改，操作成功！');
+            });
+        });
+
+    });
+</script>
 
