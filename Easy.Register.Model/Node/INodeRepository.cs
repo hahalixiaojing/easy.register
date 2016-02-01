@@ -11,6 +11,7 @@ namespace Easy.Register.Model
     {
         IEnumerable<Node> Select(int directoryId);
         IEnumerable<Node> Select(DirectoryType directoryType);
+        IEnumerable<Node> FindByIds(int[] nodeIds);
         bool IsExists(Node n);
     }
 }

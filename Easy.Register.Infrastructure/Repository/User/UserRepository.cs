@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Easy.Domain.RepositoryFramework;
 using Easy.Register.Model.User;
 
 namespace Easy.Register.Infrastructure.Repository.User
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository,IDao
     {
         public void Add(Model.User.User item)
         {

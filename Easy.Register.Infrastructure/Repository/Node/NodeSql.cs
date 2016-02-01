@@ -107,5 +107,11 @@ namespace Easy.Register.Infrastructure.Repository.Node
                 url = url
             });
         }
+
+        internal static string FindByIds(int[] nodeIds)
+        {
+            string nodeIdsString = string.Join(",", nodeIds);
+            return string.Join(" ", BaseSelectSql(), string.Format("WHERE n.id IN ({0})", nodeIdsString));
+        }
     }
 }

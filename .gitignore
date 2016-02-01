@@ -5,3 +5,4 @@ obj
 /TestResults
 /WeDemo.Consumer/cache_nodes
 /WeDemo.Consumer/WeDemo.Consumer.csproj.user
+*.user

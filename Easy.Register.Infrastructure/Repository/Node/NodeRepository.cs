@@ -103,5 +103,14 @@ namespace Easy.Register.Infrastructure.Repository.Node
                 conn.ExecuteScalar(tuple.Item1, (object)tuple.Item2);
             }
         }
+
+        public IEnumerable<Model.Node> FindByIds(int[] nodeIds)
+        {
+            using (var conn = Database.Open())
+            {
+                string sql = NodeSql.FindByIds(nodeIds);
+                return conn.Query<Model.Node, Model.DirectoryInfo, Model.Node>(sql, SelectConvert, splitOn: "split");
+            }
+        }
     }
 }
