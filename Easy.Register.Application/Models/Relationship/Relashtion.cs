@@ -1,5 +1,4 @@
-﻿using System.Web.Helpers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Easy.Register.Application.Models.Relationship

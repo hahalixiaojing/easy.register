@@ -22,7 +22,7 @@ namespace Easy.Register.Application
             var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
             if (directory == null)
             {
-                throw new Exception("目录不存在");
+                return "目录不存在";
             }
             var directoryInfo = new Model.DirectoryInfo(directory.Id, directory.Name);
 

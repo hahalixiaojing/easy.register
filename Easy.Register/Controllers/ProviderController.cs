@@ -58,7 +58,7 @@ namespace Easy.Register.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPost(string dir, string api, string ip, string description, int weight, int status)
+        public ActionResult AddPost(string dir, string api, string ip, string description, int weight = 10, int status = 1)
         {
             var r = ApplicationRegistry.Node.Add(dir, api, ip, description, weight, status);
             var model = "ok";

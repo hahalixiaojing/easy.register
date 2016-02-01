@@ -4,10 +4,10 @@ namespace Easy.Register.Application.Models.Node
 {
     public class Node
     {
-        public Node(int id, int dirId,string providerName, string ip, string url, int weight, bool isAvaiable,string description)
+        public Node(int id, int directoryId,string providerName, string ip, string url, int weight, bool isAvaiable,string description)
         {
             this.Id = id;
-            this.DirId = dirId;
+            this.DirectoryId = directoryId;
             this.ProviderName = providerName;
             this.Ip = ip;
             this.Url = url;
@@ -18,7 +18,7 @@ namespace Easy.Register.Application.Models.Node
 
         public int Id { get; private set; }
 
-        public int DirId { get; private set; }
+        public int DirectoryId { get; private set; }
         public String ProviderName
         {
             get;
