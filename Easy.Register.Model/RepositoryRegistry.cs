@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Easy.Register.Model.User;
 
 namespace Easy.Register.Model
 {
@@ -22,6 +23,15 @@ namespace Easy.Register.Model
 
             factory = b.Build(stream);
         }
+
+        public static IUserRepository User
+        {
+            get
+            {
+                return factory.Get<IUserRepository>();
+            }
+        }
+
         public static IDirectoryRepository Directory
         {
             get

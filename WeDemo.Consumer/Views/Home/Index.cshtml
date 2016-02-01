@@ -1,0 +1,72 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+    <title>测试调用</title>
+</head>
+<body>
+    <div id="c"> 
+        <div id="a1"></div>
+        <div id="a2"></div>
+        <div id="a3"></div>
+    </div>
+    <div id="d">
+        <div id="b1"></div>
+        <div id="b2"></div>
+        <div id="b3"></div>
+    </div>
+    <script>
+
+        $(function () {
+            var a1 =0;
+            var a2 =0;
+            var a3 =0;
+            setInterval(function () {
+                $.get("/home/CallTest", {}, function (res) {
+                    return;
+                    switch ($.trim(res)) {
+                        case "http://127.0.0.1:4001/test":
+                            $("#a1").html(res + "&nbsp;" + (++a1));
+                            break;
+                        case "http://127.0.0.1:4002/test":
+                            $("#a2").html(res + "&nbsp;" + (++a2));
+                            break;
+                        case "http://127.0.0.1:4003/test":
+                            $("#a3").html(res + "&nbsp;" + (++a3));
+                            break;
+                    }
+                });
+
+            }, 100);
+
+
+            var b1 = 0;
+            var b2 = 0;
+            var b3 = 0;
+            setInterval(function () {
+                $.get("/home/CallTest2", {}, function (res) {
+                    //return;
+                    $("#d").append("<div>" + res + "</div>");
+
+                    /*switch ($.trim(res)) {
+                        case "http://127.0.0.1:4001/test":
+                            $("#b1").text(++b1);
+                            break;
+                        case "http://127.0.0.1:4002/test":
+                            $("#b2").text(++b2);
+                            break;
+                        case "http://127.0.0.1:4003/test":
+                            $("#b3").text(++b3);
+                            break;
+                    }*/
+                });
+
+            }, 2000);
+
+        });
+
+    </script>
+</body>
+</html>
