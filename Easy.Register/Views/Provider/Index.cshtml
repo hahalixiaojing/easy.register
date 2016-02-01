@@ -109,12 +109,18 @@
     $(function () {
         $('.showCall').hide();
         $('.onAllCb').bind('change', function () {
+            var ele = $('.onCb');
             if ($(this).is(':checked')) {
-                $('.onCb').attr('checked', true);
                 $('.onCb').parent().parent().addClass('info');
+                ele.each(function(i) {
+                    ele[i].checked = true;
+                });
+
             } else {
-                $('.onCb').removeAttr('checked');
                 $('.onCb').parent().parent().removeClass('info');
+                ele.each(function (i) {
+                    ele[i].checked = false;
+                });
             }
         });
         $('.onCb').bind('click', function () {
