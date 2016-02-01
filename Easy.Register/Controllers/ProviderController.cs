@@ -71,9 +71,13 @@ namespace Easy.Register.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// 下线
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="selected">1=上线，2=下线</param>
         [HttpPost]
-        public void OnOffLine(int id, int selected)
+        public void OnOffLine(int[] id, int selected)
         {
             if (selected == 1)
             {

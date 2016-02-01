@@ -107,35 +107,44 @@ namespace Easy.Register.Application
         /// 下线节点
         /// </summary>
         /// <param name="id"></param>
-        public void OffLine(int id)
+        public void OffLine(int[] ids)
         {
-            var node = Model.RepositoryRegistry.Node.FindBy(id);
-            if (node == null)
+            var nodeList = Model.RepositoryRegistry.Node.FindByIds(ids);
+            nodeList.AsParallel().ForAll((n) =>
             {
-                return;
-            }
-            node.Status = Model.NodeStatus.下线;
-            Model.RepositoryRegistry.Node.Update(node);
+                n.Status = Model.NodeStatus.在线;
+                Model.RepositoryRegistry.Node.Update(n);
+            });
 
-            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
-            this.PublishEvent("OffLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct();
+
+            foreach (var directoryId in directoryIds)
+            {
+                var nodes = Model.RepositoryRegistry.Node.Select(directoryId);
+                this.PublishEvent("OffLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+            }
         }
         /// <summary>
         /// 上线节点
         /// </summary>
-        /// <param name="id"></param>
-        public void OnLine(int id)
+        /// <param name="ids"></param>
+        public void OnLine(int[] ids)
         {
-            var node = Model.RepositoryRegistry.Node.FindBy(id);
-            if (node == null)
-            {
-                return;
-            }
-            node.Status = Model.NodeStatus.在线;
-            Model.RepositoryRegistry.Node.Update(node);
+            var nodeList = Model.RepositoryRegistry.Node.FindByIds(ids);
 
-            var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
-            this.PublishEvent("OnLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+            nodeList.AsParallel().ForAll((n) =>
+            {
+                n.Status = Model.NodeStatus.在线;
+                Model.RepositoryRegistry.Node.Update(n);
+            });
+
+            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct();
+
+            foreach (var directoryId in directoryIds)
+            {
+                var nodes = Model.RepositoryRegistry.Node.Select(directoryId);
+                this.PublishEvent("OnLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+            }
         }
         /// <summary>
         /// 自动下线
