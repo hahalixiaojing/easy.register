@@ -106,6 +106,11 @@ namespace Easy.Register.Infrastructure.Repository.Node
 
         public IEnumerable<Model.Node> FindByIds(int[] nodeIds)
         {
+            if(nodeIds == null || nodeIds.Length == 0)
+            {
+                return new List<Model.Node>();
+            }
+
             using (var conn = Database.Open())
             {
                 string sql = NodeSql.FindByIds(nodeIds);
