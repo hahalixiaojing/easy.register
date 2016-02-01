@@ -17,7 +17,7 @@ namespace Easy.Register.Application
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
         /// <param name="directoryId">所属目录</param>
-        public string Add(string directoryName,string url, string ip, string description, int weight, int status)
+        public string Add(string directoryName, string url, string ip, string description, int weight, int status)
         {
             var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
             if (directory == null)
@@ -36,7 +36,7 @@ namespace Easy.Register.Application
             {
                 Model.RepositoryRegistry.Node.Add(node);
 
-                var nodes =  Model.RepositoryRegistry.Node.Select(directory.Id);
+                var nodes = Model.RepositoryRegistry.Node.Select(directory.Id);
                 this.PublishEvent("Add", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
                 return null;
             }
@@ -50,7 +50,7 @@ namespace Easy.Register.Application
         /// <param name="url">API地址</param>
         /// <param name="ip">ip地址</param>
         /// <param name="description">描述</param>
-        public void Update(int id, string url, string ip, string description)
+        public void Update(int id,string url, string ip, string description)
         {
             var node = Model.RepositoryRegistry.Node.FindBy(id);
             if (node == null)
@@ -72,10 +72,10 @@ namespace Easy.Register.Application
         /// </summary>
         /// <param name="id"></param>
         /// <param name="weight"></param>
-        public void AddWeight(int id,int weight)
+        public void AddWeight(int id, int weight)
         {
             var node = Model.RepositoryRegistry.Node.FindBy(id);
-            if(node == null)
+            if (node == null)
             {
                 return;
             }
@@ -90,7 +90,7 @@ namespace Easy.Register.Application
         /// </summary>
         /// <param name="id"></param>
         /// <param name="weight"></param>
-        public void DecreaseWeight(int id,int weight)
+        public void DecreaseWeight(int id, int weight)
         {
             var node = Model.RepositoryRegistry.Node.FindBy(id);
             if (node == null)
@@ -145,7 +145,7 @@ namespace Easy.Register.Application
         public void AutoOffLine(string directoryName, string ip)
         {
             var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
-            if(directory == null)
+            if (directory == null)
             {
                 return;
             }
@@ -171,7 +171,7 @@ namespace Easy.Register.Application
             {
                 return;
             }
-            if(node.Status == Model.NodeStatus.在线)
+            if (node.Status == Model.NodeStatus.在线)
             {
                 return;
             }
@@ -209,7 +209,7 @@ namespace Easy.Register.Application
             }
 
             var list = Model.RepositoryRegistry.Node.Select(directory.Id);
-            return list.Select(m => new Models.Node.Node(m.Id,m.DirectoryInfo.Name,m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
+            return list.Select(m => new Models.Node.Node(m.Id, m.DirectoryInfo.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线,m.Description)).ToArray();
         }
         /// <summary>
         ///按类型查询
@@ -219,7 +219,7 @@ namespace Easy.Register.Application
         public IList<Models.Node.Node> SelectByDirectoryType(int directoryType)
         {
             var directoryList = Model.RepositoryRegistry.Node.Select((Model.DirectoryType)directoryType);
-            return directoryList.Select(m => new Models.Node.Node(m.Id,m.DirectoryInfo.Name,m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线)).ToArray();
+            return directoryList.Select(m => new Models.Node.Node(m.Id, m.DirectoryInfo.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线,m.Description)).ToArray();
         }
 
         public Models.Node.Node FindById(int id)
@@ -231,7 +231,7 @@ namespace Easy.Register.Application
                 return null;
             }
 
-            return new Models.Node.Node(m.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线);
+            return new Models.Node.Node(m.Id, m.DirectoryInfo.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线,m.Description);
         }
     }
 }
