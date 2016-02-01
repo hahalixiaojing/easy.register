@@ -107,12 +107,17 @@
 
 <script>
     $(function () {
+        function showMsg(message) {
+            $('#callText').html(message);
+            $('.showCall').show(300).delay(2000).hide(300);
+        }
+
         $('.showCall').hide();
         $('.onAllCb').bind('change', function () {
             var ele = $('.onCb');
             if ($(this).is(':checked')) {
                 $('.onCb').parent().parent().addClass('info');
-                ele.each(function(i) {
+                ele.each(function (i) {
                     ele[i].checked = true;
                 });
 
@@ -135,54 +140,63 @@
             $('.onCb:checked').each(function (i) {
                 ids[i] = $(this).attr('id');
             });
+            $.post("/Provider/OnOffLine/", { id: ids, selected: 1 }, function (data) {
+                showMsg('批量上线，操作成功！');
+            });
+
         });
         $('.btnOffLine').bind('click', function () {
+            var ids = new Array();
+            $('.onCb:checked').each(function (i) {
+                ids[i] = $(this).attr('id');
+            });
+            $.post("/Provider/OnOffLine/", { id: ids, selected: 2 }, function (data) {
+                showMsg('批量下线，操作成功！');
+            });
 
         });
         $('.onUrl').bind('change', function () {
             var id = $(this).attr('id');
             var url = $(this).select().val();
             $.post("/Provider/updateUrl/", { id: id, url: url }, function (data) {
-                $('#callText').html('URL修改操作成功');
-                $('.showCall').show(300).delay(2000).hide(300);
+                showMsg('URL修改，操作成功！');
             });
         });
         $('.onIP').bind('change', function () {
             var id = $(this).attr('id');
             var IP = $(this).select().val();
             $.post("/Provider/updateIP/", { id: id, IP: IP }, function (data) {
-                $('#callText').html('IP修改操作成功');
-                $('.showCall').show(300).delay(2000).hide(300);
+                showMsg('IP修改，操作成功！');
             });
         });
         $('.isAvailable').bind('change', function () {
             var id = $(this).attr('id');
+            var sMsg = '';
             var select = $(this).select().val();
             $(this).removeClass('bg-green bg-red');
             if (select == 1) {
                 $(this).addClass('bg-green');
+                sMsg = '上线';
             } else if (select == 2) {
                 $(this).addClass('bg-red');
+                sMsg = '下线';
             }
             $.post("/Provider/OnOffLine/", { id: id, selected: select }, function (data) {
-                $('#callText').html('上线/下线操作成功');
-                $('.showCall').show(300).delay(2000).hide(300);
+                showMsg(sMsg + '，操作成功！');
             });
         });
         $('.onWeight').bind('change', function () {
             var id = $(this).attr('id');
             var weight = $(this).val();
             $.post("/Provider/SetWeight/", { id: id, weight: weight }, function (data) {
-                $('#callText').html('权值修改成功');
-                $('.showCall').show(300).delay(2000).hide(300);
+                showMsg('权值修改，操作成功！');
             });
         });
         $('.onDescription').bind('change', function () {
             var id = $(this).attr('id');
             var Description = $(this).select().val();
             $.post("/Provider/updateDescription/", { id: id, Description: Description }, function (data) {
-                $('#callText').html('Description修改操作成功');
-                $('.showCall').show(300).delay(2000).hide(300);
+                showMsg('Description修改，操作成功！');
             });
         });
     });
