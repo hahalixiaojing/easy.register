@@ -21,6 +21,21 @@ namespace Easy.Register.Test.Repository.Node
 
             NodeAssert(n, actual);
         }
+        [Test]
+        public void FindByIdsTest()
+        {
+            Model.DirectoryInfo d = new Model.DirectoryInfo(111, "bbb");
+            Model.Node n = new Model.Node(d);
+            Model.Node n2 = new Model.Node(d);
+
+            Model.RepositoryRegistry.Node.Add(n);
+            Model.RepositoryRegistry.Node.Add(n2);
+
+            var list = Model.RepositoryRegistry.Node.FindByIds(new int[2] { n.Id, n2.Id });
+
+            Assert.IsTrue(list.Count() > 0);
+        }
+
 
         [Test]
         public void test_update()
