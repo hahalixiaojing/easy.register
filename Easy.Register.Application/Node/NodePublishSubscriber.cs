@@ -13,7 +13,7 @@ namespace Easy.Register.Application.Node
         {
             if (aDomainEvent.Nodes.Count > 0)
             {
-                var pushNodeList = aDomainEvent.Nodes.Select(m => new Easy.Register.Model.PublishService.Node(m.ProviderName, m.Url, m.Weight, m.IsAvailable));
+                var pushNodeList = aDomainEvent.Nodes.Select(m => new Easy.Register.Model.PublishService.Node(m.ProviderName, m.Url, m.Weight, m.IsAvailable,m.Ip));
 
                 string providername = aDomainEvent.Nodes[0].ProviderName;
                 Model.ServiceRegistry.PublishService.Publish(providername, pushNodeList.ToList());
