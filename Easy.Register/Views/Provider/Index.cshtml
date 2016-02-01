@@ -23,6 +23,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">提供者列表</h3>
+                        <button type="button" class="btn btn-success btnOnLine">上线</button>
+                        <button type="button" class="btn btn-danger btnOffLine">下线</button>
                         <div class="box-tools">
                             <div class="input-group" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -35,10 +37,13 @@
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
+                                <th><input class="onAllCb" type="checkbox" /></th>
                                 <th>Provider Name</th>
                                 <th>Url</th>
+                                <th>IP</th>
                                 <th>IsAvailable</th>
                                 <th>Weight</th>
+                                <th>Description</th>
                             </tr>
                             @if (Model != null && Model.Any())
                             {
@@ -48,8 +53,18 @@
                                     string isSelect2 = "";
                                     string sColor = "";
                                     <tr>
-                                        <td>@m.ProviderName</td>
-                                        <td>@m.Url</td>
+                                        <td>
+                                            <input class="onCb" type="checkbox" id="@m.Id" />
+                                        </td>
+                                        <td>
+                                            @m.ProviderName
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control onUrl" id="@m.Id" value="@m.Url" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control onIP" id="@m.Id" value="@m.Ip" />
+                                        </td>
                                         @if (m.IsAvailable)
                                         {
                                             isSelect1 = "selected=\"selected\"";
@@ -67,6 +82,9 @@
                                             </select>
                                         </td>
                                         <td><input type="text" class="form-control onWeight" id="@m.Id" value="@m.Weight" /></td>
+                                        <td>
+                                            <input type="text" class="form-control onDescription" id="@m.Id" value="@m.Description" />
+                                        </td>
                                     </tr>
                                 }
                             }
@@ -90,6 +108,49 @@
 <script>
     $(function () {
         $('.showCall').hide();
+        $('.onAllCb').bind('change', function () {
+            if ($(this).is(':checked')) {
+                $('.onCb').attr('checked', true);
+                $('.onCb').parent().parent().addClass('info');
+            } else {
+                $('.onCb').removeAttr('checked');
+                $('.onCb').parent().parent().removeClass('info');
+            }
+        });
+        $('.onCb').bind('click', function () {
+            if ($(this).is(':checked')) {
+                $(this).parent().parent().addClass('info');
+            } else {
+                $(this).parent().parent().removeClass('info');
+            }
+        });
+        $('.btnOnLine').bind('click', function () {
+            var ids = new Array();
+            $('.onCb:checked').each(function (i) {
+                ids[i] = $(this).attr('id');
+            });
+            
+
+        });
+        $('.btnOffLine').bind('click', function () {
+
+        });
+        $('.onUrl').bind('change', function () {
+            var id = $(this).attr('id');
+            var url = $(this).select().val();
+            $.post("/Provider/updateUrl/", { id: id, url: url }, function (data) {
+                $('#callText').html('URL修改操作成功');
+                $('.showCall').show(300).delay(2000).hide(300);
+            });
+        });
+        $('.onIP').bind('change', function () {
+            var id = $(this).attr('id');
+            var IP = $(this).select().val();
+            $.post("/Provider/updateIP/", { id: id, IP: IP }, function (data) {
+                $('#callText').html('IP修改操作成功');
+                $('.showCall').show(300).delay(2000).hide(300);
+            });
+        });
         $('.isAvailable').bind('change', function () {
             var id = $(this).attr('id');
             var select = $(this).select().val();
@@ -109,6 +170,14 @@
             var weight = $(this).val();
             $.post("/Provider/SetWeight/", { id: id, weight: weight }, function (data) {
                 $('#callText').html('权值修改成功');
+                $('.showCall').show(300).delay(2000).hide(300);
+            });
+        });
+        $('.onDescription').bind('change', function () {
+            var id = $(this).attr('id');
+            var Description = $(this).select().val();
+            $.post("/Provider/updateDescription/", { id: id, Description: Description }, function (data) {
+                $('#callText').html('Description修改操作成功');
                 $('.showCall').show(300).delay(2000).hide(300);
             });
         });

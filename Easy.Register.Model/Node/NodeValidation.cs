@@ -9,12 +9,12 @@ namespace Easy.Register.Model
             this.IsNullOrWhiteSpace(m => m.Url, NodeBrokenRuleMessage.UrlIsEmpty);
             this.IsNullOrWhiteSpace(m => m.Ip, NodeBrokenRuleMessage.IPIsEmpty);
             this.GreaterThan(m => m.DirectoryInfo.Id, 0, NodeBrokenRuleMessage.DirectoryIdError);
-            this.AddRule((n) => {
+            //this.AddRule((n) => {
 
-                return RepositoryRegistry.Node.IsExists(n);
+            //    return RepositoryRegistry.Node.IsExists(n);
             
             
-            }, NodeBrokenRuleMessage.NodeIsExists);
+            //}, NodeBrokenRuleMessage.NodeIsExists);
         }
     }
 }

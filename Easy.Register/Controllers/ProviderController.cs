@@ -14,10 +14,37 @@ namespace Easy.Register.Controllers
         public ActionResult Index()
         {
             ViewBag.Active = "Pro";
+            var r = ApplicationRegistry.Directory.Select(2);
+            ViewBag.Dir = r.DataBody;
 
             var model = ApplicationRegistry.Node.SelectByDirectoryType(2);
 
             return View(model);
+        }
+
+        [HttpPost]
+        public void updateUrl(int id, string url)
+        {
+            var r = ApplicationRegistry.Node.FindById(id);
+
+            ApplicationRegistry.Node.Update(id, url, r.Ip, r.Description);
+
+        }
+        [HttpPost]
+        public void updateIP(int id, string IP)
+        {
+            var r = ApplicationRegistry.Node.FindById(id);
+
+            ApplicationRegistry.Node.Update(id, r.Url, IP, r.Description);
+
+        }
+        [HttpPost]
+        public void updateDescription(int id, string Description)
+        {
+            var r = ApplicationRegistry.Node.FindById(id);
+
+            ApplicationRegistry.Node.Update(id, r.Url, r.Ip, Description);
+
         }
 
         public ActionResult Add()
@@ -71,7 +98,7 @@ namespace Easy.Register.Controllers
 
             if (r.Weight > weight)
             {
-                ApplicationRegistry.Node.DecreaseWeight(id,weight);
+                ApplicationRegistry.Node.DecreaseWeight(id, weight);
             }
             else if (r.Weight < weight)
             {
