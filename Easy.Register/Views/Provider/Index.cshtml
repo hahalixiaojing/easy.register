@@ -27,7 +27,7 @@
                         <button type="button" class="btn btn-default btnHalfWeight">半权</button>
                         <div class="box-tools">
                             <div class="input-group">
-                                <div class="input-group margin">
+                                <div class="input-group">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default dropdown-toggle" aria-expanded="false" type="button" data-toggle="dropdown"><span id="selectedSearchType" type="1">名称</span> <span class="fa fa-caret-down"></span></button>
                                         <ul class="dropdown-menu" id="selectedTypeList">
@@ -92,33 +92,20 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-xs-12">
-                <div class="callout callout-success showCall">
-                    <h4>Success!</h4>
-                    <span id="callText"></span>
-                </div>
-            </div>
         </div>
-
     </section><!-- /.content -->
 </div>
-
-
-
+@{ 
+    Html.RenderPartial("OkDialog");
+}
 <script>
     $(function () {
-        function showMsg(message) {
-            $('#callText').html(message);
-            $('.showCall').show(300).delay(2000).hide(300);
-        }
-
         $("#selectedTypeList li").click(function () {
             var text = $(this).text();
             var type = $(this).children("a").attr("type");
             $("#selectedSearchType").text(text).attr("type", type);
         });
 
-        $('.showCall').hide();
         $('.onAllCb').bind('change', function () {
             var ele = $('.onCb');
             if ($(this).is(':checked')) {
@@ -147,7 +134,7 @@
                 ids[i] = $(this).attr('id');
             });
             $.post("/Provider/OnOffLine/", { id: ids, selected: 1 }, function (data) {
-                showMsg('批量上线，操作成功！');
+                $("#OkDialog").css("display", "block");
             });
 
         });
@@ -157,32 +144,29 @@
                 ids[i] = $(this).attr('id');
             });
             $.post("/Provider/OnOffLine/", { id: ids, selected: 2 }, function (data) {
-                showMsg('批量下线，操作成功！');
+                $("#OkDialog").css("display", "block");
             });
 
         });
 
         $(".btnDoubleWeight").bind("click", function () {
-
             var ids = new Array();
             $('.onCb:checked').each(function (i) {
                 ids[i] = $(this).attr('id');
             });
             $.post("/Provider/SetWeight/", { id: ids, isDouble: true }, function (data) {
-                showMsg('批量倍权，操作成功！');
+                $("#OkDialog").css("display", "block");
             });
 
         });
         $(".btnHalfWeight").bind("click", function () {
-
             var ids = new Array();
             $('.onCb:checked').each(function (i) {
                 ids[i] = $(this).attr('id');
             });
             $.post("/Provider/SetWeight/", { id: ids, isDouble: false }, function (data) {
-                showMsg('批量半权，操作成功！');
+                $("#OkDialog").css("display", "block");
             });
-
         });
     });
 </script>

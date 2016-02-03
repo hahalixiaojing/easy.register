@@ -1,7 +1,7 @@
 ﻿@using Easy.Register.Application.Models.Node
 
 @{
-    ViewBag.Title = "消费者列表";
+    ViewBag.Title = "消费者节点列表";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
@@ -10,11 +10,10 @@
     <section class="content-header">
         <h1>
             消费者列表
-            <small>（名称，描述）</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="\"><i class="fa fa-files-o"></i> Home</a></li>
-            <li class="active">消费者列表</li>
+            <li class="active">消费者节点列表</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -22,38 +21,45 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Responsive Hover Table</h3>
+                    <div class="box-header" style="height:45px;">
                         <div class="box-tools">
-                            <div class="input-group" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            <div class="input-group">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default dropdown-toggle" aria-expanded="false" type="button" data-toggle="dropdown"><span id="selectedSearchType" type="1">名称</span> <span class="fa fa-caret-down"></span></button>
+                                        <ul class="dropdown-menu" id="selectedTypeList">
+                                            <li><a type="1" href="javascript:void(0)">名称</a></li>
+                                            <li><a type="2" href="javascript:void(0)">URL</a></li>
+                                            <li><a type="3" href="javascript:void(0)">IP</a></li>
+                                        </ul>
+                                    </div><!-- /btn-group -->
+                                    <input class="form-control" type="text">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- /.box-header -->
+                        </div><!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
                         <table class="table table-hover">
                             <tr>
                                 <th>名称</th>
                                 <th>IP地址</th>
                                 <th>URL地址</th>
-                                <th>权重</th>
                                 <th>是否可用</th>
+                                <th>描述</th>
                             </tr>
                             @{
                                 var list = ViewBag.list;
                                 foreach (Node item in list)
                                 {
-                                    var str = @item.IsAvailable ? "是" : "否";
-                                    var labelStatus = @item.IsAvailable ? "label-success" : "label-warning";
                                     <tr>
                                         <td>@item.ProviderName</td>
                                         <td>@item.Ip</td>
                                         <td>@item.Url</td>
-                                        <td>@item.Weight</td>
-                                        <td><span class="label @labelStatus">@str</span></td>
+                                        <td>@(item.IsAvailable ? "是" : "否")</td>
+                                        <td>@item.Description</td>
                                     </tr>
                                 }
                             }
@@ -64,3 +70,13 @@
         </div>
     </section><!-- /.content -->
 </div>
+<script>
+    $(function () {
+        $("#selectedTypeList li").click(function () {
+            var text = $(this).text();
+            var type = $(this).children("a").attr("type");
+            $("#selectedSearchType").text(text).attr("type", type);
+        });
+
+    });
+</script>
