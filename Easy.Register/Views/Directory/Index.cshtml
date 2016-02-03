@@ -10,7 +10,6 @@
     <section class="content-header">
         <h1>
             目录列表
-            <small>（名称，描述）</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="\"><i class="fa fa-th"></i> Home</a></li>
@@ -22,8 +21,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">目录列表</h3>
+                    <div class="box-header" style="height:45px">
                         <div class="box-tools">
                             <div class="input-group" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
@@ -37,43 +35,25 @@
                         <table class="table table-hover">
                             <tr>
                                 <th>目录名称</th>
-                                <th>API地址</th>
-                                <th>版本API路径</th>
-                                <th>创建时间</th>
                                 <th>目录类型</th>
+                                <th>PING路径</th>
+                                <th>版本路径</th>
                                 <th>描述</th>
+                                <th>操作</th>
                             </tr>
                             @foreach (var m in Model)
                             {
-                                var isSelect1 = "";
-                                var isSelect2 = "";
-                                var isSelect3 = "";
-                                switch (m.DirectoryType)
-                                {
-                                    case 1:
-                                        isSelect1 = "selected=\"selected\"";
-                                        break;
-                                    case 2:
-                                        isSelect2 = "selected=\"selected\"";
-                                        break;
-                                    case 3:
-                                        isSelect3 = "selected=\"selected\"";
-                                        break;
-                                }
-
                                 <tr>
                                     <td>@m.Name</td>
-                                    <td><input type="text" class="form-control onPingAPIPath" id="@m.Id" value="@m.PingAPIPath" /></td>
-                                    <td><input type="text" class="form-control onVersionAPIPath" id="@m.Id" value="@m.VersionAPIPath" /></td>
-                                    <td>@m.CreateDate</td>
                                     <td>
-                                        <select class="form-control onType" id="@m.Id">
-                                            <option value="1" @isSelect1>消费者</option>
-                                            <option value="2" @isSelect2>提供者</option>
-                                            <option value="3" @isSelect3>消费者提供者</option>
-                                        </select>
+                                        @(Easy.Register.Utility.EnumHelper.DirectoryTypHelper(m.DirectoryType))
                                     </td>
-                                    <td><input type="text" class="form-control onDescription" id="@m.Id" value="@m.Description" /></td>
+                                    <td>@m.PingAPIPath</td>
+                                    <td>@m.VersionAPIPath</td>
+                                    <td>@m.Description</td>
+                                    <td>
+                                        <button class="btn btn-block btn-default">编辑</button>
+                                    </td>
                                 </tr>
                             }
                         </table>
