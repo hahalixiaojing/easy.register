@@ -41,5 +41,54 @@ namespace Easy.Register.Controllers
             ViewBag.Ok = model;
             return View();
         }
+
+
+        [HttpPost]
+        public void updatePingAPIPath(int id, string PingAPIPath)
+        {
+            var r = ApplicationRegistry.Directory.FindById(id);
+            if (r == null)
+            {
+                return;
+            }
+
+            ApplicationRegistry.Directory.Update(id, r.Description, PingAPIPath, r.VersionAPIPath, r.DirectoryType);
+        }
+
+        [HttpPost]
+        public void updateVersionAPIPath(int id, string VersionAPIPath)
+        {
+            var r = ApplicationRegistry.Directory.FindById(id);
+            if (r == null)
+            {
+                return;
+            }
+
+            ApplicationRegistry.Directory.Update(id, r.Description, r.PingAPIPath, VersionAPIPath, r.DirectoryType);
+        }
+
+        [HttpPost]
+        public void updateType(int id, int Type)
+        {
+            var r = ApplicationRegistry.Directory.FindById(id);
+            if (r == null)
+            {
+                return;
+            }
+
+            ApplicationRegistry.Directory.Update(id, r.Description, r.PingAPIPath, r.VersionAPIPath, Type);
+        }
+
+        [HttpPost]
+        public void updateDescription(int id, string Description)
+        {
+            var r = ApplicationRegistry.Directory.FindById(id);
+            if (r == null)
+            {
+                return;
+            }
+
+            ApplicationRegistry.Directory.Update(id, Description, r.PingAPIPath, r.VersionAPIPath, r.DirectoryType);
+        }
     }
 }
