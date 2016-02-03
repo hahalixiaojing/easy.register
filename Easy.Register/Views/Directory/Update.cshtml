@@ -1,4 +1,4 @@
-﻿
+﻿@model Easy.Register.Application.Models.Directory.DirectoryModel
 @{
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/MainLayout.cshtml";
@@ -23,36 +23,33 @@
                         <h3 class="box-title">添加目录</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="/directory/addpost" method="post">
+                    <form role="form" action="/directory/Update" method="post">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>目录名称</label>
-                                <input type="text" class="form-control"  name="name">
-                            </div>
-                            <div class="form-group">
                                 <label>PING路径</label>
-                                <input type="text" class="form-control" name="ip">
+                                <input type="text" class="form-control" name="ip" value="@Model.PingAPIPath">
                             </div>
                             <div class="form-group">
                                 <label>版本路径</label>
-                                <input type="text" class="form-control"  name="path">
+                                <input type="text" class="form-control"  name="path" value="@Model.VersionAPIPath">
                             </div>
                             <div class="form-group">
                                 <label>目录类型</label>
                                 <select class="form-control" name="type">
-                                    <option value="1">消费者</option>
-                                    <option value="2">提供者</option>
-                                    <option value="3">消费者提供者</option>
+                                    <option value="1" @(Model.DirectoryType == 1 ? "selected" : "")>消费者</option>
+                                    <option value="2" @(Model.DirectoryType == 2 ? "selected" : "")>提供者</option>
+                                    <option value="3" @(Model.DirectoryType == 3 ? "selected" : "")>消费者提供者</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>描述</label>
-                                <input type="text" class="form-control"  name="content">
+                                <input type="text" class="form-control"  name="content" value="@Model.Description">
                             </div>
                         </div><!-- /.box-body -->
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">保存</button>
                         </div>
+                        <input type="hidden" name="directoryId" value="@Model.Id"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->

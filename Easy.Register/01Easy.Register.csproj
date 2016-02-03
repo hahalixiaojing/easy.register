@@ -164,6 +164,8 @@
     <Content Include="Views\Provider\Update.cshtml" />
     <Content Include="Views\Provider\UpdateResult.cshtml" />
     <Content Include="Views\Shared\OkDialog.cshtml" />
+    <Content Include="Views\Directory\Update.cshtml" />
+    <Content Include="Views\Directory\UpdateResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

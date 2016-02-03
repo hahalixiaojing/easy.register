@@ -52,7 +52,7 @@
                                     <td>@m.VersionAPIPath</td>
                                     <td>@m.Description</td>
                                     <td>
-                                        <button class="btn btn-block btn-default">编辑</button>
+                                        <a class="btn btn-block btn-default" href="/directory/update?directoryId=@m.Id">编辑</a>
                                     </td>
                                 </tr>
                             }
@@ -60,57 +60,8 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div>
-            <div class="col-xs-12">
-                <div class="callout callout-success showCall">
-                    <h4>Success!</h4>
-                    <span id="callText"></span>
-                </div>
-            </div>
         </div>
     </section><!-- /.content -->
 </div>
 
-<script>
-    $(function () {
-        function showMsg(message) {
-            $('#callText').html(message);
-            $('.showCall').show(300).delay(2000).hide(300);
-        }
-
-        $('.showCall').hide();
-
-        $('.onPingAPIPath').bind('change', function () {
-            var id = $(this).attr('id');
-            var val = $(this).val();
-            $.post("/Directory/updatePingAPIPath/", { id: id, PingAPIPath: val }, function (data) {
-                showMsg('API地址修改，操作成功！');
-            });
-        });
-
-        $('.onVersionAPIPath').bind('change', function () {
-            var id = $(this).attr('id');
-            var val = $(this).val();
-            $.post("/Directory/updateVersionAPIPath/", { id: id, VersionAPIPath: val }, function (data) {
-                showMsg('版本API路径修改，操作成功！');
-            });
-        });
-
-        $('.onType').bind('change', function () {
-            var id = $(this).attr('id');
-            var val = $(this).select().val();
-            $.post("/Directory/updateType/", { id: id, Type: val }, function (data) {
-                showMsg('目录类型修改，操作成功！');
-            });
-        });
-
-        $('.onDescription').bind('change', function () {
-            var id = $(this).attr('id');
-            var val = $(this).val();
-            $.post("/Directory/updateDescription/", { id: id, Description: val }, function (data) {
-                showMsg('描述修改，操作成功！');
-            });
-        });
-
-    });
-</script>
 

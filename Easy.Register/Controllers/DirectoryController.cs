@@ -30,14 +30,36 @@ namespace Easy.Register.Controllers
         {
             var r = ApplicationRegistry.Directory.Create(name, content, ip, path, Convert.ToInt32(type));
 
-            var model = "ok";
-
-            if (r.Code != null)
+            if (string.IsNullOrEmpty(r))
             {
-                model = r.Message;
+                ViewBag.Ok = "ok";
             }
-            ViewBag.Ok = model;
+            else
+            {
+                ViewBag.Ok = r;
+            }
             return View();
+        }
+
+        public ActionResult Update(int directoryId)
+        {
+            var directory = ApplicationRegistry.Directory.FindById(directoryId);
+            return View(directory);
+        }
+        [HttpPost]
+        public ActionResult Update(int directoryId,string ip, string path, int type, string content)
+        {
+            var r = ApplicationRegistry.Directory.Update(directoryId, content, ip, path, type);
+            if (string.IsNullOrEmpty(r))
+            {
+                ViewBag.Ok = "ok";
+            }
+            else
+            {
+                ViewBag.Ok = r;
+            }
+            return View("UpdateResult");
+
         }
     }
 }

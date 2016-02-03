@@ -24,7 +24,7 @@ namespace Easy.Register.Application.Directory
         /// <param name="versionApiPath">版本号Api路径</param>
         /// <param name="directoryType">目录类型</param>
         /// <returns></returns>
-        public Return Create(string name, string description, string pingApiPath, string versionApiPath, int directoryType)
+        public string Create(string name, string description, string pingApiPath, string versionApiPath, int directoryType)
         {
             var directory = new Model.Directory(name)
             {
@@ -37,9 +37,9 @@ namespace Easy.Register.Application.Directory
             if (directory.Validate())
             {
                 Model.RepositoryRegistry.Directory.Add(directory);
-                return new Return();
+                return string.Empty;
             }
-            return new Return() { Message = directory.GetBrokenRules()[0].Description, Code = directory.GetBrokenRules()[0].Name };
+            return directory.GetBrokenRules()[0].Description;
         }
         /// <summary>
         /// 更新目录
@@ -50,12 +50,12 @@ namespace Easy.Register.Application.Directory
         /// <param name="versionApiPath">版本号Api路径</param>
         /// <param name="directoryType">目录类型</param>
         /// <returns></returns>
-        public Return Update(int directoryId, string description, string pingApiPath, string versionApiPath, int directoryType)
+        public string Update(int directoryId, string description, string pingApiPath, string versionApiPath, int directoryType)
         {
-            Model.Directory directory = Model.RepositoryRegistry.Directory.FindBy(directoryId);
+            Model.Directory directory = RepositoryRegistry.Directory.FindBy(directoryId);
             if (directory == null)
             {
-                return new Return() { Code = "d00003", Message = "目录不存在" };
+                return "目录不存在";
             }
 
             directory.Description = description;
@@ -65,10 +65,10 @@ namespace Easy.Register.Application.Directory
 
             if (directory.Validate())
             {
-                Model.RepositoryRegistry.Directory.Update(directory);
-                return new Return();
+                RepositoryRegistry.Directory.Update(directory);
+                return string.Empty;
             }
-            return new Return() { Message = directory.GetBrokenRules()[0].Description, Code = directory.GetBrokenRules()[0].Name };
+            return directory.GetBrokenRules()[0].Description;
         }
 
         /// <summary>
