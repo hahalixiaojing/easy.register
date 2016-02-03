@@ -1,6 +1,6 @@
-﻿@model System.Collections.Generic.IEnumerable<Easy.Register.Application.Models.Directory.DirectoryModel>
+﻿@model Easy.Register.Application.Models.Node.Node
 @{
-    ViewBag.Title = "Add";
+    ViewBag.Title = "修改节点";
     Layout = "~/Views/Shared/MainLayout.cshtml";
 }
 
@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            添加节点
+            修改节点
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">添加节点</li>
+            <li class="active">修改节点</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -25,23 +25,11 @@
                     <div class="with-border">
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="/Provider/AddPost" method="POST">
+                    <form role="form" action="/Provider/Update" method="POST">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>选择目录</label>
-                                <select class="form-control" name="dir">
-                                    @if (Model != null && Model.Any())
-                                    {
-                                        foreach (var m in Model)
-                                        {
-                                            <option value="@m.Name">@m.Name</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>API地址</label>
-                                <input type="text" class="form-control" placeholder="API地址" name="api">
+                                <input type="text" class="form-control" placeholder="API地址" name="url" value="@Model.Url">
                             </div>
                             <div class="form-group">
                                 <label>IP地址</label>
@@ -49,28 +37,18 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-laptop"></i>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="IP"  name="ip">
+                                    <input type="text" class="form-control" placeholder="IP"  name="ip" value = @Model.Ip>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>描述</label>
-                                <input type="text" class="form-control" placeholder="描述" name="description">
-                            </div>
-                            <div class="form-group">
-                                <label>权重</label>
-                                <input type="text" class="form-control" placeholder="权重" name="weight">
-                            </div>
-                            <div class="form-group">
-                                <label>状态</label>
-                                <select class="form-control" name="status">
-                                    <option value="1">在线</option>
-                                    <option value="2">下线</option>
-                                </select>
+                                <input type="text" class="form-control" placeholder="描述" name="description" value="@Model.Description">
                             </div>
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">保存</button>
                         </div>
+                        <input type="hidden" name="nodeId" value="@Model.Id"/>
                     </form>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->

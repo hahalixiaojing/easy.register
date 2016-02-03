@@ -8,12 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            提供者列表
-            <small>（名称，描述）</small>
+            提供者节点列表
         </h1>
         <ol class="breadcrumb">
             <li><a href="\"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">提供者列表</li>
+            <li class="active">提供者节点列表</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -22,14 +21,25 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">提供者列表</h3>
-                        <button type="button" class="btn btn-success btnOnLine">上线</button>
-                        <button type="button" class="btn btn-danger btnOffLine">下线</button>
+                        <button type="button" class="btn btn-default btnOnLine">上线</button>
+                        <button type="button" class="btn btn-default btnOffLine">下线</button>
+                        <button type="button" class="btn btn-default btnDoubleWeight">倍权</button>
+                        <button type="button" class="btn btn-default btnHalfWeight">半权</button>
                         <div class="box-tools">
-                            <div class="input-group" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control input-sm pull-right" placeholder="Search">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            <div class="input-group">
+                                <div class="input-group margin">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default dropdown-toggle" aria-expanded="false" type="button" data-toggle="dropdown"><span id="selectedSearchType" type="1">名称</span> <span class="fa fa-caret-down"></span></button>
+                                        <ul class="dropdown-menu" id="selectedTypeList">
+                                            <li><a type="1" href="javascript:void(0)">名称</a></li>
+                                            <li><a type="2" href="javascript:void(0)">URL</a></li>
+                                            <li><a type="3" href="javascript:void(0)">IP</a></li>
+                                        </ul>
+                                    </div><!-- /btn-group -->
+                                    <input class="form-control" type="text">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Go</button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -38,20 +48,18 @@
                         <table class="table table-hover">
                             <tr>
                                 <th><input class="onAllCb" type="checkbox" /></th>
-                                <th>Provider Name</th>
+                                <th>名称</th>
                                 <th>Url</th>
-                                <th>IP</th>
-                                <th>IsAvailable</th>
-                                <th>Weight</th>
-                                <th>Description</th>
+                                <th>IP地址</th>
+                                <th>是否在线</th>
+                                <th>权重</th>
+                                <th>描述</th>
+                                <th>操作</th>
                             </tr>
                             @if (Model != null && Model.Any())
                             {
                                 foreach (var m in Model)
                                 {
-                                    string isSelect1 = "";
-                                    string isSelect2 = "";
-                                    string sColor = "";
                                     <tr>
                                         <td>
                                             <input class="onCb" type="checkbox" id="@m.Id" />
@@ -60,30 +68,22 @@
                                             @m.ProviderName
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control onUrl" id="@m.Id" value="@m.Url" />
+                                            @m.Url
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control onIP" id="@m.Id" value="@m.Ip" />
+                                            @m.Ip
                                         </td>
-                                        @if (m.IsAvailable)
-                                        {
-                                            isSelect1 = "selected=\"selected\"";
-                                            sColor = "bg-green";
-                                        }
-                                        else
-                                        {
-                                            isSelect2 = "selected=\"selected\"";
-                                            sColor = "bg-red";
-                                        }
                                         <td>
-                                            <select class="form-control isAvailable @sColor" id="@m.Id" name="status">
-                                                <option class="bg-green" value="1" @isSelect1>在线</option>
-                                                <option class="bg-red" value="2" @isSelect2>下线</option>
-                                            </select>
+                                            @(m.IsAvailable ? "是" : "否")
                                         </td>
-                                        <td><input type="text" class="form-control onWeight" id="@m.Id" value="@m.Weight" /></td>
                                         <td>
-                                            <input type="text" class="form-control onDescription" id="@m.Id" value="@m.Description" />
+                                            @m.Weight
+                                        </td>
+                                        <td>
+                                            @m.Description
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-block btn-default" href="/Provider/Update?nodeId=@m.Id">编辑</a>
                                         </td>
                                     </tr>
                                 }
@@ -111,6 +111,12 @@
             $('#callText').html(message);
             $('.showCall').show(300).delay(2000).hide(300);
         }
+
+        $("#selectedTypeList li").click(function () {
+            var text = $(this).text();
+            var type = $(this).children("a").attr("type");
+            $("#selectedSearchType").text(text).attr("type", type);
+        });
 
         $('.showCall').hide();
         $('.onAllCb').bind('change', function () {
@@ -155,49 +161,28 @@
             });
 
         });
-        $('.onUrl').bind('change', function () {
-            var id = $(this).attr('id');
-            var url = $(this).select().val();
-            $.post("/Provider/updateUrl/", { id: id, url: url }, function (data) {
-                showMsg('URL修改，操作成功！');
+
+        $(".btnDoubleWeight").bind("click", function () {
+
+            var ids = new Array();
+            $('.onCb:checked').each(function (i) {
+                ids[i] = $(this).attr('id');
             });
+            $.post("/Provider/SetWeight/", { id: ids, isDouble: true }, function (data) {
+                showMsg('批量倍权，操作成功！');
+            });
+
         });
-        $('.onIP').bind('change', function () {
-            var id = $(this).attr('id');
-            var IP = $(this).select().val();
-            $.post("/Provider/updateIP/", { id: id, IP: IP }, function (data) {
-                showMsg('IP修改，操作成功！');
+        $(".btnHalfWeight").bind("click", function () {
+
+            var ids = new Array();
+            $('.onCb:checked').each(function (i) {
+                ids[i] = $(this).attr('id');
             });
-        });
-        $('.isAvailable').bind('change', function () {
-            var id = $(this).attr('id');
-            var sMsg = '';
-            var select = $(this).select().val();
-            $(this).removeClass('bg-green bg-red');
-            if (select == 1) {
-                $(this).addClass('bg-green');
-                sMsg = '上线';
-            } else if (select == 2) {
-                $(this).addClass('bg-red');
-                sMsg = '下线';
-            }
-            $.post("/Provider/OnOffLine/", { id: id, selected: select }, function (data) {
-                showMsg(sMsg + '，操作成功！');
+            $.post("/Provider/SetWeight/", { id: ids, isDouble: false }, function (data) {
+                showMsg('批量半权，操作成功！');
             });
-        });
-        $('.onWeight').bind('change', function () {
-            var id = $(this).attr('id');
-            var weight = $(this).val();
-            $.post("/Provider/SetWeight/", { id: id, weight: weight }, function (data) {
-                showMsg('权值修改，操作成功！');
-            });
-        });
-        $('.onDescription').bind('change', function () {
-            var id = $(this).attr('id');
-            var Description = $(this).select().val();
-            $.post("/Provider/updateDescription/", { id: id, Description: Description }, function (data) {
-                showMsg('Description修改，操作成功！');
-            });
+
         });
     });
 </script>

@@ -50,7 +50,7 @@ namespace Easy.Register.Application
         /// <param name="url">API地址</param>
         /// <param name="ip">ip地址</param>
         /// <param name="description">描述</param>
-        public void Update(int id,string url, string ip, string description)
+        public string Update(int id,string url, string ip, string description)
         {
             var node = Model.RepositoryRegistry.Node.FindBy(id);
             if (node == null)
@@ -65,7 +65,42 @@ namespace Easy.Register.Application
                 Model.RepositoryRegistry.Node.Update(node);
                 var nodes = Model.RepositoryRegistry.Node.Select(node.DirectoryInfo.Id);
                 this.PublishEvent("Update", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+                return string.Empty;
             }
+            return node.GetBrokenRules()[0].Description;
+        }
+        /// <summary>
+        /// 批量倍权
+        /// </summary>
+        /// <param name="ids">节点ID</param>
+        public void DoubleWeight(int[] ids)
+        {
+            var nodes = Model.RepositoryRegistry.Node.FindByIds(ids);
+            nodes = nodes.Select(m => { m.Weight = m.Weight * 2; return m; });
+
+            nodes.AsParallel().ForAll((n) =>
+            {
+                Model.RepositoryRegistry.Node.Update(n);
+            });
+
+            int[] directoryIds = nodes.Select(m => m.DirectoryInfo.Id).Distinct().ToArray();
+            this.PublishEvent(directoryIds, "DoubleWeight");
+        }
+        /// <summary>
+        /// 批量半权
+        /// </summary>
+        /// <param name="ids">节点ID</param>
+        public void HalfWeight(int[] ids)
+        {
+            var nodes = Model.RepositoryRegistry.Node.FindByIds(ids);
+            nodes = nodes.Select(m => { m.Weight = (int)(m.Weight * 0.5); return m; });
+            nodes.AsParallel().ForAll((n) =>
+            {
+                Model.RepositoryRegistry.Node.Update(n);
+            });
+
+            int[] directoryIds = nodes.Select(m => m.DirectoryInfo.Id).Distinct().ToArray();
+            this.PublishEvent(directoryIds, "HalfWeight");
         }
         /// <summary>
         /// 增加权重
@@ -112,17 +147,12 @@ namespace Easy.Register.Application
             var nodeList = Model.RepositoryRegistry.Node.FindByIds(ids);
             nodeList.AsParallel().ForAll((n) =>
             {
-                n.Status = Model.NodeStatus.在线;
+                n.Status = Model.NodeStatus.下线;
                 Model.RepositoryRegistry.Node.Update(n);
             });
 
-            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct();
-
-            foreach (var directoryId in directoryIds)
-            {
-                var nodes = Model.RepositoryRegistry.Node.Select(directoryId);
-                this.PublishEvent("OffLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
-            }
+            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct().ToArray();
+            this.PublishEvent(directoryIds, "OffLine");
         }
         /// <summary>
         /// 上线节点
@@ -138,13 +168,9 @@ namespace Easy.Register.Application
                 Model.RepositoryRegistry.Node.Update(n);
             });
 
-            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct();
+            var directoryIds = nodeList.Select(m => m.DirectoryInfo.Id).Distinct().ToArray();
+            this.PublishEvent(directoryIds, "OnLine");
 
-            foreach (var directoryId in directoryIds)
-            {
-                var nodes = Model.RepositoryRegistry.Node.Select(directoryId);
-                this.PublishEvent("OnLine", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
-            }
         }
         /// <summary>
         /// 自动下线
@@ -186,7 +212,6 @@ namespace Easy.Register.Application
             }
             Model.RepositoryRegistry.Node.Remove(node);
         }
-
         /// <summary>
         /// ping节点信息
         /// </summary>
@@ -230,7 +255,11 @@ namespace Easy.Register.Application
             var directoryList = Model.RepositoryRegistry.Node.Select((Model.DirectoryType)directoryType);
             return directoryList.Select(m => new Models.Node.Node(m.Id, m.DirectoryInfo.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线,m.Description)).ToArray();
         }
-
+        /// <summary>
+        /// 根据ID查询节点ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Models.Node.Node FindById(int id)
         {
             var m = Model.RepositoryRegistry.Node.FindBy(id);
@@ -241,6 +270,19 @@ namespace Easy.Register.Application
             }
 
             return new Models.Node.Node(m.Id, m.DirectoryInfo.Id, m.DirectoryInfo.Name, m.Ip, m.Url, m.Weight, m.Status == Model.NodeStatus.在线,m.Description);
+        }
+        /// <summary>
+        /// 发布
+        /// </summary>
+        /// <param name="directoryIds"></param>
+        /// <param name="methodName"></param>
+        private void PublishEvent(int[] directoryIds, string methodName)
+        {
+            foreach (var directoryId in directoryIds)
+            {
+                var nodesList = Model.RepositoryRegistry.Node.Select(directoryId);
+                this.PublishEvent(methodName, new NodeDomainEvent(nodesList.Select(m => m.Convert()).ToList()));
+            }
         }
     }
 }

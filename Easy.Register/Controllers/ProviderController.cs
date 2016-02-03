@@ -10,7 +10,6 @@ namespace Easy.Register.Controllers
 {
     public class ProviderController : Controller
     {
-        // GET: Provider
         public ActionResult Index()
         {
             ViewBag.Active = "Pro";
@@ -21,30 +20,25 @@ namespace Easy.Register.Controllers
 
             return View(model);
         }
-
-        [HttpPost]
-        public void updateUrl(int id, string url)
+        public ActionResult Update(int nodeId)
         {
-            var r = ApplicationRegistry.Node.FindById(id);
+            var node = ApplicationRegistry.Node.FindById(nodeId);
 
-            ApplicationRegistry.Node.Update(id, url, r.Ip, r.Description);
-
+            return View(node);
         }
         [HttpPost]
-        public void updateIP(int id, string IP)
+        public ActionResult Update(int nodeId,string url, string ip, string description)
         {
-            var r = ApplicationRegistry.Node.FindById(id);
-
-            ApplicationRegistry.Node.Update(id, r.Url, IP, r.Description);
-
-        }
-        [HttpPost]
-        public void updateDescription(int id, string Description)
-        {
-            var r = ApplicationRegistry.Node.FindById(id);
-
-            ApplicationRegistry.Node.Update(id, r.Url, r.Ip, Description);
-
+            string result = ApplicationRegistry.Node.Update(nodeId, url, ip, description);
+            if (string.IsNullOrEmpty(result))
+            {
+                ViewBag.Ok = "ok";
+            }
+            else
+            {
+                ViewBag.Ok = result;
+            }
+            return View("UpdateResult");
         }
 
         public ActionResult Add()
@@ -87,26 +81,17 @@ namespace Easy.Register.Controllers
             {
                 ApplicationRegistry.Node.OffLine(id);
             }
-
         }
-
         [HttpPost]
-        public void SetWeight(int id, int weight)
+        public void SetWeight(int[] id, bool isDouble)
         {
-            var r = ApplicationRegistry.Node.FindById(id);
-
-            if (r == null)
+            if (isDouble)
             {
-                return;
+                ApplicationRegistry.Node.DoubleWeight(id);
             }
-
-            if (r.Weight > weight)
+            else
             {
-                ApplicationRegistry.Node.DecreaseWeight(id, weight);
-            }
-            else if (r.Weight < weight)
-            {
-                ApplicationRegistry.Node.AddWeight(id, weight);
+                ApplicationRegistry.Node.HalfWeight(id);
             }
         }
     }

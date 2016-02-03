@@ -50,7 +50,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
         {
             using (var conn = Database.Open())
             {
-                var tuple = NodeSql.IsExists(n.DirectoryInfo.Id, n.Url);
+                var tuple = NodeSql.IsExists(n.Id,n.DirectoryInfo.Id, n.Url);
 
                 var model = conn.Query<Model.Node>(tuple.Item1, (object)tuple.Item2);
 

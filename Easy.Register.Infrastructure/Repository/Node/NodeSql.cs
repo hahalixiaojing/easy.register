@@ -98,13 +98,14 @@ namespace Easy.Register.Infrastructure.Repository.Node
             return BaseSelectSql();
         }
 
-        public static Tuple<string, dynamic> IsExists(int directiory_id, string url)
+        public static Tuple<string, dynamic> IsExists(int node_id, int directiory_id, string url)
         {
-            string sql = string.Join(" ", BaseSelectSql(), "where directory_id=@directory_id and url=@url");
+            string sql = string.Join(" ", BaseSelectSql(), "where directory_id=@directory_id and url=@url and id!=@node_id");
             return new Tuple<string, dynamic>(sql, new
             {
                 directory_id = directiory_id,
-                url = url
+                url = url,
+                node_id = node_id
             });
         }
 

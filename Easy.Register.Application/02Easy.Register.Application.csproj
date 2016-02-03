@@ -65,6 +65,8 @@
     <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />
     <Compile Include="Node\AddWeightDomainEvents\AddWeightNodeSubscriber.cs" />
     <Compile Include="Node\DecreaseWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
+    <Compile Include="Node\DoubleWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
+    <Compile Include="Node\HalfWeightDomainEvents\HalfWeightNodeSubscriber.cs" />
     <Compile Include="Node\NodeApplication.cs" />
     <Compile Include="Node\NodePublishSubscriber.cs" />
     <Compile Include="Node\OffLineDomainEvents\OffLineNodeSubscriber.cs" />
