@@ -54,6 +54,5 @@ namespace Easy.Register.Model
                 return factory.Get<IRelationshipRepsitory>();
             }
         }
-
     }
 }

@@ -5,24 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 using Easy.Domain.RepositoryFramework;
 using Easy.Register.Model.User;
+using Dapper;
 
 namespace Easy.Register.Infrastructure.Repository.User
 {
     public class UserRepository : IUserRepository,IDao
     {
+        private static readonly Easy.Public.EntityPropertyHelper<Model.User.User> helper = new Public.EntityPropertyHelper<Model.User.User>();
+
         public void Add(Model.User.User item)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                var tuple = UserSql.Add(item);
+                int id = conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2);
+                helper.SetValue(m => m.Id, item, id);
+            }
         }
 
         public IList<Model.User.User> FindAll()
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                return conn.Query<Model.User.User>(UserSql.FindAll()).ToArray();
+            }
         }
 
         public Model.User.User FindBy(int key)
         {
-            throw new NotImplementedException();
+            using (var con = Database.Open())
+            {
+                return con.Query<Model.User.User>(UserSql.FindById(key)).FirstOrDefault();
+            }
         }
 
         public void Remove(Model.User.User item)
@@ -32,17 +46,27 @@ namespace Easy.Register.Infrastructure.Repository.User
 
         public void RemoveAll()
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                conn.Execute(User.UserSql.RemoveAll());
+            }
         }
 
         public void Update(Model.User.User item)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                var tuple = UserSql.Update(item);
+                conn.Execute(tuple.Item1, (object)tuple.Item2);
+            }
         }
 
         public bool UsernameIsExists(string usrname, int currentUserId)
         {
-            throw new NotImplementedException();
+            using (var conn = Database.Open())
+            {
+                return conn.ExecuteScalar<int>(UserSql.UsernameIsExists(currentUserId, usrname)) > 0;
+            }
         }
     }
 }
