@@ -12,11 +12,13 @@ namespace Easy.Register.Model.User
         public const string UsernameIsError = "u0001";
         public const string NameIsError = "u0002";
         public const string PasswordError = "u0003";
+        public const string UsernameExists = "u0004";
         protected override void PopulateMessage()
         {
             this.Messages.Add(UsernameIsError, "用户名不能为空");
             this.Messages.Add(NameIsError, "名字不能为空");
             this.Messages.Add(PasswordError, "密码不能为空");
+            this.Messages.Add(UsernameExists, "账号已经存在");
         }
     }
 }

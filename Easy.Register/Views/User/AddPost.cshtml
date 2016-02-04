@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "AddPost";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+<section class="content-wrapper">
+    <section class="content">
+        <div class="col-md-6">
+            @if (ViewBag.Ok == "ok")
+            {
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4>	<i class="icon fa fa-check"></i> 成功!</h4>
+                    添加成功
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i> 添加失败!</h4>
+                    @ViewBag.Ok
+                </div>
+            }
+
+        </div>
+    </section>
+</section>

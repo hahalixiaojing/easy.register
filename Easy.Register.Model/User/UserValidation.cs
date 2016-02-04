@@ -11,9 +11,14 @@ namespace Easy.Register.Model.User
     {
         public UserValidation()
         {
-            this.IsNullOrWhiteSpace(m => m.Username, "");
-            this.IsNullOrWhiteSpace(m => m.Name, "");
-            this.IsNullOrWhiteSpace(m => m.Password, "");
+            this.IsNullOrWhiteSpace(m => m.Username, UserBrokenRuleMessage.UsernameIsError);
+            this.IsNullOrWhiteSpace(m => m.Name, UserBrokenRuleMessage.NameIsError);
+            this.IsNullOrWhiteSpace(m => m.Password, UserBrokenRuleMessage.PasswordError);
+            this.AddRule((s) => {
+
+                return !Model.RepositoryRegistry.User.UsernameIsExists(s.Username, s.Id);
+
+            }, UserBrokenRuleMessage.UsernameExists);
         }
     }
 }

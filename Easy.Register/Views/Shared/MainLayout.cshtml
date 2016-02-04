@@ -3,7 +3,7 @@
     string activePro = String.Empty;
     string activeCus = String.Empty;
     string activeCha = String.Empty;
-
+    string activeUser = string.Empty;
     var active = ViewBag.Active as string;
     switch (active)
     {
@@ -21,6 +21,9 @@
 
         case "Cha":
             activeCha = "active";
+            break;
+        case "User":
+            activeUser = "active";
             break;
     }
 }
@@ -130,6 +133,17 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/Chart/index"><i class="fa fa-circle-o"></i> 查看</a></li>
+                    </ul>
+                </li>
+                <li class="@activeUser treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span>操作员</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/user/index"><i class="fa fa-circle-o"></i> 操作员列表</a></li>
+                        <li><a href="/user/adduser"><i class="fa fa-circle-o"></i> 添加操作员</a></li>
                     </ul>
                 </li>
             </ul>

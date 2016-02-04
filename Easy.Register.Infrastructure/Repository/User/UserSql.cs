@@ -39,7 +39,7 @@ namespace Easy.Register.Infrastructure.Repository.User
 
         public static string UsernameIsExists(int currentUserid, string username)
         {
-            string sql = "SELECT COUNT(*) FROM register_user WHERE id!=" + currentUserid + " and username=" + username;
+            string sql = "SELECT COUNT(*) FROM register_user WHERE id!=" + currentUserid + " and username='" + username + "'";
             return sql;    
         }
 
