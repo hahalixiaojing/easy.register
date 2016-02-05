@@ -54,8 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ApiApplication.cs" />
+    <Compile Include="Api\UpdateApiListDomainEvents\UpdateMD5DomainEvent.cs" />
+    <Compile Include="Api\UpdateApiListDomainEvents\UpdateServiceApiMd5Subscriber.cs" />
     <Compile Include="ApplicationRegistry.cs" />
     <Compile Include="Directory\DirectoryApplication.cs" />
+    <Compile Include="Models\Api\Api.cs" />
     <Compile Include="Models\Directory\DirectoryModel.cs" />
     <Compile Include="Models\Node\Node.cs" />
     <Compile Include="Models\Node\NodeDomainEvent.cs" />
@@ -64,6 +68,8 @@
     <Compile Include="Models\Return.cs" />
     <Compile Include="Models\User\User.cs" />
     <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />
+    <Compile Include="Node\AddDomainEvents\UpdateApiDomainEvent.cs" />
+    <Compile Include="Node\AddDomainEvents\UpdateApiListSubscriber.cs" />
     <Compile Include="Node\AddWeightDomainEvents\AddWeightNodeSubscriber.cs" />
     <Compile Include="Node\DecreaseWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
     <Compile Include="Node\DoubleWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />

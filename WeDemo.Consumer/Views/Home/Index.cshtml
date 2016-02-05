@@ -25,7 +25,7 @@
             var a3 =0;
             setInterval(function () {
                 $.get("/home/CallTest", {}, function (res) {
-                    return;
+                   
                     switch ($.trim(res)) {
                         case "http://127.0.0.1:4001/test":
                             $("#a1").html(res + "&nbsp;" + (++a1));
@@ -39,13 +39,15 @@
                     }
                 });
 
-            }, 100);
+            }, 1000);
 
 
             var b1 = 0;
             var b2 = 0;
             var b3 = 0;
             setInterval(function () {
+                return;
+
                 $.get("/home/CallTest2", {}, function (res) {
                     //return;
                     $("#d").append("<div>" + res + "</div>");
@@ -63,7 +65,7 @@
                     }*/
                 });
 
-            }, 2000);
+            }, 100);
 
         });
 

@@ -24,7 +24,7 @@ namespace Demo.Provider
                 Weight = 100
             };
 
-            builder.Build(myselfInfo, new string[0]);
+            builder.Build(myselfInfo, new string[0], new string[2] { "test/api1", "test/api2" });
 
             Console.ReadLine();
 

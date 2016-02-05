@@ -78,11 +78,19 @@ namespace Easy.Register.Infrastructure.Repository.Relationship
 
         public void Add(IList<Model.Relationship> list)
         {
+            if(list == null || list.Count == 0)
+            {
+                return;
+            }
             using (var conn = Database.Open())
             {
                 var trans = conn.BeginTransaction();
                 try
                 {
+                    string sql = RelationshipSql.Remove(list[0].ConsumerInfo.ConsumerDirectoryId);
+
+                    conn.Execute(sql, trans);
+
                     foreach (var item in list)
                     {
                         var tuple = RelationshipSql.Add(item);

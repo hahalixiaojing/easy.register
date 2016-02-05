@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Api\Api.cs" />
     <Compile Include="Api\IApiRepository.cs" />
+    <Compile Include="Api\ApiListCheckService.cs" />
     <Compile Include="Directory\Directory.cs" />
     <Compile Include="Directory\DirectoryBrokenRuleMessage.cs" />
     <Compile Include="Directory\DirectoryType.cs" />

@@ -14,6 +14,14 @@ namespace Easy.Register.Application
             ApplicationFactory.Instance().Register(new RelationshipApplication());
             ApplicationFactory.Instance().Register(new NodeApplication());
             ApplicationFactory.Instance().Register(new UserApplication());
+            ApplicationFactory.Instance().Register(new ApiApplication());
+        }
+        public static ApiApplication Api
+        {
+            get
+            {
+                return ApplicationFactory.Instance().Get<ApiApplication>();
+            }
         }
 
         public static UserApplication User {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Easy.Domain.Application;
 using Easy.Register.Application.Models.Node;
 using System.Linq;
+using Easy.Register.Application.Node.AddDomainEvents;
+
 namespace Easy.Register.Application
 {
     public class NodeApplication : BaseApplication
@@ -17,7 +19,7 @@ namespace Easy.Register.Application
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
         /// <param name="directoryId">所属目录</param>
-        public string Add(string directoryName, string url, string ip, string description, int weight, int status)
+        public string Add(string directoryName, string url, string ip, string description, int weight, int status,string[] apiList)
         {
             var directory = Model.RepositoryRegistry.Directory.FindBy(directoryName);
             if (directory == null)
@@ -38,10 +40,14 @@ namespace Easy.Register.Application
 
                 var nodes = Model.RepositoryRegistry.Node.Select(directory.Id);
                 this.PublishEvent("Add", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
-                return null;
             }
+            this.PublishEvent("Add", new UpdateApiDomainEvent(directory.Id, apiList));
 
-            return node.GetBrokenRules()[0].Description;
+            if(node.GetBrokenRules().Count > 0)
+            {
+                return node.GetBrokenRules()[0].Description;
+            }
+            return string.Empty;
         }
         /// <summary>
         /// 编辑节点

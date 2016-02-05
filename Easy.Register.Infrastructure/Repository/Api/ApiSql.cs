@@ -30,5 +30,10 @@ namespace Easy.Register.Infrastructure.Repository.Api
         {
             return "delete from register_apis";
         }
+
+        internal static string Remove(int directoryId)
+        {
+            return "DELETE FROM register_apis WHERE directory_id=" + directoryId;
+        }
     }
 }

@@ -16,15 +16,21 @@ namespace Easy.Register.Infrastructure.Repository.Api
 
         public void Add(Model.Api.Api[] apiList)
         {
+            if (apiList == null || apiList.Length == 0)
+            {
+                return;
+            }
             using (var conn = Database.Open())
             {
                 var trans = conn.BeginTransaction();
                 try
                 {
+                    string sql = ApiSql.Remove(apiList[0].DirectoryId);
+                    conn.Execute(sql, trans);
                     foreach (var item in apiList)
                     {
                         var tuple = ApiSql.Add(item);
-                        int id = conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2);
+                        int id = conn.ExecuteScalar<int>(tuple.Item1, (object)tuple.Item2, trans);
                         helper.SetValue(m => m.Id, item, id);
                     }
                     trans.Commit();

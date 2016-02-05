@@ -42,11 +42,12 @@ namespace Easy.Register.Controllers
         /// <param name="weight">权重</param>
         /// <param name="status">状态</param>
         /// <param name="description">描述</param>
+        /// <param name="apiList">提供者API列表，如果只是消费者没有apilist</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Register(string directory, string url, string ip, int weight, int status, string description)
+        public ActionResult Register(string directory, string url, string ip, int weight, int status, string description, [ModelBinder(typeof(StringArrayModelBinder))]string[] apiList)
         {
-            Application.ApplicationRegistry.Node.Add(StringHelper.ToString(directory, ""), url, ip, description, weight, status);
+            Application.ApplicationRegistry.Node.Add(StringHelper.ToString(directory, ""), url, ip, description, weight, status,apiList);
             return Content("OK");
         }
         /// <summary>
