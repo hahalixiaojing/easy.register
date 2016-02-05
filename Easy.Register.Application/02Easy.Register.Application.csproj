@@ -74,6 +74,8 @@
     <Compile Include="Node\OnLineDomainEvents\OnLineNodeSubscriber.cs" />
     <Compile Include="Node\UpdateDomainEvents\UpdateNodeSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Relationship\AddRelationDomainEvents\UpdateMD5DomainEvent.cs" />
+    <Compile Include="Relationship\AddRelationDomainEvents\UpdateUsedServiceMd5Subscriber.cs" />
     <Compile Include="Relationship\RelationshipApplication.cs" />
     <Compile Include="User\UserApplication.cs" />
   </ItemGroup>

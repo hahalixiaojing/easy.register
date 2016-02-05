@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Easy.Domain.Application;
 using Easy.Register.Application.Models.Relationship;
+using Easy.Register.Application.Relationship.AddRelationDomainEvents;
 using Easy.Register.Model;
 
-namespace Easy.Register.Application.Relationship
+namespace Easy.Register.Application
 {
     public class RelationshipApplication : BaseApplication
     {
@@ -48,6 +49,8 @@ namespace Easy.Register.Application.Relationship
                 list.Add(relationship);
             }
             RepositoryRegistry.Relationship.Add(list);
+
+            this.PublishEvent("AddRelation", new UpdateMD5DomainEvent(consumerDirectory.Id, newMd5));
         }
     }
 }
