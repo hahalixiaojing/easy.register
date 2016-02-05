@@ -33,6 +33,7 @@ namespace WeDemo.Consumer.Controllers
         }
         public ActionResult CallTest2()
         {
+            
             string url = factory.Get<IDemoService>().TestCall2();
             return Content(url+"ds");
         }

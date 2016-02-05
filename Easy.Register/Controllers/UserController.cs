@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Easy.Register.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,12 +7,14 @@ using System.Web.Mvc;
 
 namespace Easy.Register.Controllers
 {
+
+    [WebAuthorize]
     public class UserController : Controller
     {
         public UserController()
         {
             ViewBag.Active = "User";
-
+            
         }
 
         public ActionResult Index()

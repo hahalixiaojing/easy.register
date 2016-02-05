@@ -6,9 +6,12 @@ using System.Web.Mvc;
 using Castle.Components.DictionaryAdapter;
 using Easy.Register.Application;
 using Easy.Register.Application.Models.Relationship;
+using Easy.Register.Utility;
 
 namespace Easy.Register.Controllers
 {
+
+    [WebAuthorize]
     public class ChartController : BaseController
     {
         // GET: Chart

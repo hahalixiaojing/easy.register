@@ -47,8 +47,8 @@
       <HintPath>..\packages\Easy.Domain.2.0.1.4\lib\net451\Easy.Domain.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Easy.Public, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Easy.Public.1.0.1.2\lib\net451\Easy.Public.dll</HintPath>
+    <Reference Include="Easy.Public, Version=1.0.1.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Easy.Public.1.0.1.3\lib\net451\Easy.Public.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -201,6 +201,7 @@
     <Compile Include="Utility\ErrorAttribute.cs" />
     <Compile Include="Utility\EtaoJsonResult.cs" />
     <Compile Include="Utility\StringArrayModelBinder.cs" />
+    <Compile Include="Utility\WebAuthorize.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Easy.Register.Application\02Easy.Register.Application.csproj">

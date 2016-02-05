@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Castle.Core.Internal;
 using Easy.Register.Application;
 using Easy.Register.Application.Models.Directory;
+using Easy.Register.Utility;
 
 namespace Easy.Register.Controllers
 {
+    [WebAuthorize]
     public class DirectoryController : Controller
     {
         public ActionResult Index()

@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Easy.Register.Application;
 using Easy.Register.Application.Models.Node;
+using Easy.Register.Utility;
 
 namespace Easy.Register.Controllers
 {
+    [WebAuthorize]
     public class ConsumerController : Controller
     {
         // GET: Consumer

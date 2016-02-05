@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using Easy.Register.Application;
 using Easy.Register.Application.Models.Directory;
+using Easy.Register.Utility;
 
 namespace Easy.Register.Controllers
 {
+    [WebAuthorize]
     public class ProviderController : Controller
     {
         public ActionResult Index()
