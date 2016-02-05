@@ -100,5 +100,23 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                 return conn.Query<Model.Directory>(sql);
             }   
         }
+
+        public void UpdateUsedServiceMd5(int directoryId, string usedServiceMd5)
+        {
+            using (var conn = Database.Open())
+            {
+                string sql = DirectorySql.UpdateUpdateUsedServiceMd5(directoryId, usedServiceMd5);
+                conn.Execute(sql);
+            }
+        }
+
+        public void UpdateServiceApiMd5(int directoryId, string serviceApiMd5)
+        {
+            using(var conn = Database.Open())
+            {
+                string sql = DirectorySql.UpdateServiceApiMd5(directoryId, serviceApiMd5);
+                conn.Execute(sql);
+            }
+        }
     }
 }

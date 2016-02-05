@@ -2,13 +2,11 @@
 using NUnit.Framework;
 namespace Easy.Register.Test.Repository.Directory
 {
-
     public class DirectoryRepositoryTest
     {
         [Test]
         public void AddTest()
         {
-
             var expected = Create();
             Model.RepositoryRegistry.Directory.Add(expected);
 
@@ -36,6 +34,23 @@ namespace Easy.Register.Test.Repository.Directory
             var list =  Model.RepositoryRegistry.Directory.FindAll();
             Assert.IsTrue(list.Count > 0);
         }
+        [Test]
+        public void UpdateUsedServiceMd5AndUpdateServiceApiMd5Test()
+        {
+            var expected = Create();
+            Model.RepositoryRegistry.Directory.Add(expected);
+
+            expected.UsedServiceMd5 = "ab";
+            expected.SerivceApiMd5 = "cx";
+
+            Model.RepositoryRegistry.Directory.UpdateServiceApiMd5(expected.Id, expected.SerivceApiMd5);
+            Model.RepositoryRegistry.Directory.UpdateUsedServiceMd5(expected.Id, expected.UsedServiceMd5);
+
+            var actual = Model.RepositoryRegistry.Directory.FindBy(expected.Id);
+
+            DirectoryAssert(expected, actual);
+        }
+
         [Test]
         public void FindByNamesTest()
         {
@@ -99,6 +114,8 @@ namespace Easy.Register.Test.Repository.Directory
             Assert.AreEqual(expected.DirectoryType, actual.DirectoryType);
             Assert.AreEqual(expected.Description, actual.Description);
             Assert.AreEqual(expected.CreateDate.Hour, actual.CreateDate.Hour);
+            Assert.AreEqual(expected.UsedServiceMd5, actual.UsedServiceMd5);
+            Assert.AreEqual(expected.SerivceApiMd5, actual.SerivceApiMd5);
         }
 
         public static Model.Directory Create(Model.DirectoryType directoryType = Model.DirectoryType.提供者)
@@ -109,6 +126,8 @@ namespace Easy.Register.Test.Repository.Directory
                 DirectoryType = directoryType,
                 PingAPIPath = "/adfaf/adff",
                 VersionAPIPath = "/dfadfadf/adfad",
+                SerivceApiMd5 = "a",
+                UsedServiceMd5 = "b"
             };
 
             return directory;

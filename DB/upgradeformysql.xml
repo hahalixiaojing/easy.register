@@ -70,4 +70,15 @@
 		);
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="8">
+        <Author>李晓静</Author>
+        <Memo>
+            增加md5列
+        </Memo>
+        <Sql>
+		alter table regisrer_directory
+			add column use_services_md5 varchar(32),
+			add column api_list_md5 varchar(32);
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>

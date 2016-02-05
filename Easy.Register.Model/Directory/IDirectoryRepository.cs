@@ -14,5 +14,8 @@ namespace Easy.Register.Model
         bool DirectoryIsExists(Directory d);
 
         IEnumerable<Directory> Select(DirectoryType directoryType);
+
+        void UpdateUsedServiceMd5(int directoryId, string usedServiceMd5);
+        void UpdateServiceApiMd5(int directoryId, string serviceApiMd5);
     }
 }

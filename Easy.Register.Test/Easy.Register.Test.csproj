@@ -80,6 +80,7 @@
     <Compile Include="Repository\Relationship\RelationshipRepositoryTest.cs" />
     <Compile Include="Repository\User\UserRepositoryTest.cs" />
     <Compile Include="Service\PushService\PushServiceTest.cs" />
+    <Compile Include="Service\Relationship\RelationShipCheckServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

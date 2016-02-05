@@ -69,6 +69,18 @@ namespace Easy.Register.Model
             get;
             set;
         } 
+        /// <summary>
+        /// 所引用服务的MD5值
+        /// </summary>
+        public string UsedServiceMd5
+        {
+            get; set;
+        }
+        /// <summary>
+        /// Api接口列表MD5
+        /// </summary>
+        public string SerivceApiMd5 { get; set; }
+        
 
         protected override BrokenRuleMessage GetBrokenRuleMessages()
         {

@@ -10,6 +10,7 @@ namespace Easy.Register.Test.Service.PushService
     public class PushServiceTest
     {
         [Test]
+        [NUnit.Framework.Ignore]
         public void PushTest()
         {
             Model.ServiceRegistry.PublishService.Subscribe("dsf", (c, s) =>

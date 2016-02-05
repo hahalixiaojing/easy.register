@@ -25,7 +25,14 @@ namespace Easy.Register.Application.Relationship
         public void AddRelation(string consumerDirectoryName, string[] providerDirectoryName)
         {
             var consumerDirectory = RepositoryRegistry.Directory.FindBy(consumerDirectoryName);
-            if(consumerDirectory == null)
+            if (string.IsNullOrEmpty(consumerDirectoryName) || providerDirectoryName == null || providerDirectoryName.Length == 0)
+            {
+                return;
+            }
+
+            string newMd5;
+            bool isSame = new RelationShipCheckService().IsSame(providerDirectoryName,consumerDirectory.UsedServiceMd5, out newMd5);
+            if (isSame)
             {
                 return;
             }
