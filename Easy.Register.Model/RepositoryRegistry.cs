@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Easy.Register.Model.User;
+using Easy.Register.Model.Api;
 
 namespace Easy.Register.Model
 {
@@ -24,6 +25,13 @@ namespace Easy.Register.Model
             factory = b.Build(stream);
         }
 
+        public static IApiRepository Api
+        {
+            get
+            {
+                return factory.Get<IApiRepository>();
+            }
+        }
         public static IUserRepository User
         {
             get

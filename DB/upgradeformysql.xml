@@ -81,4 +81,18 @@
 			add column api_list_md5 varchar(32);
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="9">
+        <Author>李晓静</Author>
+        <Memo>
+            增加api表
+        </Memo>
+        <Sql>
+		CREATE TABLE `register_apis` (
+			`id` int NOT NULL AUTO_INCREMENT,
+			`api_name` varchar(100) NULL,
+			`directory_id` int NOT NULL,
+			PRIMARY KEY (`id`) 
+		);
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>
