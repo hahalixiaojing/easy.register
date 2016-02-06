@@ -75,8 +75,11 @@
     <Compile Include="RepositoryRegistry.cs" />
     <Compile Include="ServiceRegistry.cs" />
     <Compile Include="User\IUserRepository.cs" />
+    <Compile Include="User\PasswordService.cs" />
     <Compile Include="User\User.cs" />
+    <Compile Include="User\UserAuthenticationService.cs" />
     <Compile Include="User\UserBrokenRuleMessage.cs" />
+    <Compile Include="User\UserDescriptor.cs" />
     <Compile Include="User\UserValidation.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,16 @@ namespace Easy.Register.Infrastructure.Repository.User
             return string.Join(" ", BaseSelectSql(), " order by id desc");
         }
 
+        public static Tuple<string,dynamic> FindByName(string username)
+        {
+            string sql = string.Join(" ", BaseSelectSql(), "WHERE username=@Username");
+
+            return new Tuple<string, dynamic>(sql, new
+            {
+                Username = username
+            });
+        }
+
         public static Tuple<string,dynamic> Update(Model.User.User user)
         {
             const string sql = @"UPDATE register_user

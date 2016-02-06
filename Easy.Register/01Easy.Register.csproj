@@ -201,6 +201,7 @@
     <Compile Include="Utility\ErrorAttribute.cs" />
     <Compile Include="Utility\EtaoJsonResult.cs" />
     <Compile Include="Utility\StringArrayModelBinder.cs" />
+    <Compile Include="Utility\UserSession.cs" />
     <Compile Include="Utility\WebAuthorize.cs" />
   </ItemGroup>
   <ItemGroup>

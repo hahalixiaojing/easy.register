@@ -4,11 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Easy.Domain.Application;
+using Easy.Register.Model.User;
 
 namespace Easy.Register.Application.User
 {
     public class UserApplication : BaseApplication
     {
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns>int = 用户ID ，string=用户姓名</returns>
+        public Tuple<int,string> Login(string username,string password)
+        {
+            UserDescriptor user = new UserAuthenticationService().Authenticate(username, password);
+            if(user == null)
+            {
+                return null;
+            }
+
+            return new Tuple<int, string>(user.Id, user.Name);
+        }
+
         /// <summary>
         /// 添加用户
         /// </summary>
@@ -22,7 +40,7 @@ namespace Easy.Register.Application.User
             {
                 Username = username,
                 Name = name,
-                Password = Easy.Public.Security.Cryptography.MD5Helper.Encrypt("@#SSSS" + password)
+                Password = new PasswordService().Encrypt(password)
             };
 
             if (user.Validate())
@@ -45,7 +63,12 @@ namespace Easy.Register.Application.User
                 Username = user.Username
             };
         }
-
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public string UpdatePassword(int userId,string password)
         {
             var user = Model.RepositoryRegistry.User.FindBy(userId);
@@ -54,7 +77,7 @@ namespace Easy.Register.Application.User
                 return "账号不存在";
             }
 
-            user.Password = Easy.Public.Security.Cryptography.MD5Helper.Encrypt("@#SSSS" + password);
+            user.Password = new PasswordService().Encrypt(password);
 
             if (user.Validate())
             {

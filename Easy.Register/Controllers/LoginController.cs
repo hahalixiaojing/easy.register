@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Castle.Core.Internal;
+using Easy.Public.MvcSecurity;
 
 namespace Easy.Register.Controllers
 {
@@ -23,7 +24,19 @@ namespace Easy.Register.Controllers
                 return Redirect("/login/index");
             }
 
-            return Redirect("/directory/index");
+            var tuple = Application.ApplicationRegistry.User.Login(userName, password);
+            if(tuple == null)
+            {
+                return Redirect("/login/index");
+            }
+            AuthenticateHelper.SetTicket(tuple.Item1.ToString(), null, 0, tuple.Item2);
+
+            return Redirect("/home/index");
+        }
+        public ActionResult Logout()
+        {
+            AuthenticateHelper.DestroyTicket();
+            return Redirect("/login/index");
         }
     }
 }

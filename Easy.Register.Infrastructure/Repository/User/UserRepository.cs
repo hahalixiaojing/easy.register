@@ -31,6 +31,15 @@ namespace Easy.Register.Infrastructure.Repository.User
             }
         }
 
+        public Model.User.User FindBy(string username)
+        {
+            using (var conn = Database.Open())
+            {
+                var tuple = UserSql.FindByName(username);
+                return conn.Query<Model.User.User>(tuple.Item1, (object)tuple.Item2).FirstOrDefault();
+            }   
+        }
+
         public Model.User.User FindBy(int key)
         {
             using (var con = Database.Open())

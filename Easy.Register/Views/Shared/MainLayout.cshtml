@@ -86,7 +86,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-
+            <div class="navbar-custom-menu">
+                <div class="btn-group" style="margin:8px">
+                    <button class="btn btn-default" type="button">欢迎，@Easy.Register.Utility.UserSession.User</button>
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" style="min-width:120px">
+                        <li><a href="/login/logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
@@ -98,12 +109,12 @@
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="@activeDir treeview">
                     <a href="#">
-                        <i class="fa fa-th"></i> <span>目录</span>
+                        <i class="fa fa-th"></i> <span>服务</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/Directory/index"><i class="fa fa-circle-o"></i> 目录列表</a></li>
-                        <li><a href="/Directory/add"><i class="fa fa-circle-o"></i> 添加目录</a></li>
+                        <li><a href="/Directory/index"><i class="fa fa-circle-o"></i> 服务列表</a></li>
+                        <li><a href="/Directory/add"><i class="fa fa-circle-o"></i> 添加服务</a></li>
                     </ul>
                 </li>
                 <li class="@activePro treeview">
