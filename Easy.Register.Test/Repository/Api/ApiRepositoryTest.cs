@@ -11,7 +11,7 @@ namespace Easy.Register.Test.Repository.Api
         [Test]
         public void AddTest()
         {
-            var api = new Model.Api.Api("paht/adfd", 1);
+            var api = new Model.Api.Api("paht/adfd", 1,"dd");
             Model.RepositoryRegistry.Api.Add(new Model.Api.Api[1] { api });
 
             Assert.IsTrue(api.Id > 0);
@@ -21,7 +21,7 @@ namespace Easy.Register.Test.Repository.Api
             Assert.IsTrue(list.Count() > 0);
         }
 
-        [Test]
+        [TearDown]
         public void Clear()
         {
             Model.RepositoryRegistry.Api.RemoveAll();

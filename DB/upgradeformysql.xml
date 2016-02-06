@@ -95,4 +95,14 @@
 		);
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="10">
+        <Author>李晓静</Author>
+        <Memo>
+            api表增加directory_name
+        </Memo>
+        <Sql>
+		alter table register_apis
+			add column directory_name varchar(50);
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>

@@ -12,17 +12,22 @@ namespace Easy.Register.Model.Api
         public Api()
         {
         }
-        public Api(string name,int directoryId)
+        public Api(string name, int directoryId, string directoryName)
         {
             this.Name = name;
             this.DirectoryId = directoryId;
+            this.DirectoryName = directoryName;
         }
         public int Id
         {
             get;
             private set;
         }
-
+        public string DirectoryName
+        {
+            get;
+            private set;
+        }
         public int DirectoryId
         {
             get;

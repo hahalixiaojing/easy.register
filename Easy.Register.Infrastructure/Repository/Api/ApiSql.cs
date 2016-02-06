@@ -11,18 +11,19 @@ namespace Easy.Register.Infrastructure.Repository.Api
         internal static Tuple<string,dynamic> Add(Model.Api.Api api)
         {
             const string sql = @"INSERT INTO register_apis
-	                            (api_name, directory_id)
-	                            VALUES (@ApiName, @DirectoryId);select last_insert_id()";
+	                            (api_name, directory_id,directory_name)
+	                            VALUES (@ApiName, @DirectoryId,@DirectoryName);select last_insert_id()";
 
             return new Tuple<string, dynamic>(sql, new {
                 ApiName = api.Name,
-                DirectoryId = api.DirectoryId
+                DirectoryId = api.DirectoryId,
+                DirectoryName = api.DirectoryName
             });
         }
 
         internal static string FindByDirectoryId(int directoryId)
         {
-            return @"SELECT id as Id, api_name as Name, directory_id as DirectoryId
+            return @"SELECT id as Id, api_name as Name, directory_id as DirectoryId,directory_name as DirectoryName
                     FROM register_apis";
         }
 

@@ -30,7 +30,7 @@ namespace Easy.Register.Application
                 return;
             }
 
-            var modelApiList = apiList.Select(m => new Model.Api.Api(m.Name, m.DirectoryId));
+            var modelApiList = apiList.Select(m => new Model.Api.Api(m.Name, m.DirectoryId, directory.Name));
             Model.RepositoryRegistry.Api.Add(modelApiList.ToArray());
 
             this.PublishEvent("UpdateApiList", new UpdateMD5DomainEvent(directory.Id, newMd5));
