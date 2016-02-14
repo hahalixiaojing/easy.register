@@ -57,5 +57,18 @@ namespace Easy.Register.Infrastructure.Repository.Api
                 return conn.Query<Model.Api.Api>(ApiSql.FindByDirectoryId(directoryId));
             }
         }
+
+        public IEnumerable<Model.Api.Api> SelectByQuery(Query query, out int totalRows)
+        {
+            using (var conn = Database.Open())
+            {
+                var tuple = ApiSql.SelectByQuery(query);
+                var reader = conn.QueryMultiple(tuple.Item1, (object)tuple.Item2);
+                var count = reader.Read<object>().First() as IDictionary<string, object>;
+                totalRows = Convert.ToInt32(count["Count"]);
+
+                return reader.Read<Model.Api.Api>();
+            }
+        }
     }
 }

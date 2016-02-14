@@ -23,17 +23,25 @@ namespace Easy.Register.Model.Api
             get;
             private set;
         }
+        /// <summary>
+        /// 目录名称
+        /// </summary>
         public string DirectoryName
         {
             get;
             private set;
         }
+        /// <summary>
+        /// 目录ID
+        /// </summary>
         public int DirectoryId
         {
             get;
             private set;
         }
-
+        /// <summary>
+        /// API路径
+        /// </summary>
         public string Name
         {
             get; private set;

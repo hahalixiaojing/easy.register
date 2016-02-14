@@ -20,6 +20,19 @@ namespace Easy.Register.Test.Repository.Api
 
             Assert.IsTrue(list.Count() > 0);
         }
+        [Test]
+        public void SelectByQueryTest()
+        {
+            var api = new Model.Api.Api("paht/adfd", 1, "dd");
+            Model.RepositoryRegistry.Api.Add(new Model.Api.Api[1] { api });
+
+            int totalRows;
+            var list = Model.RepositoryRegistry.Api.SelectByQuery(new Model.Api.Query() { Name = "paht" }, out totalRows);
+
+            Assert.IsTrue(totalRows > 0);
+            Assert.IsTrue(list.Count() == 1);
+
+        }
 
         [TearDown]
         public void Clear()

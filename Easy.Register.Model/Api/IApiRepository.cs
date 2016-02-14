@@ -10,6 +10,7 @@ namespace Easy.Register.Model.Api
     {
         void Add(Api[] apiList);
         IEnumerable<Api> SelectByDirectoryId(int directoryId);
+        IEnumerable<Api> SelectByQuery(Query query, out int totalRows);
         void RemoveAll();
     }
 }
