@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using Easy.Domain.ServiceFramework;
 using Easy.Rpc;
@@ -40,7 +41,7 @@ namespace WeDemo.Consumer.Service
         [CustomerProtocol]
         [Easy.Rpc.LoadBalance(Easy.Rpc.LoadBalance.RoundRobinLoadBalance.NAME)]
         [Easy.Rpc.Cluster(Easy.Rpc.Cluster.FailoverCluster.NAME)]
-        [Easy.Rpc.Directory("DemoProvider", "/test")]
+        [Easy.Rpc.Directory("DemoProvider", "/test2")]
         public virtual string TestCall2(Easy.Rpc.InvokerContext context = null)
         {
             return Easy.Rpc.ClientInvoker.Invoke<string>(new CustomerInvoker(), context);
@@ -64,16 +65,17 @@ namespace WeDemo.Consumer.Service
         }
     }
 
-    public class CustomerInvoker : Easy.Rpc.IInvoker<string>
+    public class CustomerInvoker : Easy.Rpc.BaseInvoker<string>
     {
-        public string DoInvoke(Node node, string path)
-        {
-            return this.JoinURL(node, path);
-        }
-
-        public string JoinURL(Node node, string path)
+        public override string JoinURL(Node node, string path)
         {
             return node.Url + path;
+        }
+
+        protected override string ActualDoInvoke(Node node, string path)
+        {
+            Thread.Sleep(new Random(Guid.NewGuid().GetHashCode()).Next(10, 1000));
+            return this.JoinURL(node, path);
         }
     }
 }

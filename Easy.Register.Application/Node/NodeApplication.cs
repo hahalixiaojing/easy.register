@@ -40,10 +40,9 @@ namespace Easy.Register.Application
 
                 var nodes = Model.RepositoryRegistry.Node.Select(directory.Id);
                 this.PublishEvent("Add", new NodeDomainEvent(nodes.Select(m => m.Convert()).ToList()));
+                this.PublishEvent("Add", new UpdateApiDomainEvent(directory.Id, apiList));
             }
-            this.PublishEvent("Add", new UpdateApiDomainEvent(directory.Id, apiList));
-
-            if(node.GetBrokenRules().Count > 0)
+            if (node.GetBrokenRules().Count > 0)
             {
                 return node.GetBrokenRules()[0].Description;
             }

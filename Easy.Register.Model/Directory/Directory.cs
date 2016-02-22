@@ -77,6 +77,14 @@ namespace Easy.Register.Model
             get; set;
         }
         /// <summary>
+        /// 服务提供者数量
+        /// </summary>
+        public string NodeCount
+        {
+            get;private set;
+        }
+
+        /// <summary>
         /// Api接口列表MD5
         /// </summary>
         public string SerivceApiMd5 { get; set; }

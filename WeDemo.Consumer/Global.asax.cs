@@ -20,6 +20,9 @@ namespace WeDemo.Consumer
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            string posturl = "http://localhost:8000/CollectorData/Collector";
+            Easy.Rpc.Monitor.MonitorManager.RegisterSend(new Easy.Rpc.Monitor.FileSendCollectorData());
+            Easy.Rpc.Monitor.MonitorManager.RegisterSend(new Easy.Rpc.Monitor.HttpSendCollectorData(posturl));
 
             string registerUrl = ConfigurationManager.AppSettings["registerUrl"];
             string redisServer = ConfigurationManager.AppSettings["redisServer"];

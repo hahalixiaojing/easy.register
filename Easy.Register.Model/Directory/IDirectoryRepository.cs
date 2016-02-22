@@ -17,5 +17,6 @@ namespace Easy.Register.Model
 
         void UpdateUsedServiceMd5(int directoryId, string usedServiceMd5);
         void UpdateServiceApiMd5(int directoryId, string serviceApiMd5);
+        void UpdateProviderNodeCount(int directoryId, int providerNodeCount);
     }
 }

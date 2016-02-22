@@ -105,4 +105,14 @@
 			add column directory_name varchar(50);
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="11">
+        <Author>李晓静</Author>
+        <Memo>
+            增加服务提供者数量字段
+        </Memo>
+        <Sql>
+			alter table regisrer_directory
+			add column provider_node_count int default 0 comment '服务提供者数量';	
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>

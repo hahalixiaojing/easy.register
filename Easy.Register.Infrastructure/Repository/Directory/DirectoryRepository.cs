@@ -118,5 +118,14 @@ namespace Easy.Register.Infrastructure.Repository.Directory
                 conn.Execute(sql);
             }
         }
+
+        public void UpdateProviderNodeCount(int directoryId, int providerNodeCount)
+        {
+            using (var conn = Database.Open())
+            {
+                string sql = DirectorySql.UpdateProviderNodeCount(directoryId, providerNodeCount);
+                conn.Execute(sql);
+            }
+        }
     }
 }

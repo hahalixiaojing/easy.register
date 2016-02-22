@@ -70,6 +70,7 @@
     <Compile Include="Node\AddDomainEvents\AddNodeSubscriber.cs" />
     <Compile Include="Node\AddDomainEvents\UpdateApiDomainEvent.cs" />
     <Compile Include="Node\AddDomainEvents\UpdateApiListSubscriber.cs" />
+    <Compile Include="Node\AddDomainEvents\UpdateProviderNodeCountSubscriber.cs" />
     <Compile Include="Node\AddWeightDomainEvents\AddWeightNodeSubscriber.cs" />
     <Compile Include="Node\DecreaseWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />
     <Compile Include="Node\DoubleWeightDomainEvents\DecreaseWeightNodeSubscriber.cs" />

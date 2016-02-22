@@ -108,5 +108,11 @@ namespace Easy.Register.Infrastructure.Repository.Directory
         {
             return "UPDATE regisrer_directory SET api_list_md5='" + serviceApiMd5 + "' WHERE id=" + directoryId;
         }
+
+        public static string UpdateProviderNodeCount(int directoryId, int providerNodeCount)
+        {
+            return "UPDATE regisrer_directory SET provider_node_count=" + providerNodeCount + " WHERE id=" + directoryId;
+        }
+        
     }
 }

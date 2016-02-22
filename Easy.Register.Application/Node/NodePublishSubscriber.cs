@@ -9,7 +9,7 @@ namespace Easy.Register.Application.Node
 {
     public class NodePublishSubscriber : Easy.Domain.Event.IDomainEventSubscriber<NodeDomainEvent>
     {
-        public void HandleEvent(NodeDomainEvent aDomainEvent)
+        public virtual void HandleEvent(NodeDomainEvent aDomainEvent)
         {
             if (aDomainEvent.Nodes.Count > 0)
             {
