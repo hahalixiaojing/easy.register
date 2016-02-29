@@ -16,6 +16,18 @@ namespace Easy.Register.Utility
                 return user.UserData;
             }
         }
+
+        public static Tuple<int,string> UserInfoDetail
+        {
+            get
+            {
+                var user = HttpContext.Current.User as AuthenticateUser;
+
+                int id = int.Parse(user.Identity.Name);
+                string username = user.UserData;
+                return new Tuple<int, string>(id, username);
+            }
+        }
     }
 
 }
