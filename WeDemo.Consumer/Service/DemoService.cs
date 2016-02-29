@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using Easy.Domain.ServiceFramework;
+using Easy.Public.HttpRequestService;
 using Easy.Rpc;
 using Easy.Rpc.LoadBalance;
 
@@ -67,6 +68,7 @@ namespace WeDemo.Consumer.Service
 
     public class CustomerInvoker : Easy.Rpc.BaseInvoker<string>
     {
+        private static object obj = new object();
         public override string JoinURL(Node node, string path)
         {
             return node.Url + path;
@@ -74,8 +76,9 @@ namespace WeDemo.Consumer.Service
 
         protected override string ActualDoInvoke(Node node, string path)
         {
-            Thread.Sleep(new Random(Guid.NewGuid().GetHashCode()).Next(10, 1000));
-            return this.JoinURL(node, path);
+
+            HttpRequestClient.Request("http://www.sina.com.cn", "get").Send();
+            return string.Empty;
         }
     }
 }

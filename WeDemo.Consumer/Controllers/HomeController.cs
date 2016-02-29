@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Easy.Domain.ServiceFramework;
@@ -19,23 +21,21 @@ namespace WeDemo.Consumer.Controllers
             factory = builder.Build(new FileInfo(path));
         }
 
-        // GET: Home
         public ActionResult Index()
         {
 
             return View();
         }
 
-        public ActionResult CallTest()
+        public  ContentResult CallTest()
         {
-            string url = factory.Get<IDemoService>().TestCall();
-            return Content(url);
+                string url = factory.Get<IDemoService>().TestCall2();
+                return Content(Guid.NewGuid().ToString());
         }
-        public ActionResult CallTest2()
+        public ContentResult CallTest2()
         {
-            
             string url = factory.Get<IDemoService>().TestCall2();
-            return Content(url+"ds");
+            return Content(Thread.CurrentThread.ManagedThreadId.ToString());
         }
     }
 }

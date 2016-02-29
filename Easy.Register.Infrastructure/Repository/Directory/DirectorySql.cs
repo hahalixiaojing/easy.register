@@ -13,7 +13,8 @@ namespace Easy.Register.Infrastructure.Repository.Directory
             return @"SELECT id as Id, name as Name, 
                     description as Description, ping_api_path as PingAPIPath, 
                     version_api_path as VersionAPIPath, create_date as CreateDate,
-                    directory_type as DirectoryType,use_services_md5 as UsedServiceMd5,api_list_md5 as SerivceApiMd5
+                    directory_type as DirectoryType,use_services_md5 as UsedServiceMd5,api_list_md5 as SerivceApiMd5,
+                    provider_node_count as NodeCount
 	            FROM regisrer_directory";
         }
 
