@@ -16,6 +16,10 @@ namespace Easy.Register.Model.User
             {
                 return new UserDescriptor(0, "管理员");
             }
+            if(user  == null)
+            {
+                return null;
+            }
 
             if(user.Password != new PasswordService().Encrypt(password))
             {
