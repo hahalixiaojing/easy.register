@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using Easy.Public.MyLog;
 
 namespace Easy.Register
 {
@@ -26,7 +27,7 @@ namespace Easy.Register
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            LogManager.Info("ok", "ok");
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)

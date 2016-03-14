@@ -171,6 +171,9 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\UpdateUser.cshtml" />
     <Content Include="Views\User\EditPassword.cshtml" />
+    <Content Include="AppSettings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
