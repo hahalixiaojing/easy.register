@@ -18,56 +18,6 @@
         <div id="b3"></div>
     </div>
     <script>
-
-        $(function () {
-            var a1 =0;
-            var a2 =0;
-            var a3 =0;
-            setInterval(function () {
-                return;
-                $.get("/home/CallTest?r="+new Date(), {}, function (res) {
-                   
-                    switch ($.trim(res)) {
-                        case "http://127.0.0.1:4001/test":
-                            $("#a1").html(res + "&nbsp;" + (++a1));
-                            break;
-                        case "http://127.0.0.1:4002/test":
-                            $("#a2").html(res + "&nbsp;" + (++a2));
-                            break;
-                        case "http://127.0.0.1:4003/test":
-                            $("#a3").html(res + "&nbsp;" + (++a3));
-                            break;
-                    }
-                });
-
-            }, 1000);
-
-
-            var b1 = 0;
-            var b2 = 0;
-            var b3 = 0;
-            setInterval(function () {
-                $.get("/home/CallTest2?r=" + new Date(), {}, function (res) {
-                    
-                    $("#d").text("<div>" + res + "</div>");
-
-                    /*switch ($.trim(res)) {
-                        case "http://127.0.0.1:4001/test":
-                            $("#b1").text(++b1);
-                            break;
-                        case "http://127.0.0.1:4002/test":
-                            $("#b2").text(++b2);
-                            break;
-                        case "http://127.0.0.1:4003/test":
-                            $("#b3").text(++b3);
-                            break;
-                    }*/
-                });
-
-            }, 1000);
-
-        });
-
     </script>
 </body>
 </html>
