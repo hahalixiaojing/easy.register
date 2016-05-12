@@ -39,6 +39,10 @@ namespace Easy.Register.Application
             }
 
             var providerDirectorys = RepositoryRegistry.Directory.FindBy(providerDirectoryName);
+            if(providerDirectorys.Count() != providerDirectoryName.Length)
+            {
+                return;
+            }
 
             var list = new List<Model.Relationship>();
             foreach (var item in providerDirectorys)
