@@ -3,6 +3,7 @@ using Easy.Register.Application.Directory;
 using Easy.Register.Application.Relationship;
 using Easy.Register.Application.Node;
 using Easy.Register.Application.User;
+using Easy.Register.Application.Profile;
 
 namespace Easy.Register.Application
 {
@@ -15,6 +16,14 @@ namespace Easy.Register.Application
             ApplicationFactory.Instance().Register(new NodeApplication());
             ApplicationFactory.Instance().Register(new UserApplication());
             ApplicationFactory.Instance().Register(new ApiApplication());
+            ApplicationFactory.Instance().Register(new ProfileApplication());
+        }
+        public static ProfileApplication Profile
+        {
+            get
+            {
+                return ApplicationFactory.Instance().Get<ProfileApplication>();
+            }
         }
         public static ApiApplication Api
         {

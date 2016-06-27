@@ -46,6 +46,17 @@ namespace Easy.Register.Model.Profile
         /// </summary>
         public DateTime LastUpdate { get; private set; }
 
+        /// <summary>
+        /// 发布的KEY
+        /// </summary>
+        public string SubscribeKey
+        {
+            get
+            {
+                return this.ApplicationName + "_" + this.ProfileName;
+            }
+        }
+
 
         public void UpdateContent(string content)
         {
