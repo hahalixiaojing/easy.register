@@ -38,7 +38,6 @@ namespace Easy.Register.Application.Profile
                 CreateDate = m.CreateDate,
                 LastUpdate = m.LastUpdate,
                 ProfileName = m.ProfileName
-
             });
         }
         public SelectResponseModel FindBy(int id)
