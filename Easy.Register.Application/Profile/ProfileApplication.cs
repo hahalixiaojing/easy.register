@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Easy.Domain.Application;
 using Easy.Register.Application.Models.Profile;
 
-namespace Easy.Register.Application.Profile
+namespace Easy.Register.Application
 {
     public class ProfileApplication : BaseApplication
     {
@@ -18,6 +18,8 @@ namespace Easy.Register.Application.Profile
             {
                 Model.RepositoryRegistry.ApplicationProfile.Add(p);
             }
+
+            this.PublishEvent("Create", new Profile.CreateDomainEvents.CreateDomainEvent(p.Content, p.SubscribeKey));
         }
         public void Update(string content,int profileId)
         {
@@ -27,6 +29,8 @@ namespace Easy.Register.Application.Profile
             {
                 Model.RepositoryRegistry.ApplicationProfile.Update(p);
             }
+
+            this.PublishEvent("Update", new Profile.UpdateDomainEvents.UpdateDomainEvents(content, p.SubscribeKey));
         }
         public IEnumerable<SelectResponseModel> Select()
         {

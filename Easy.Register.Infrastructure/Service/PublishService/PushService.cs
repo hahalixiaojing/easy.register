@@ -24,6 +24,11 @@ namespace Easy.Register.Infrastructure.Service.PublishService
             string jsonNodeData = JsonConvert.SerializeObject(nodes);
             redis.GetDatabase(this.databaseId).Publish(directoryName, jsonNodeData);
         }
+        public void Publish(string channel, string content)
+        {
+            redis.GetDatabase().Publish(channel, content);
+        }
+        
         public void Subscribe(string directoryName, Action<string, string> action)
         {
             redis.GetSubscriber().Subscribe(directoryName, (c, s) =>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Easy.Register.Model.Profile;
 
-namespace Easy.Register.Application.Profile
+namespace Easy.Register.Application.Models.Profile
 {
     public class SelectResponseModel
     {

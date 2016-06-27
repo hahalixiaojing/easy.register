@@ -14,7 +14,7 @@ namespace Easy.Register.Model.PublishService
         /// <param name="directoryName"></param>
         /// <param name="nodes"></param>
         void Publish(string directoryName, IList<Node> nodes);
-
+        void Publish(string channel, string content);
         void Subscribe(string directoryName,Action<string,string> action);
     }
 }

@@ -81,9 +81,13 @@
     <Compile Include="Node\OffLineDomainEvents\OffLineNodeSubscriber.cs" />
     <Compile Include="Node\OnLineDomainEvents\OnLineNodeSubscriber.cs" />
     <Compile Include="Node\UpdateDomainEvents\UpdateNodeSubscriber.cs" />
+    <Compile Include="Profile\CreateDomainEvents\CreateDomainEvent.cs" />
+    <Compile Include="Profile\CreateDomainEvents\PushProfileSubscriber.cs" />
     <Compile Include="Profile\ProfileApplication.cs" />
-    <Compile Include="Profile\SelectResponseModel.cs" />
-    <Compile Include="Profile\UpdateProfileModel.cs" />
+    <Compile Include="Models\Profile\SelectResponseModel.cs" />
+    <Compile Include="Models\Profile\UpdateProfileModel.cs" />
+    <Compile Include="Profile\UpdateDomainEvents\PushProfileSubscriber.cs" />
+    <Compile Include="Profile\UpdateDomainEvents\UpdateDomainEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationship\AddRelationDomainEvents\UpdateMD5DomainEvent.cs" />
     <Compile Include="Relationship\AddRelationDomainEvents\UpdateUsedServiceMd5Subscriber.cs" />
