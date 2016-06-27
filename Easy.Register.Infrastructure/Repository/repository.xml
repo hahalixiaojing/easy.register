@@ -10,5 +10,7 @@
               implementation="Easy.Register.Infrastructure.Repository.User.UserRepository,Easy.Register.Infrastructure"/>
   <repository interface="Easy.Register.Model.Api.IApiRepository,Easy.Register.Model"
               implementation="Easy.Register.Infrastructure.Repository.Api.ApiRepository,Easy.Register.Infrastructure"/>
+  <repository interface="Easy.Register.Model.Profile.IApplicationProfileRepository,Easy.Register.Model"
+              implementation="Easy.Register.Infrastructure.Repository.Profile.ApplicationProfileRepsoitory,Easy.Register.Infrastructure"/>
 </repositories>
 

@@ -78,6 +78,7 @@
     <Compile Include="Repository\Api\ApiRepositoryTest.cs" />
     <Compile Include="Repository\Directory\DirectoryRepositoryTest.cs" />
     <Compile Include="Repository\Node\TestNode.cs" />
+    <Compile Include="Repository\Profile\ProfileRepositoryTest.cs" />
     <Compile Include="Repository\Relationship\RelationshipRepositoryTest.cs" />
     <Compile Include="Repository\User\UserRepositoryTest.cs" />
     <Compile Include="Service\PushService\PushServiceTest.cs" />

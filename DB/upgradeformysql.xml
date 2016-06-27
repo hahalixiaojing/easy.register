@@ -115,4 +115,22 @@
 			add column provider_node_count int default 0 comment '服务提供者数量';	
 		</Sql>
     </UpgradeSql>
+	<UpgradeSql version="12">
+        <Author>李晓静</Author>
+        <Memo>
+            创建
+        </Memo>
+        <Sql>
+			CREATE TABLE `regiser_profile` (
+				`Id` int NOT NULL AUTO_INCREMENT,
+				`ApplicationName` varchar(50) NOT NULL,
+				`ProfileName` varchar(50) NOT NULL,
+				`ContentType` tinyint NOT NULL,
+				`CreateDate` datetime NOT NULL,
+				`LastUpdate` datetime NOT NULL,
+				`Content` longtext NOT NULL,
+				PRIMARY KEY (`Id`) 
+			);
+		</Sql>
+    </UpgradeSql>
  </DBUpgrade>

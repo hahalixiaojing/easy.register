@@ -59,6 +59,11 @@
     <Compile Include="Directory\DirectoryType.cs" />
     <Compile Include="Directory\DirectoryValidation.cs" />
     <Compile Include="Directory\IDirectoryRepository.cs" />
+    <Compile Include="Profile\ApplicationProfile.cs" />
+    <Compile Include="Profile\ApplicationProfileBrokenRuleMessage.cs" />
+    <Compile Include="Profile\ApplicationProfileValidation.cs" />
+    <Compile Include="Profile\IApplicationProfileRepository.cs" />
+    <Compile Include="Profile\ProfileContentType.cs" />
     <Compile Include="PublishService\IPublishService.cs" />
     <Compile Include="Node\DirectoryInfo.cs" />
     <Compile Include="Node\INodeRepository.cs" />

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Easy.Register.Model.User;
 using Easy.Register.Model.Api;
+using Easy.Register.Model.Profile;
 
 namespace Easy.Register.Model
 {
@@ -23,6 +24,17 @@ namespace Easy.Register.Model
             Stream stream = Assembly.ReflectionOnlyLoadFrom(path).GetManifestResourceStream("Easy.Register.Infrastructure.Repository.repository.xml");
 
             factory = b.Build(stream);
+        }
+
+        /// <summary>
+        /// 应用程序配置文件
+        /// </summary>
+        public static IApplicationProfileRepository ApplicationProfile
+        {
+            get
+            {
+                return factory.Get<IApplicationProfileRepository>();
+            }
         }
 
         public static IApiRepository Api

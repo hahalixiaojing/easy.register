@@ -76,6 +76,7 @@
     <Compile Include="Repository\Directory\DirectorySql.cs" />
     <Compile Include="Repository\Node\NodeRepository.cs" />
     <Compile Include="Repository\Node\NodeSql.cs" />
+    <Compile Include="Repository\Profile\ApplicationProfileRepsoitory.cs" />
     <Compile Include="Repository\Relationship\RelationshipRepository.cs" />
     <Compile Include="Repository\Relationship\RelationshipSql.cs" />
     <Compile Include="Repository\User\UserRepository.cs" />
