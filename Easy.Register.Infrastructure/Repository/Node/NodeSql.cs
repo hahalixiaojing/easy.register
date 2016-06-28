@@ -16,7 +16,7 @@ namespace Easy.Register.Infrastructure.Repository.Node
 
         public static string SelectByDirectoryType(int directoryType)
         {
-            string sql = string.Join(" ", BaseSelectSql(), "INNER JOIN regisrer_directory d on n.directory_id=d.id WHERE d.directory_type =3 || d.directory_type=" + directoryType, "order by d.directory_name asc");
+            string sql = string.Join(" ", BaseSelectSql(), "INNER JOIN regisrer_directory d on n.directory_id=d.id WHERE d.directory_type =3 || d.directory_type=" + directoryType, "order by d.name asc");
             return sql;
         }
         public static string SelectByDirectoryId(int directoryId)
