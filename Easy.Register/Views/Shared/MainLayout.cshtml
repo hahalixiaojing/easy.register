@@ -4,6 +4,7 @@
     string activeCus = String.Empty;
     string activeCha = String.Empty;
     string activeUser = string.Empty;
+    string activeProfile = string.Empty;
     var active = ViewBag.Active as string;
     switch (active)
     {
@@ -24,6 +25,9 @@
             break;
         case "User":
             activeUser = "active";
+            break;
+        case "Profile":
+            activeProfile = "active";
             break;
     }
 }
@@ -135,7 +139,16 @@
                         <li><a href="/Consumer/index"><i class="fa fa-circle-o"></i> 节点列表</a></li>
                     </ul>
                 </li>
-
+                <li class="@activeProfile treeview">
+                    <a href="#">
+                        <i class="fa fa-files-o"></i> <span>配置文件</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/Profile/index"><i class="fa fa-circle-o"></i> 配置列表</a></li>
+                        <li><a href="/Profile/Add"><i class="fa fa-circle-o"></i> 添加配置</a></li>
+                    </ul>
+                </li>
                 <li class="@activeCha treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>

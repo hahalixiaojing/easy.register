@@ -9,6 +9,7 @@ namespace Easy.Register.Application.Models.Profile
 {
     public class SelectResponseModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// 配置文件内容类型
         /// </summary>

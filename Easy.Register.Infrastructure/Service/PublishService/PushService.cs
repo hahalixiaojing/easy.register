@@ -26,7 +26,7 @@ namespace Easy.Register.Infrastructure.Service.PublishService
         }
         public void Publish(string channel, string content)
         {
-            redis.GetDatabase().Publish(channel, content);
+            redis.GetDatabase(this.databaseId).Publish(channel, content);
         }
         
         public void Subscribe(string directoryName, Action<string, string> action)

@@ -1,0 +1,61 @@
+﻿@model Easy.Register.Application.Models.Profile.SelectResponseModel
+@{
+    ViewBag.Title = "修改配置文件";
+    Layout = "~/Views/Shared/MainLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-th"></i> Home</a></li>
+            <li class="active">修改配置文件</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-10 col-lg-8">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">修改配置文件</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" action="/profile/Update" method="post">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label>应用程序名称</label>
+                                <input readonly type="text" class="form-control" name="ApplicationName" value="@Model.ApplicationName">
+                            </div>
+                            <div class="form-group">
+                                <label>配置文件名称</label>
+                                <input readonly type="text" class="form-control" name="ProfileName" value="@Model.ProfileName">
+                            </div>
+                            <div class="form-group">
+                                <label>配置文件类型</label>
+                                <select  disabled class="form-control" name="ContentType">
+                                    <option value="1" @(Model.ContentType==1? "selected":"")>JSON</option>
+                                    <option value="3" @(Model.ContentType==3? "selected":"")>STRING</option>
+                                    <option value="2" @(Model.ContentType==2? "selected":"")>XML</option>
+                                </select>
+                            </div>
+                            <div>
+                                <textarea class="form-control" style="height:300px;" name="Content">@Model.Content</textarea>
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                        <input type="hidden" name="id" value="@Model.Id" />
+                    </form>
+                </div><!-- /.box -->
+            </div><!--/.col (left) -->
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div>
+<link rel="stylesheet" href="/Content/select2.min.css">
+<script src="/Scripts/select2.full.min.js"></script>
+<script src="/Scripts/jquery.inputmask.js"></script>
+<script src="/Scripts/jquery.inputmask.extensions.js"></script>

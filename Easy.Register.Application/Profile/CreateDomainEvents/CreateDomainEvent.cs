@@ -9,9 +9,14 @@ namespace Easy.Register.Application.Profile.CreateDomainEvents
 {
     public class CreateDomainEvent : IDomainEvent
     {
+        public CreateDomainEvent()
+        {
+
+        }
         public CreateDomainEvent(string cotnent,string subscribeKey)
         {
-            this.Content = Content;
+            this.Content = cotnent;
+            this.SubscribeKey = subscribeKey;
             this.OccurredOn = DateTime.Now;
         }
 
