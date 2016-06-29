@@ -68,5 +68,11 @@ namespace Easy.Register.Application
                 ProfileName = profile.ProfileName
             };
         }
+
+        public string FindProfileContent(string application,string profile)
+        {
+            string content = Model.RepositoryRegistry.ApplicationProfile.FindProfileContent(application, profile);
+            return content;
+        }
     }
 }

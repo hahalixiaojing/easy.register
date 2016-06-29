@@ -13,5 +13,6 @@ namespace Easy.Register.Model.Profile
         void Update(ApplicationProfile profile);
         void RemoveAll();
         IEnumerable<ApplicationProfile> Select();
+        string FindProfileContent(string application, string profile);
     }
 }

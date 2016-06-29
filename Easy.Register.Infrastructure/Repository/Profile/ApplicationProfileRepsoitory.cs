@@ -64,5 +64,15 @@ namespace Easy.Register.Infrastructure.Repository.Profile
                 conn.Execute(sql, new { LastUpdate = profile.LastUpdate, Content = profile.Content, Id = profile.Id });
             }
         }
+
+        public string FindProfileContent(string application, string profile)
+        {
+            using (var conn = Database.Open())
+            {
+                string sql = @"select Content from regiser_profile where ApplicationName=@ApplicationName and ProfileName=@ProfileName";
+
+                return conn.Query<string>(sql, new { ApplicationName = application, ProfileName = profile }).FirstOrDefault();
+            }
+        }
     }
 }
